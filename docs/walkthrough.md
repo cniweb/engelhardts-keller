@@ -1,0 +1,191 @@
+# Walkthrough: Neuer Webauftritt für Engelhardt's Keller Ebensfeld
+
+Die Website der traditionsreichen Gastwirtschaft und des Biergartens **Engelhardt's Keller** (Kellerstraße 50, 96250 Ebensfeld) wurde vollständig von der veralteten iWeb-Technologie in eine moderne, responsive und performante **HTML5 / CSS / JavaScript** Webpräsenz überführt.
+
+---
+
+## 🌟 Wichtigste Highlights & Umgesetzte Features
+
+### 1. 100% Originales Bildmaterial
+Gemäß Vorgabe wurden **ausschließlich die originalen Fotos und Grafiken** aus den Web- und Printarchiven von Engelhardt's Keller verwendet:
+- Originalaufnahme des Biergartens unter den 25 schattigen Linden (`assets/images/biergarten.jpg`)
+- Historisches Kellerhaus & Gastwirtschaft (`assets/images/hero.jpg`, `assets/images/kellerhaus_prospekt.jpg`)
+- Kellerstollen-Portal von 1867 (`assets/images/chronik_original.jpg`)
+- Steinofen-Pizza (`assets/images/pizza_prospekt.jpg`)
+- Gästezimmer & Appartement (`assets/images/zimmer_prospekt.jpg`, `assets/images/gallery/gallery_zimmer.jpg`)
+- Kinderspielplatz & Keller-Pferde (`assets/images/spielplatz_prospekt.jpg`)
+- Original-Wappen & Logo der „Kellerliebe“ des Ebensfelder Brauhauses (`assets/images/kellerliebe_brauhaus.jpg`)
+- Alle 26 Originalaufnahmen aus der Galerie der alten Website unter `assets/images/gallery_original/`
+- Original-Hausprospekt als PDF-Download (`assets/documents/Hausprospekt.pdf`)
+
+---
+
+### 2. Live Biergarten-Status & Ebensfeld-Wetter-Automatik (`index.html` & `oeffnungszeiten.html`)
+Auf der Startseite und in der Navigationsleiste informiert ein dynamisches Status-Widget in Echtzeit:
+- **Standort**: Ebensfeld, Oberfranken (50.0673° N, 10.9628° E).
+- **Datenquelle**: Direkte, datenschutzkonforme Schnittstelle zu Open-Meteo (DWD-Wetterdaten, ohne API-Key, kein Tracking).
+- **Entscheidungslogik**:
+  - **Montag**: Automatisch *Montags Ruhetag*.
+  - **Dienstag – Samstag**: Öffnungszeitraum ab 16:00 Uhr (Küche bis 20:00 Uhr).
+  - **Sonn- und Feiertage**: Öffnungszeitraum ab 11:00 Uhr.
+  - **Wetterprüfung**: Prüft Regenwahrscheinlichkeit, Niederschlagsmenge und WMO-Wettercodes während der Öffnungsstunden. Bei Regen & Unwetter &rarr; *„Wetterbedingt geschlossen“*; bei schönem Kellerwetter &rarr; *„Heute geöffnet!“*.
+  - **Stundenvorschau**: Direkte 4-Stunden-Vorschau mit Temperatur, Symbol und Regenwahrscheinlichkeit.
+
+---
+
+### 3. Speisekarte mit Original-Gerichten (`speisekarte.html`)
+Alle 24 gewünschten warmen und kalten Speisen wurden originalgetreu eingepflegt:
+
+**Warme Speisen:**
+- Champignonschnitzel mit Pommes und gemischtem Salat
+- Schweineschnitzel „Wiener Art“ mit Pommes und gemischtem Salat
+- Schweinesteak mit Kräuterbutter dazu Pommes und gemischter Salat
+- Cordon Bleu mit Pommes und gemischtem Salat
+- Kellergögerla (Hähnchenoberkeule paniert) mit Pommes und kleinem Salat
+- Käsespätzle mit Salat
+- „Fränkisches Gyros“ Bratwürste mit Weißem Käse und Zwiebeln
+- Backfisch mit Kartoffelsalat und gemischtem Salat
+- 1 Paar Bratwürste mit Sauerkraut und Brot
+- Currywurst mit Pommes
+- Bockwurst mit Pommes oder Brot
+- Chicken Nuggets mit Pommes
+
+**Kalte Speisen & Brotzeiten:**
+- Weißer Käse mit Butter und Brot
+- „Käsedreierlei“ Kochkäse, Gerupfter und Weißer Käse mit Brot
+- Kochkäse mit Brot und Butter
+- Limburger mit Musik dazu Brot und Butter
+- Vegetarischer Paprika-Tomaten-Aufstrich mit Brot
+- Gerupfter mit Butter und Brot
+- Dosenfleisch mit Brot
+- Göttingerplatte mit Brot und Butter
+- Presssackplatte mit Brot
+- Schweizer Wurstsalat mit Butter und Brot
+- Schinkenplatte mit Butter und Brot
+- Kellerplatte mit Butter und Brot
+
+Zusätzlich ergänzen die Steinofen-Pizzen sowie die hauseigenen Bierspezialitäten („Kellerliebe“, Landbier, Frankenweine) das Kellerangebot.
+Jedes einzelne Gericht kann im Admin-Interface mit einem einzigen Klick deaktiviert werden, falls es an einem Tag ausverkauft ist.
+
+---
+
+### 4. Steinbackofen & Pizza-Tage Steuerung (Admin & Website)
+Da der Steinbackofen nur an bestimmten Tagen angeheizt wird, ist das gesamte Pizza-Angebot und der zugehörige Website-Hinweis flexibel konfigurierbar:
+- **Zunächst deaktiviert**: Alle 4 Pizza-Gerichte sind in der Datenbank und im Admin-Bereich standardmäßig deaktiviert (`active: false`).
+- **Admin-Schalter**: Auf `admin.html` gibt es die Steuerungskarte **„Steinbackofen & Pizza-Tage Steuerung“** mit einem Hauptschalter *„Ofen heute an / aus“*.
+- **Automatische Synchronisation**: Beim Einschalten des Ofens werden auf Wunsch sofort alle Pizza-Gerichte auf der Speisekarte aktiviert; beim Ausschalten werden sie automatisch wieder ausgeblendet.
+- **Dynamische Hinweise**:
+  - Auf `speisekarte.html`: Wenn der Ofen aus ist, erscheint ein dezenter Hinweis (*„Unser Steinbackofen ist heute nicht in Betrieb (Steinofen-Pizza gibt es nur an bestimmten Tagen)“*). Wenn der Ofen an ist, erscheint eine grüne Hervorhebung (*„🔥 Steinbackofen heute in Betrieb! Frische Steinofen-Pizza ab 16 Uhr“*).
+  - Auf `index.html`: Der Badge an der Feature-Karte wechselt automatisch zwischen *„Pizza an Aktionstagen“* und *„🔥 Pizzaofen heute an!“*.
+
+---
+
+### 5. Interaktives Admin-Interface (`admin.html`)
+Über das browserbasierte Admin-Panel (abgesichert per PIN, Standard: `keller1867`) können alle Aspekte gepflegt werden:
+- **5 Optionen für den Biergarten-Status**:
+  1. `Vom Wetter abhängig`: Vollautomatische Live-Berechnung anhand des Ebensfeld-Wetters.
+  2. `Geöffnet`: Manuell geöffnet erzwingen (z. B. sonniger Feiertag).
+  3. `Geschlossen`: Manuell geschlossen erzwingen (z. B. Ruhetag, Unwetterwarnung).
+  4. `Geschlossene Gesellschaft`: Exklusive private Feier / geschlossene Veranstaltung.
+  5. `Urlaub`: Betriebsurlaub.
+- **Freitextfeld für individuelle Begründung**: z. B. *"Heute Live-Musik ab 16 Uhr!"* oder *"Betriebsurlaub bis 15. September"*.
+- **Live-Vorschau**: Zeigt sofort an, wie das Status-Widget auf der Startseite aussehen wird.
+- **Steinbackofen & Pizza-Tage Steuerung**:
+  - Ein-/Ausschalten des Steinbackofens und automatisches Aktivieren/Deaktivieren aller Pizza-Gerichte.
+- **Gegrillte Makrelen & Fisch-Tage Steuerung (August-Aktion)**:
+  - Ein-/Ausschalten des Holzkohlegrills für Aktionstage im August.
+  - Automatisches Ein-/Ausblenden der Speise *„Gegrillte Makrele“ (11,- €)* auf der Speisekarte.
+  - Live-Hinweisbanner mit authentischer Aufnahme (`assets/images/makrelen_grill.jpg`) auf Speisekarte und Startseite.
+- **Speisekarten-Pflege**:
+  - Schneller Ein-/Aus-Schalter (Aktiv / Deaktiviert) für jedes Gericht.
+  - Deaktivierte Speisen verschwinden **sofort** von der öffentlichen Speisekarte (`speisekarte.html`).
+  - Neue Gerichte anlegen (Titel, Kategorie, Preis, Beschreibung, Badges).
+  - Gerichte bearbeiten und löschen.
+- **Fotogalerie-Pflege**:
+  - Übersicht aller 26 Originalfotos mit Vorschau und Schnellbearbeitung.
+  - Bild-Upload per Datei-Auswahl (JPG, PNG, WebP) oder Eingabe einer Bild-URL/Pfad.
+  - Schnelle Zuweisung zu Kategorien (*Biergarten, Spielplatz, Gästezimmer, Speisen, Winter*).
+  - Löschen von Fotos aus der Galerie.
+- **Export & Import (JSON)**:
+  - Speisekarte als `menu.json` herunterladen.
+  - Fotogalerie als `gallery.json` herunterladen.
+  - JSON-Dateien importieren.
+  - Werkszustand für Speisekarte, Galerie und Einstellungen wiederherstellen.
+
+---
+
+### 6. Alle Unterseiten modernisiert
+
+| Seite | Datei | Beschreibung |
+|---|---|---|
+| **Willkommen** | [index.html](../index.html) | Startseite mit Hero, Live-Wetter-Widget, Besonderheiten, Live-Events & Übernachten-Teaser mit Originalfoto #19 (Ferienwohnung) |
+| **Speisekarte** | [speisekarte.html](../speisekarte.html) | Dynamische Speisekarte, Kategorietabs, Suche, Filterung aktiver Gerichte |
+| **Öffnungszeiten** | [oeffnungszeiten.html](../oeffnungszeiten.html) | Zeiten, Ruhetag, Küchenzeiten & erweiterte Ebensfeld-Wetterprognose |
+| **Gästezimmer** | [zimmer.html](../zimmer.html) | Alle 8 Originalfotos aus der Galerie (Zimmer 1-4, Küche, Bad, Sitzecke), Lightbox-Zoom & Shuttle-Info |
+| **Chronik** | [chronik.html](../chronik.html) | Interaktive Zeitleiste seit 1867 (Felsenkellerbau, Kellerhaus 1965) |
+| **Galerie** | [fotos.html](../fotos.html) | Alle 26 Originalfotos dynamisch mit Kategorienfiltern & Lightbox |
+| **Anfahrt & Lage** | [anfahrt.html](../anfahrt.html) | Anfahrtsbeschreibungen (A73, Bahn, Main-Radweg) + interaktive OpenStreetMap |
+| **Umgebung** | [umgebung.html](../umgebung.html) | Ausflugsziele: Ebensfeld, Staffelberg, Vierzehnheiligen, Obermain-Therme |
+| **Impressum** | [impressum.html](../impressum.html) | Vollständige rechtliche Angaben nach TMG und DSGVO |
+| **Admin-Interface** | [admin.html](../admin.html) | Verwaltung von Status, Banner, Speisen und Fotogalerie |
+
+---
+
+### 7. Mobile-First & QR-Code Biertisch-Optimierung
+
+Für Gäste, die direkt am Biertisch sitzen und den QR-Code auf dem Tischaufsteller scannen:
+- **Sticky Kategorie-Leiste**:
+  - Auf Smartphones bleibt die Filterleiste (`.menu-filter-bar`) beim Scrollen oben unter der Kopfzeile fixiert (`top: 64px`, `backdrop-filter: blur(12px)`).
+  - Horizontales Wischen mit dem Daumen (`scroll-snap-type: x mandatory`, Touch-Momentum) ermöglicht blitzschnellen Wechsel zwischen den Kategorien.
+  - Antippen eines Reiters zentriert den Tab automatisch im Sichtfeld.
+- **Biertisch-Badge**:
+  - Dezenter Willkommenshinweis: *„Digitale Speisekarte am Biertisch • Selbstbedienung an der Theke“*.
+- **Optimierte Speisekarten-Karten (`.dish-card`)**:
+  - Großzügige, kontraststarke Preisplaketten in Bier-Bernstein (`var(--amber-50)`, `var(--amber-800)`), die auch bei hellem Sonnenlicht im Biergarten sofort ins Auge fallen.
+  - Kompaktes Padding und saubere Typografie für Bildschirme ab 320px bis 480px Breite.
+- **Schnellsuche mit Lösch-Button**:
+  - Ermöglicht das sofortige Finden von Gerichten (z. B. „Schnitzel“, „Kellerliebe“, „Käse“).
+  - Ein Klick auf das `×`-Symbol leert die Suche sofort.
+- **Direkte Kategorie-Verlinkung**:
+  - Jede Kategorie besitzt einen stabilen Anker (z. B. `speisekarte.html#warme_speisen`, `#kalte_speisen`, `#biere`). QR-Codes können somit bei Bedarf gezielt auf bestimmte Kategorien verweisen.
+- **Schwebender „Nach oben“-Button**:
+  - Erscheint dezent ab 280px Scrolltiefe in der unteren rechten Ecke und scrollt per Fingertipp sanft zurück zum Menüanfang.
+
+---
+
+### 8. Social-Media-Profile (Facebook & Instagram)
+
+Alle öffentlichen Seiten verfügen nun in der Fußzeile (`.site-footer`) und im mobilen Menü über direkte Verlinkungen zu den offiziellen Social-Media-Profilen des Engelhardt's Keller:
+- **Facebook**: [http://www.facebook.com/EngelhardtsKeller](http://www.facebook.com/EngelhardtsKeller) (mit offiziellem Facebook-Icon & Brand-Hover `#1877f2`)
+- **Instagram**: [https://www.instagram.com/engelhardts_keller/](https://www.instagram.com/engelhardts_keller/) (mit offiziellem Instagram-Gradienten-Hover)
+- Präsentiert sowohl als moderne kreisförmige Social-Icons im Brand-Bereich als auch als Textlinks unter *„Kontakt & Service“* und im mobilen Drawer-Menü.
+
+---
+
+### 9. Live-Events & Keller-Termine (Startseite & Admin)
+
+Kommende Veranstaltungen und Live-Musik-Termine werden auf der Startseite (`index.html`) in einer interaktiven Event-Komponente präsentiert:
+- **Konfigurierbar im Admin-Interface (`admin.html`)**:
+  - Karte **„Live-Events & Termine verwalten“** mit schneller Ein-/Ausschaltfunktion (Aktiv/Inaktiv).
+  - Modal zum Erstellen und Bearbeiten von Events mit Datum (`type="date"`), Uhrzeit, Titel, Beschreibung, Genre-Badge und Bild (Datei-Upload via FileReader oder Pfad/URL).
+  - Export & Import als `events.json` sowie Werkszustand-Reset.
+- **Startseiten-Komponente (`#home-events-container`)**:
+  - Responsive Event-Karten mit Datums- und Uhrzeit-Badges, Genre-Badge, Beschreibung, Eintritts-Hinweis und Lightbox-Großansicht für Veranstaltungsfotos.
+  - Vorkonfigurierte Highlights mit authentischen Originalbildern:
+    - **Ebensfelder Maascheißer**: Sonntag, 03. Mai 2026 ab 15:00 Uhr (`assets/images/events/event_maascheisser.jpg`)
+    - **Live-Musik mit Sino Dee**: Donnerstag, 04. Juni 2026 (Fronleichnam) ab 16:30 Uhr (`assets/images/events/event_sino_dee.jpg`)
+  - Freundlicher Fallback-Hinweis, wenn keine Termine aktiv sind.
+
+---
+
+## 🧪 Verifikation & Testergebnisse
+
+- **Lokaler Server**: Gestartet auf `http://localhost:8080/`.
+- **Automatisierte Link- und Assetprüfung**:
+  - Alle 10 HTML-Dateien liefern `HTTP 200 OK`.
+  - 100% aller referenzierten Bilder, Stylesheets und Skripte sind lokal vorhanden und fehlerfrei aufgelöst.
+- **Wetter-Schnittstelle**:
+  - Ebensfeld-Koordinaten erfolgreich getestet; liefert stündliche Vorhersagewerte, WMO-Codes und Niederschlagswahrscheinlichkeiten.
+- **Mobile Responsiveness**:
+  - Geprüft für gängige Smartphone-Auflösungen (360px bis 430px iPhone/Android) und Desktop. Sticky Filterleiste, Touch-Navigation und Lesbarkeit im Freien validiert.
+

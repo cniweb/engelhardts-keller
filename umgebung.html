@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Umgebung & Ausflugsziele | Engelhardt's Keller Ebensfeld</title>
+  <meta name="description" content="Entdecken Sie den Gottesgarten am Obermain: Markt Ebensfeld, Staffelberg, Basilika Vierzehnheiligen, Kloster Banz und die Obermain-Therme Bad Staffelstein.">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <aside id="site-announcement-banner" class="site-announcement-banner hidden"></aside>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo-link" aria-label="Startseite Engelhardt's Keller">
+        <div class="logo-emblem">
+          <i class="fa-solid fa-beer-mug-empty"></i>
+        </div>
+        <div class="logo-text-wrap">
+          <span class="brand-title">Engelhardt's Keller</span>
+          <span class="brand-subtitle">Tradition seit 1867 • Ebensfeld</span>
+        </div>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Hauptnavigation">
+        <a href="index.html" class="nav-link">Willkommen</a>
+        <a href="speisekarte.html" class="nav-link">Speisekarte</a>
+        <a href="oeffnungszeiten.html" class="nav-link">Öffnungszeiten & Wetter</a>
+        <a href="zimmer.html" class="nav-link">Gästezimmer</a>
+        <a href="chronik.html" class="nav-link">Chronik</a>
+        <a href="fotos.html" class="nav-link">Galerie</a>
+        <a href="anfahrt.html" class="nav-link">Anfahrt & Kontakt</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="oeffnungszeiten.html" id="navbar-status-pill" class="navbar-status-pill pill-open">
+          <span class="pill-dot"></span> <span>Status lädt...</span>
+        </a>
+        <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Menü öffnen">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-nav-drawer">
+    <div class="drawer-header">
+      <span class="brand-title">Engelhardt's Keller</span>
+      <button id="close-mobile-nav" class="drawer-close" aria-label="Schließen">&times;</button>
+    </div>
+    <div class="drawer-links">
+      <a href="index.html" class="drawer-link"><i class="fa-solid fa-house"></i> Willkommen</a>
+      <a href="speisekarte.html" class="drawer-link"><i class="fa-solid fa-utensils"></i> Speisekarte</a>
+      <a href="oeffnungszeiten.html" class="drawer-link"><i class="fa-solid fa-cloud-sun"></i> Öffnungszeiten & Wetter</a>
+      <a href="zimmer.html" class="drawer-link"><i class="fa-solid fa-bed"></i> Gästezimmer</a>
+      <a href="chronik.html" class="drawer-link"><i class="fa-solid fa-book-bookmark"></i> Chronik seit 1867</a>
+      <a href="fotos.html" class="drawer-link"><i class="fa-solid fa-image"></i> Galerie</a>
+      <a href="umgebung.html" class="drawer-link active"><i class="fa-solid fa-mountain-sun"></i> Umgebung</a>
+      <a href="anfahrt.html" class="drawer-link"><i class="fa-solid fa-location-dot"></i> Anfahrt & Kontakt</a>
+      <a href="admin.html" class="drawer-link"><i class="fa-solid fa-gear"></i> Admin-Bereich</a>
+    </div>
+    <div class="drawer-footer">
+      <p style="font-size:0.85rem; color:var(--slate-600); margin-bottom:0.5rem;">
+        <i class="fa-solid fa-phone"></i> <strong>09573 / 1543</strong>
+      </p>
+      <p style="font-size:0.8rem; color:var(--slate-500); margin:0;">
+        Kellerstraße 50, 96250 Ebensfeld
+      </p>
+      <div style="display:flex; gap:0.6rem; margin-top:0.85rem;">
+        <a href="http://www.facebook.com/EngelhardtsKeller" target="_blank" rel="noopener noreferrer" class="social-link social-facebook" style="background:var(--slate-200); color:var(--slate-800); width:36px; height:36px; font-size:1rem;" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/engelhardts_keller/" target="_blank" rel="noopener noreferrer" class="social-link social-instagram" style="background:var(--slate-200); color:var(--slate-800); width:36px; height:36px; font-size:1rem;" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+  <div id="nav-backdrop" class="nav-backdrop"></div>
+
+  <!-- Page Header -->
+  <section class="hero-section" style="padding: 3.5rem 0 3rem;">
+    <img src="assets/images/ebensfeld_blick.jpg" alt="Das Obere Maintal und Markt Ebensfeld" class="hero-bg-img" />
+    <div class="hero-overlay"></div>
+    <div class="container" style="position:relative; z-index:10; text-align:center; max-width:800px;">
+      <span class="hero-eyebrow"><i class="fa-solid fa-compass"></i> Das Tor zum Gottesgarten</span>
+      <h1 class="hero-title" style="font-size:2.8rem; margin-bottom:0.75rem;">Umgebung & Ausflugsziele</h1>
+      <p class="hero-lead" style="font-size:1.1rem; margin-bottom:0;">
+        Entdecken Sie das sonnenverwöhnte Oberfranken rund um Ebensfeld, Staffelberg und Bad Staffelstein.
+      </p>
+    </div>
+  </section>
+
+  <!-- Content Section -->
+  <main class="section">
+    <div class="container">
+      
+      <!-- Ebensfeld Intro -->
+      <div class="grid-2" style="align-items: center; margin-bottom: 4rem;">
+        <div>
+          <span class="section-eyebrow">Markt Ebensfeld</span>
+          <h2 class="section-title">Das Tor zum Gottesgarten am Obermain</h2>
+          <p style="font-size:1rem; line-height:1.65; color:var(--slate-700);">
+            Die urkundlich über 1.200 Jahre alte Marktgemeinde Ebensfeld umfasst 23 Ortsteile und liegt malerisch eingebettet zwischen Bamberg, Coburg und Kulmbach im Landkreis Lichtenfels.
+          </p>
+          <p style="font-size:0.95rem; line-height:1.6; color:var(--slate-600);">
+            Mit rund 5.800 Einwohnern ist sie nicht nur wegen ihrer idyllischen Lage der perfekte Ort, um sich abseits von Stress und Hektik zu erholen, sondern bietet Touristen, Wanderern und Radfahrern einen optimalen Ausgangspunkt zur Erkundung des westlichen Oberfrankens.
+          </p>
+          <div style="margin-top:1.5rem;">
+            <a href="zimmer.html" class="btn btn-primary"><i class="fa-solid fa-bed"></i> Urlaub bei uns anfragen</a>
+          </div>
+        </div>
+        <div>
+          <img src="assets/images/ebensfeld_blick.jpg" alt="Marktgemeinde Ebensfeld" style="border-radius:var(--radius-xl); box-shadow:var(--shadow-xl); border:1px solid var(--slate-300); width:100%; object-fit:cover;" />
+        </div>
+      </div>
+
+      <!-- Highlights Grid -->
+      <div class="section-header">
+        <span class="section-eyebrow">Sehenswertes in direkter Nähe</span>
+        <h2 class="section-title">Kulturelle & landschaftliche Schätze</h2>
+      </div>
+
+      <div class="grid-3">
+        
+        <!-- Staffelberg -->
+        <article class="feature-card">
+          <div class="feature-card-body">
+            <div class="feat-icon" style="margin-bottom:1rem; width:48px; height:48px; font-size:1.35rem;">
+              <i class="fa-solid fa-mountain"></i>
+            </div>
+            <h3 class="card-title">Der Staffelberg</h3>
+            <p class="card-text">
+              Der 539 Meter hohe „Berg der Franken“ bietet ein eindrucksvolles Felsplateau mit Staffelbergklause und einem atemberaubenden 360-Grad-Panoramablick über das gesamte obere Maintal. Beliebtes Ziel für Wanderer und Naturfreunde.
+            </p>
+            <span style="font-size:0.82rem; color:var(--slate-500);"><i class="fa-solid fa-car"></i> ca. 10 Min. Fahrzeit</span>
+          </div>
+        </article>
+
+        <!-- Basilika Vierzehnheiligen -->
+        <article class="feature-card">
+          <div class="feature-card-body">
+            <div class="feat-icon" style="margin-bottom:1rem; width:48px; height:48px; font-size:1.35rem; background:var(--amber-100); color:var(--amber-700);">
+              <i class="fa-solid fa-church"></i>
+            </div>
+            <h3 class="card-title">Basilika Vierzehnheiligen</h3>
+            <p class="card-text">
+              Die weltberühmte spätbarocke Wallfahrtskirche nach den Plänen von Balthasar Neumann zählt zu den prachtvollsten Sakralbauten Süddeutschlands. Ein absoluter Höhepunkt fränkischer Kunstgeschichte.
+            </p>
+            <span style="font-size:0.82rem; color:var(--slate-500);"><i class="fa-solid fa-car"></i> ca. 12 Min. Fahrzeit</span>
+          </div>
+        </article>
+
+        <!-- Kloster Banz -->
+        <article class="feature-card">
+          <div class="feature-card-body">
+            <div class="feat-icon" style="margin-bottom:1rem; width:48px; height:48px; font-size:1.35rem;">
+              <i class="fa-solid fa-monument"></i>
+            </div>
+            <h3 class="card-title">Kloster Banz</h3>
+            <p class="card-text">
+              Die imposante ehemalige Benediktinerabtei thront erhaben auf einem bewaldeten Bergsporn gegenüber von Vierzehnheiligen. Heute Bildungsstätte der Hanns-Seidel-Stiftung mit Museum, Park und Konzerten.
+            </p>
+            <span style="font-size:0.82rem; color:var(--slate-500);"><i class="fa-solid fa-car"></i> ca. 15 Min. Fahrzeit</span>
+          </div>
+        </article>
+
+        <!-- Obermain-Therme -->
+        <article class="feature-card">
+          <div class="feature-card-body">
+            <div class="feat-icon" style="margin-bottom:1rem; width:48px; height:48px; font-size:1.35rem; background:#e0f2fe; color:#0284c7;">
+              <i class="fa-solid fa-water"></i>
+            </div>
+            <h3 class="card-title">Obermain-Therme Bad Staffelstein</h3>
+            <p class="card-text">
+              Bayerns wärmste und stärkste Thermalsole mit über 3.000 m² Wasserfläche, großem Saunaland und weitläufiger Natur-Badeseenlandschaft. Ideal zur puren Entspannung nach einer Wanderung.
+            </p>
+            <span style="font-size:0.82rem; color:var(--slate-500);"><i class="fa-solid fa-car"></i> ca. 8 Min. Fahrzeit</span>
+          </div>
+        </article>
+
+        <!-- Main-Radweg -->
+        <article class="feature-card">
+          <div class="feature-card-body">
+            <div class="feat-icon" style="margin-bottom:1rem; width:48px; height:48px; font-size:1.35rem;">
+              <i class="fa-solid fa-bicycle"></i>
+            </div>
+            <h3 class="card-title">Main-Radweg</h3>
+            <p class="card-text">
+              Einer der beliebtesten und meistausgezeichneten Radfernwege Deutschlands führt direkt an Ebensfeld vorbei. Flache Streckenführung entlang des Mains mit besten Einkehrmöglichkeiten auf den Kellern.
+            </p>
+            <span style="font-size:0.82rem; color:var(--slate-500);"><i class="fa-solid fa-person-biking"></i> Direkt vor der Haustür</span>
+          </div>
+        </article>
+
+        <!-- Weltkulturerbe Bamberg -->
+        <article class="feature-card">
+          <div class="feature-card-body">
+            <div class="feat-icon" style="margin-bottom:1rem; width:48px; height:48px; font-size:1.35rem; background:var(--amber-100); color:var(--amber-700);">
+              <i class="fa-solid fa-city"></i>
+            </div>
+            <h3 class="card-title">Kaiserstadt Bamberg</h3>
+            <p class="card-text">
+              Die UNESCO-Weltkulturerbestadt Bamberg mit dem weltberühmten Kaiserdom, dem Alten Rathaus im Fluss und der historischen Altstadt liegt nur ca. 25 km südlich und ist per Bahn oder A73 in kurzer Zeit erreichbar.
+            </p>
+            <span style="font-size:0.82rem; color:var(--slate-500);"><i class="fa-solid fa-train"></i> ca. 20 Min. mit der Bahn</span>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Engelhardt's Keller</h3>
+          <p style="margin-bottom:1rem;">Traditionelle Gastwirtschaft & Bierkeller im oberfränkischen Ebensfeld. Seit 1867 im Familienbesitz.</p>
+          <div style="font-size:0.85rem; color:var(--slate-400);">
+            <i class="fa-solid fa-location-dot" style="color:var(--amber-400); margin-right:0.4rem;"></i> Kellerstraße 50, 96250 Ebensfeld
+          </div>
+          <div class="footer-social-links">
+            <a href="http://www.facebook.com/EngelhardtsKeller" target="_blank" rel="noopener noreferrer" class="social-link social-facebook" aria-label="Engelhardt's Keller auf Facebook" title="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/engelhardts_keller/" target="_blank" rel="noopener noreferrer" class="social-link social-instagram" aria-label="Engelhardt's Keller auf Instagram" title="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Willkommen</a></li>
+            <li><a href="speisekarte.html">Speisekarte</a></li>
+            <li><a href="oeffnungszeiten.html">Öffnungszeiten & Wetter</a></li>
+            <li><a href="zimmer.html">Gästezimmer</a></li>
+            <li><a href="chronik.html">Chronik</a></li>
+            <li><a href="fotos.html">Bildergalerie</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Öffnungszeiten</h4>
+          <ul class="footer-links" style="font-size:0.88rem;">
+            <li><strong>Di – Sa:</strong> ab 16:00 Uhr</li>
+            <li><strong>So & Feiertage:</strong> ab 11:00 Uhr</li>
+            <li><strong>Montag:</strong> Ruhetag</li>
+            <li style="margin-top:0.4rem; color:var(--amber-300);"><i class="fa-solid fa-sun"></i> Nur bei schönem Wetter</li>
+            <li>Küche jeweils bis 20:00 Uhr</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Kontakt & Service</h4>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <div>
+              <div>Telefon:</div>
+              <strong><a href="tel:095731543" style="color:var(--white);">09573 / 1543</a></strong>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <div>
+              <div>E-Mail:</div>
+              <a href="mailto:engelhardt-ebensfeld@t-online.de" style="color:var(--white);">engelhardt-ebensfeld@t-online.de</a>
+            </div>
+          </div>
+          <div class="footer-contact-item" style="margin-top:0.75rem;">
+            <i class="fa-brands fa-facebook" style="color:#1877f2;"></i>
+            <div>
+              <a href="http://www.facebook.com/EngelhardtsKeller" target="_blank" rel="noopener noreferrer" style="color:var(--slate-300);">Facebook</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-brands fa-instagram" style="color:#e1306c;"></i>
+            <div>
+              <a href="https://www.instagram.com/engelhardts_keller/" target="_blank" rel="noopener noreferrer" style="color:var(--slate-300);">Instagram</a>
+            </div>
+          </div>
+          <div style="margin-top:1.2rem;">
+            <a href="admin.html" class="btn btn-sm btn-outline" style="background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.2); color:var(--slate-300);">
+              <i class="fa-solid fa-lock"></i> Admin-Login
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; <span id="current-year">2026</span> Gastwirtschaft zum Engelhardt's Keller • Familie Engelhardt</div>
+        <div>
+          <a href="impressum.html" style="color:var(--slate-400); margin-right:1.2rem;">Impressum & Datenschutz</a>
+          <a href="anfahrt.html" style="color:var(--slate-400);">Anfahrt</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/store.js"></script>
+  <script src="js/weather.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

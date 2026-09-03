@@ -1,0 +1,26 @@
+{
+  "events": [
+    {
+      "id": "event_maascheisser_2026",
+      "title": "Ebensfelder Maascheißer",
+      "date": "2026-05-03",
+      "time": "ab 15:00 Uhr",
+      "date_formatted": "Sonntag, 03. Mai 2026",
+      "description": "Zünftige fränkische Blasmusik und beste Kellerstimmung mit den Ebensfelder Maascheißern der Musikvereinigung Ebensfeld unter den schattigen Linden.",
+      "image": "assets/images/events/event_maascheisser.jpg",
+      "badge": "Live-Blasmusik",
+      "active": true
+    },
+    {
+      "id": "event_sino_dee_2026",
+      "title": "Live-Musik mit Sino Dee",
+      "date": "2026-06-04",
+      "time": "ab 16:30 Uhr",
+      "date_formatted": "Donnerstag, 04. Juni 2026 (Fronleichnam)",
+      "description": "Stimmungsvoller Live-Musik-Nachmittag mit Sino Dee: Akustik-Klassiker, Pop-Hits und sommerliche Keller-Gemütlichkeit.",
+      "image": "assets/images/events/event_sino_dee.jpg",
+      "badge": "Live-Akustik & Pop",
+      "active": true
+    }
+  ]
+}

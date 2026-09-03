@@ -1,0 +1,362 @@
+{
+  "categories": [
+    { "id": "warme_speisen", "name": "Warme Speisen", "icon": "fa-fire-burner", "desc": "Frisch zubereitet aus unserer Kellerküche (Küche bis 20:00 Uhr)" },
+    { "id": "kalte_speisen", "name": "Kalte Speisen & Brotzeiten", "icon": "fa-utensils", "desc": "Klassische fränkische Kellerbrotzeiten mit frischem Bauernbrot und Butter" },
+    { "id": "pizza", "name": "Pizza aus dem Steinbackofen", "icon": "fa-pizza-slice", "desc": "Knusprig aus unserem Steinofen gebacken" },
+    { "id": "biere", "name": "Kellerliebe & Bierspezialitäten", "icon": "fa-beer-mug-empty", "desc": "Exklusiv eingebraut im Ebensfelder Brauhaus" },
+    { "id": "getraenke", "name": "Alkoholfreies & Frankenweine", "icon": "fa-wine-bottle", "desc": "Regionale Erfrischungen, Frankenweine & Kaffeespezialitäten" }
+  ],
+  "items": [
+    {
+      "id": "warm_1",
+      "name": "Champignonschnitzel mit Pommes und gemischtem Salat",
+      "category": "warme_speisen",
+      "description": "Zartes Schweineschnitzel mit feiner, cremiger Champignon-Rahmsauce, dazu knusprige Pommes Frites und ein frischer gemischter Salatteller",
+      "price": 14.50,
+      "active": true,
+      "tags": ["hausgemacht", "beliebt"]
+    },
+    {
+      "id": "warm_2",
+      "name": "Schweineschnitzel „Wiener Art“ mit Pommes und gemischtem Salat",
+      "category": "warme_speisen",
+      "description": "Klassisch goldgelb paniertes Schweineschnitzel aus der Pfanne mit Zitronenecke, serviert mit Pommes Frites und gemischtem Salat",
+      "price": 13.50,
+      "active": true,
+      "tags": ["klassiker", "beliebt"]
+    },
+    {
+      "id": "warm_3",
+      "name": "Schweinesteak mit Kräuterbutter dazu Pommes und gemischter Salat",
+      "category": "warme_speisen",
+      "description": "Saftig gegrilltes Schweinesteak mit hausgemachter Kräuterbutter, dazu knusprige Pommes Frites und bunter Marktsalat",
+      "price": 14.80,
+      "active": true,
+      "tags": ["vom grill", "herzhaft"]
+    },
+    {
+      "id": "warm_4",
+      "name": "Cordon Bleu mit Pommes und gemischtem Salat",
+      "category": "warme_speisen",
+      "description": "Paniertes Schweineschnitzel gefüllt mit saftigem Schinken und würzigem Käse, dazu Pommes Frites und gemischter Salat",
+      "price": 15.50,
+      "active": true,
+      "tags": ["hausgemacht", "spezialitaet"]
+    },
+    {
+      "id": "warm_5",
+      "name": "Kellergögerla (Hähnchenoberkeule paniert) mit Pommes und kleinem Salat",
+      "category": "warme_speisen",
+      "description": "Unsere Kellerspezialität: Knusprig panierte, saftige Hähnchenoberkeule mit Pommes Frites und einem kleinen frischen Beilagensalat",
+      "price": 13.80,
+      "active": true,
+      "tags": ["keller-spezialitaet", "beliebt"]
+    },
+    {
+      "id": "warm_6",
+      "name": "Käsespätzle mit Salat",
+      "category": "warme_speisen",
+      "description": "Hausgemachte Spätzle geschwenkt mit herzhaftem Bergkäse und Röstzwiebeln, serviert mit einem frischen gemischten Salat",
+      "price": 10.80,
+      "active": true,
+      "tags": ["vegetarisch", "hausgemacht"]
+    },
+    {
+      "id": "warm_7",
+      "name": "„Fränkisches Gyros“ Bratwürste mit Weißem Käse und Zwiebeln",
+      "category": "warme_speisen",
+      "description": "Fein gebratene fränkische Bratwurststreifen herzhaft gewürzt, garniert mit cremigem Weißen Käse und frischen Zwiebelringen",
+      "price": 11.50,
+      "active": true,
+      "tags": ["keller-original", "regional"]
+    },
+    {
+      "id": "warm_8",
+      "name": "Backfisch mit Kartoffelsalat und gemischtem Salat",
+      "category": "warme_speisen",
+      "description": "Zartes Fischfilet im knusprigen Backteig mit hausgemachtem fränkischen Kartoffelsalat, Remouladensauce und gemischtem Salat",
+      "price": 12.80,
+      "active": true,
+      "tags": ["fisch", "hausgemacht"]
+    },
+    {
+      "id": "item_makrele_grill",
+      "name": "Gegrillte Makrele (an Aktionstagen im August)",
+      "category": "warme_speisen",
+      "description": "Frisch über Holzkohle gegrillte Makrele nach traditioneller Keller-Art mit Kräutern und Zitrone, serviert mit frischem Brot oder Kartoffelsalat.",
+      "price": 11.00,
+      "active": false,
+      "tags": ["fisch", "holzkohlegrill", "august-aktion", "spezialitaet"]
+    },
+    {
+      "id": "warm_9",
+      "name": "1 Paar Bratwürste mit Sauerkraut und Brot",
+      "category": "warme_speisen",
+      "description": "Frische fränkische Bratwürste vom Grill auf Weinsauerkraut mit einer Scheibe herzhaftem Bauernbrot",
+      "price": 8.50,
+      "active": true,
+      "tags": ["regional", "klassiker"]
+    },
+    {
+      "id": "warm_10",
+      "name": "Currywurst mit Pommes",
+      "category": "warme_speisen",
+      "description": "Knackige Riesen-Currywurst mit unserer hausgemachten pikanten Currysauce und einer Portion Pommes Frites",
+      "price": 8.90,
+      "active": true,
+      "tags": ["schnell & lecker"]
+    },
+    {
+      "id": "warm_11",
+      "name": "Bockwurst mit Pommes oder Brot",
+      "category": "warme_speisen",
+      "description": "Heiße Bockwurst mit Senf, wahlweise serviert mit knusprigen Pommes Frites oder frischem Bauernbrot",
+      "price": 6.80,
+      "active": true,
+      "tags": ["klassiker"]
+    },
+    {
+      "id": "warm_12",
+      "name": "Chicken Nuggets mit Pommes",
+      "category": "warme_speisen",
+      "description": "Knusprige Hähnchennuggets mit Pommes Frites und wahlweise Ketchup oder Mayonnaise – besonders beliebt bei den Kleinen",
+      "price": 7.50,
+      "active": true,
+      "tags": ["fuer kinder", "beliebt"]
+    },
+    {
+      "id": "kalt_1",
+      "name": "Weißer Käse mit Butter und Brot",
+      "category": "kalte_speisen",
+      "description": "Frisch angemachter fränkischer Quark mit Kräutern, Zwiebeln und Gewürzen, serviert mit guter Butter und herzhaftem Bauernbrot",
+      "price": 6.90,
+      "active": true,
+      "tags": ["vegetarisch", "hausgemacht", "regional"]
+    },
+    {
+      "id": "kalt_2",
+      "name": "„Käsedreierlei“ Kochkäse, Gerupfter und Weißer Käse mit Brot",
+      "category": "kalte_speisen",
+      "description": "Drei fränkische Käsespezialitäten auf einem Teller: Würziger Kochkäse, pikanter Gerupfter (Obatzter) und feiner Weißer Käse mit viel Bauernbrot und Butter",
+      "price": 10.50,
+      "active": true,
+      "tags": ["vegetarisch", "keller-spezialitaet", "beliebt"]
+    },
+    {
+      "id": "kalt_3",
+      "name": "Kochkäse mit Brot und Butter",
+      "category": "kalte_speisen",
+      "description": "Würziger, zart schmelzender Hausmacher Kochkäse garniert mit frischem Kümmel, serviert mit Butter und Bauernbrot",
+      "price": 7.50,
+      "active": true,
+      "tags": ["vegetarisch", "hausgemacht"]
+    },
+    {
+      "id": "kalt_4",
+      "name": "Limburger mit Musik dazu Brot und Butter",
+      "category": "kalte_speisen",
+      "description": "Reifer aromatischer Limburger Käse in feiner Essig-Öl-Zwiebel-Marinade, gereicht mit Butter und frischem Bauernbrot",
+      "price": 7.90,
+      "active": true,
+      "tags": ["vegetarisch", "wuerzig"]
+    },
+    {
+      "id": "kalt_5",
+      "name": "Vegetarischer Paprika-Tomaten-Aufstrich mit Brot",
+      "category": "kalte_speisen",
+      "description": "Fruchtig-würziger hausgemachter Aufstrich aus sonnengereiften Tomaten und Paprika, serviert mit frischem Bauernbrot",
+      "price": 6.80,
+      "active": true,
+      "tags": ["vegetarisch", "vegan", "hausgemacht"]
+    },
+    {
+      "id": "kalt_6",
+      "name": "Gerupfter mit Butter und Brot",
+      "category": "kalte_speisen",
+      "description": "Der fränkische Klassiker (Obatzter): Cremig angemachter Camembert nach Keller-Familienrezept mit Zwiebelringen, Schnittlauch, Butter und Landbrot",
+      "price": 7.80,
+      "active": true,
+      "tags": ["vegetarisch", "hausgemacht", "klassiker"]
+    },
+    {
+      "id": "kalt_7",
+      "name": "Dosenfleisch mit Brot",
+      "category": "kalte_speisen",
+      "description": "Echtes fränkisches Hausmacher Dosenfleisch herzhaft gewürzt, garniert mit Gewürzgurke und frischem Bauernbrot",
+      "price": 7.90,
+      "active": true,
+      "tags": ["regional", "herzhaft"]
+    },
+    {
+      "id": "kalt_8",
+      "name": "Göttingerplatte mit Brot und Butter",
+      "category": "kalte_speisen",
+      "description": "Fein aufgeschnittene fränkische Göttinger Wurst reichlich garniert mit Zwiebeln, Gewürzgurke, Butter und Holzofenbrot",
+      "price": 8.90,
+      "active": true,
+      "tags": ["regional", "klassiker"]
+    },
+    {
+      "id": "kalt_9",
+      "name": "Presssackplatte mit Brot",
+      "category": "kalte_speisen",
+      "description": "Hausmacher roter und weißer Presssack mit Zwiebeln in feinem Essigdressing und herzhaftem Bauernbrot",
+      "price": 8.50,
+      "active": true,
+      "tags": ["hausgemacht", "regional"]
+    },
+    {
+      "id": "kalt_10",
+      "name": "Schweizer Wurstsalat mit Butter und Brot",
+      "category": "kalte_speisen",
+      "description": "Feine Wurststreifen und würzige Käsestreifen in Essig-Öl-Dressing mit vielen roten Zwiebeln, serviert mit Butter und Brot",
+      "price": 9.20,
+      "active": true,
+      "tags": ["beliebt", "herzhaft"]
+    },
+    {
+      "id": "kalt_11",
+      "name": "Schinkenplatte mit Butter und Brot",
+      "category": "kalte_speisen",
+      "description": "Fränkischer geräucherter Bauernschinken hauchdünn aufgeschnitten, serviert mit Butter, Radieschen und Bauernbrot",
+      "price": 9.80,
+      "active": true,
+      "tags": ["regional", "beliebt"]
+    },
+    {
+      "id": "kalt_12",
+      "name": "Kellerplatte mit Butter und Brot",
+      "category": "kalte_speisen",
+      "description": "Die große Vesperauswahl: Schinken, Göttinger, roter & weißer Presssack, Käse, Gurke, Radieschen, Butter und reichlich Landbrot",
+      "price": 11.50,
+      "active": true,
+      "tags": ["keller-spezialitaet", "regional", "beliebt"]
+    },
+    {
+      "id": "pizza_1",
+      "name": "Pizza „Kellerliebe“ (Haus-Spezialität)",
+      "category": "pizza",
+      "description": "Aus dem Steinbackofen: Tomatensauce, Mozzarella, feine Salami, Vorderschinken, frische Champignons und milde Peperoni",
+      "price": 11.50,
+      "active": false,
+      "tags": ["steinofen", "haus-spezialitaet"]
+    },
+    {
+      "id": "pizza_2",
+      "name": "Pizza Margherita",
+      "category": "pizza",
+      "description": "Klassische Steinofenpizza mit Tomatensauce, zartem Mozzarella und frischem Basilikum",
+      "price": 9.20,
+      "active": false,
+      "tags": ["vegetarisch", "steinofen"]
+    },
+    {
+      "id": "pizza_3",
+      "name": "Pizza Prosciutto e Funghi",
+      "category": "pizza",
+      "description": "Steinofenpizza mit Tomatensauce, Mozzarella, saftigem Schinken und frischen Champignons",
+      "price": 10.80,
+      "active": false,
+      "tags": ["steinofen"]
+    },
+    {
+      "id": "pizza_4",
+      "name": "Pizza Diavolo (scharf)",
+      "category": "pizza",
+      "description": "Steinofenpizza mit Tomatensauce, Mozzarella, scharfer Salami, Peperoni und Knoblauchöl",
+      "price": 11.20,
+      "active": false,
+      "tags": ["scharf", "steinofen"]
+    },
+    {
+      "id": "bier_1",
+      "name": "Eigens eingebraute „Kellerliebe“ (0,5 l)",
+      "category": "biere",
+      "description": "Das Original! Exklusiv für den Engelhardt's Keller eingebrautes unfiltriertes Kellerbier aus dem Ebensfelder Brauhaus. Süffig, bernsteinfarben und naturtrüb vom Fass.",
+      "price": 3.90,
+      "active": true,
+      "tags": ["exklusiv", "vom fass", "ebensfelder brauhaus"]
+    },
+    {
+      "id": "bier_2",
+      "name": "Adam Riese Urtrunk (0,5 l)",
+      "category": "biere",
+      "description": "Traditionelles dunkles Vollbier, malzaromatisch und vollmundig aus dem Ebensfelder Brauhaus",
+      "price": 3.90,
+      "active": true,
+      "tags": ["dunkel", "regional"]
+    },
+    {
+      "id": "bier_3",
+      "name": "Ebensfelder Landbier Hell (0,5 l)",
+      "category": "biere",
+      "description": "Klassisch fränkisches Helles, feinherb gehopft und erfrischend",
+      "price": 3.80,
+      "active": true,
+      "tags": ["hell", "regional"]
+    },
+    {
+      "id": "bier_4",
+      "name": "Ebensfelder Hefe-Weißbier (0,5 l)",
+      "category": "biere",
+      "description": "Fruchtig-spritziges Weizenbier, naturtrüb (hell, dunkel oder alkoholfrei)",
+      "price": 4.10,
+      "active": true,
+      "tags": ["weizen"]
+    },
+    {
+      "id": "bier_5",
+      "name": "Keller-Radler naturtrüb (0,5 l)",
+      "category": "biere",
+      "description": "Kellerliebe gemischt mit spritziger Zitronenlimonade",
+      "price": 3.80,
+      "active": true,
+      "tags": ["erfrischend"]
+    },
+    {
+      "id": "getraenk_1",
+      "name": "Frankenwein Silvaner trocken (0,25 l)",
+      "category": "getraenke",
+      "description": "Klassischer fränkischer Weißwein, mineralisch und elegant",
+      "price": 4.60,
+      "active": true,
+      "tags": ["frankenwein", "regional"]
+    },
+    {
+      "id": "getraenk_2",
+      "name": "Frankenwein Domina / Spätburgunder Rotwein (0,25 l)",
+      "category": "getraenke",
+      "description": "Kräftiger fränkischer Rotwein mit samtiger Fruchtnote",
+      "price": 4.80,
+      "active": true,
+      "tags": ["frankenwein", "rotwein"]
+    },
+    {
+      "id": "getraenk_3",
+      "name": "Fränkische Apfelschorle naturtrüb (0,5 l)",
+      "category": "getraenke",
+      "description": "Aus regionalen Äpfeln gekeltert",
+      "price": 3.60,
+      "active": true,
+      "tags": ["alkoholfrei", "regional"]
+    },
+    {
+      "id": "getraenk_4",
+      "name": "Tafelwasser mit / ohne Kohlensäure (0,5 l)",
+      "category": "getraenke",
+      "description": "Erfrischendes Mineralwasser",
+      "price": 2.90,
+      "active": true,
+      "tags": ["alkoholfrei"]
+    },
+    {
+      "id": "getraenk_5",
+      "name": "Kaffee / Cappuccino / Espresso",
+      "category": "getraenke",
+      "description": "Frisch gebrühter Bohnenkaffee",
+      "price": 2.80,
+      "active": true,
+      "tags": ["heissgetraenk"]
+    }
+  ]
+}

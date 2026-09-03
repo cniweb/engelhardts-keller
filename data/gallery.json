@@ -1,0 +1,213 @@
+{
+  "categories": [
+    {
+      "id": "keller",
+      "name": "Biergarten & Kellerhaus",
+      "icon": "fa-tree"
+    },
+    {
+      "id": "spielplatz",
+      "name": "Spielplatz & Familie",
+      "icon": "fa-children"
+    },
+    {
+      "id": "zimmer",
+      "name": "Gästezimmer & Pension",
+      "icon": "fa-bed"
+    },
+    {
+      "id": "speisen",
+      "name": "Speisen & Spezialitäten",
+      "icon": "fa-utensils"
+    },
+    {
+      "id": "winter",
+      "name": "Winter & Impressionen",
+      "icon": "fa-snowflake"
+    }
+  ],
+  "items": [
+    {
+      "id": "img_1",
+      "title": "Frisch gegrillte Makrelen",
+      "src": "assets/images/gallery_original/original_01_DSC_8053.jpg",
+      "category": "speisen",
+      "active": true
+    },
+    {
+      "id": "img_2",
+      "title": "Biergarten unter den Linden",
+      "src": "assets/images/gallery_original/original_02_IMG_1381.jpg",
+      "category": "keller",
+      "active": true
+    },
+    {
+      "id": "img_3",
+      "title": "Biergarten Impression 2",
+      "src": "assets/images/gallery_original/original_03_IMG_1380.jpg",
+      "category": "keller",
+      "active": true
+    },
+    {
+      "id": "img_4",
+      "title": "Biergarten Impression 3",
+      "src": "assets/images/gallery_original/original_04_IMG_1369.jpg",
+      "category": "keller",
+      "active": true
+    },
+    {
+      "id": "img_5",
+      "title": "Schattige Plätze unter den Linden",
+      "src": "assets/images/gallery_original/original_05_IMG_1366.jpg",
+      "category": "keller",
+      "active": true
+    },
+    {
+      "id": "img_6",
+      "title": "Gemütliche Sitzgarnituren",
+      "src": "assets/images/gallery_original/original_06_IMG_1348.jpg",
+      "category": "keller",
+      "active": true
+    },
+    {
+      "id": "img_7",
+      "title": "Ausschank & Essensausgabe",
+      "src": "assets/images/gallery_original/original_07_IMG_1354.jpg",
+      "category": "keller",
+      "active": true
+    },
+    {
+      "id": "img_8",
+      "title": "Ausreichend Platz im Biergarten",
+      "src": "assets/images/gallery_original/original_08_IMG_1341.jpg",
+      "category": "keller",
+      "active": true
+    },
+    {
+      "id": "img_9",
+      "title": "Sommeratmosphäre am Keller",
+      "src": "assets/images/gallery_original/original_09_DSC_7991.jpg",
+      "category": "keller",
+      "active": true
+    },
+    {
+      "id": "img_10",
+      "title": "Kinderspielplatz: Holzpferde",
+      "src": "assets/images/gallery_original/original_10_IMG_1349.jpg",
+      "category": "spielplatz",
+      "active": true
+    },
+    {
+      "id": "img_11",
+      "title": "Kinderspielplatz: Spielbereich",
+      "src": "assets/images/gallery_original/original_11_IMG_1350.jpg",
+      "category": "spielplatz",
+      "active": true
+    },
+    {
+      "id": "img_12",
+      "title": "Kinderspielplatz: Schaukel & Wiese",
+      "src": "assets/images/gallery_original/original_12_IMG_1352.jpg",
+      "category": "spielplatz",
+      "active": true
+    },
+    {
+      "id": "img_13",
+      "title": "Kinderspielplatz: Kletterturm",
+      "src": "assets/images/gallery_original/original_13_CIMG0293.jpg",
+      "category": "spielplatz",
+      "active": true
+    },
+    {
+      "id": "img_14",
+      "title": "Kinderspielplatz: Rutsche",
+      "src": "assets/images/gallery_original/original_14_CIMG0304.jpg",
+      "category": "spielplatz",
+      "active": true
+    },
+    {
+      "id": "img_15",
+      "title": "Gastwirtschaft & Kellerhaus",
+      "src": "assets/images/gallery_original/original_15_DSC_9976.jpg",
+      "category": "keller",
+      "active": true
+    },
+    {
+      "id": "img_16",
+      "title": "Historischer Felsenkellereingang",
+      "src": "assets/images/gallery_original/original_16_DSC_8092.jpg",
+      "category": "keller",
+      "active": true
+    },
+    {
+      "id": "img_17",
+      "title": "Doppelzimmer Zimmer 1",
+      "src": "assets/images/gallery_original/original_17_BeckerDSC_8334.jpg",
+      "category": "zimmer",
+      "active": true
+    },
+    {
+      "id": "img_18",
+      "title": "Einzelzimmer Zimmer 2",
+      "src": "assets/images/gallery_original/original_18_DSC_8366.jpg",
+      "category": "zimmer",
+      "active": true
+    },
+    {
+      "id": "img_19",
+      "title": "Doppelzimmer Zimmer 3",
+      "src": "assets/images/gallery_original/original_19_DSC_9967.jpg",
+      "category": "zimmer",
+      "active": true
+    },
+    {
+      "id": "img_20",
+      "title": "Ferienwohnung Zimmer 4",
+      "src": "assets/images/gallery_original/original_20_CIMG0328.jpg",
+      "category": "zimmer",
+      "active": true
+    },
+    {
+      "id": "img_21",
+      "title": "Ferienwohnung Wohnbereich",
+      "src": "assets/images/gallery_original/original_21_CIMG0329.jpg",
+      "category": "zimmer",
+      "active": true
+    },
+    {
+      "id": "img_22",
+      "title": "Ferienwohnung Küche",
+      "src": "assets/images/gallery_original/original_22_CIMG0326.jpg",
+      "category": "zimmer",
+      "active": true
+    },
+    {
+      "id": "img_23",
+      "title": "Ferienwohnung Badezimmer",
+      "src": "assets/images/gallery_original/original_23_CIMG0327.jpg",
+      "category": "zimmer",
+      "active": true
+    },
+    {
+      "id": "img_24",
+      "title": "Sitzgruppe im Pensionsflur",
+      "src": "assets/images/gallery_original/original_24_BeckerDSC_8357.jpg",
+      "category": "zimmer",
+      "active": true
+    },
+    {
+      "id": "img_25",
+      "title": "Parkplatz & Zufahrt",
+      "src": "assets/images/gallery_original/original_25_IMG_1361.jpg",
+      "category": "keller",
+      "active": true
+    },
+    {
+      "id": "img_26",
+      "title": "Engelhardt's Keller im Winter",
+      "src": "assets/images/gallery_original/original_26_PICT4881.jpg",
+      "category": "winter",
+      "active": true
+    }
+  ]
+}

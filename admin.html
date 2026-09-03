@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin-Interface | Engelhardt's Keller Ebensfeld</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background-color: #f1f5f9;">
+
+  <!-- PIN Authentication Overlay -->
+  <div id="admin-auth-overlay" class="auth-overlay">
+    <div class="auth-box">
+      <div class="auth-icon">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+      <h2 style="font-size:1.6rem; margin-bottom:0.5rem; color:var(--primary-900);">Keller-Verwaltung</h2>
+      <p style="font-size:0.9rem; color:var(--slate-600); margin-bottom:1.5rem;">
+        Bitte geben Sie die PIN ein, um das Admin-Interface zu öffnen.
+      </p>
+
+      <form id="admin-auth-form">
+        <div class="form-group">
+          <input type="password" id="admin-pin-input" class="form-control" placeholder="PIN eingeben" style="text-align:center; font-size:1.25rem; letter-spacing:0.15em;" required autofocus />
+          <div id="admin-pin-error" class="auth-error hidden">Falsche PIN. Bitte erneut versuchen.</div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Anmelden
+        </button>
+        <div style="margin-top:1.25rem;">
+          <a href="index.html" style="font-size:0.85rem; color:var(--slate-500);">&larr; Zurück zur Website</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Header Strip -->
+  <div class="admin-header-strip">
+    <div class="container admin-header-inner">
+      <div>
+        <span class="admin-badge-tag"><i class="fa-solid fa-shield-halved"></i> Admin-Interface</span>
+        <h1 style="font-size:2rem; color:var(--white);">Engelhardt's Keller Verwaltung</h1>
+        <p style="color:var(--slate-300); font-size:0.95rem; margin:0;">
+          Status-Steuerung (5 Optionen), Speisekarten-Pflege & Ankündigungen
+        </p>
+      </div>
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <a href="index.html" class="btn btn-sm btn-outline" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.3); color:var(--white);" target="_blank">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Zur Website
+        </a>
+        <button id="admin-logout-btn" class="btn btn-sm btn-danger-outline" style="background:rgba(239,68,68,0.15); border-color:#ef4444; color:#fca5a5;">
+          <i class="fa-solid fa-power-off"></i> Abmelden
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Dashboard Body -->
+  <main class="admin-container">
+    
+    <!-- CARD 1: Biergarten Status Control (5 Options) -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h2 class="admin-card-title">
+          <i class="fa-solid fa-toggle-on" style="color:var(--primary-700);"></i>
+          Biergarten-Öffnungsstatus überschreiben
+        </h2>
+        <span style="font-size:0.82rem; color:var(--slate-500);">Live-Wirkung auf Startseite & Navigationsleiste</span>
+      </div>
+
+      <p style="font-size:0.95rem; color:var(--slate-600); margin-bottom:1.5rem;">
+        Wählen Sie hier eine der <strong>5 Optionen</strong>. Im Standardmodus („Vom Wetter abhängig“) entscheidet das System automatisch anhand des Live-Wetters in Ebensfeld. Sie können den Status jederzeit manuell überstimmen:
+      </p>
+
+      <!-- 5 Radio Buttons -->
+      <div class="status-options-grid">
+        
+        <!-- Option 1: Vom Wetter abhängig -->
+        <label class="status-option-label">
+          <input type="radio" name="biergarten_status" value="vom_wetter_abhaengig" />
+          <div class="opt-body">
+            <i class="fa-solid fa-cloud-sun-rain opt-icon"></i>
+            <div class="opt-title">Vom Wetter abhängig</div>
+            <div class="opt-desc">Automatische Berechnung nach Ebensfeld-Wetter (Öffnet wenn trocken, Mo Ruhetag).</div>
+          </div>
+        </label>
+
+        <!-- Option 2: Geöffnet -->
+        <label class="status-option-label">
+          <input type="radio" name="biergarten_status" value="geoffnet" />
+          <div class="opt-body">
+            <i class="fa-solid fa-circle-check opt-icon" style="color:var(--color-open-border);"></i>
+            <div class="opt-title">Geöffnet</div>
+            <div class="opt-desc">Manuell geöffnet erzwingen (z. B. bei schönem Sonderwetter oder Feiertag).</div>
+          </div>
+        </label>
+
+        <!-- Option 3: Geschlossen -->
+        <label class="status-option-label">
+          <input type="radio" name="biergarten_status" value="geschlossen" />
+          <div class="opt-body">
+            <i class="fa-solid fa-circle-xmark opt-icon" style="color:var(--color-closed-border);"></i>
+            <div class="opt-title">Geschlossen</div>
+            <div class="opt-desc">Manuell geschlossen erzwingen (z. B. bei Unwetterwarnung oder Ruhetag).</div>
+          </div>
+        </label>
+
+        <!-- Option 4: Geschlossene Gesellschaft -->
+        <label class="status-option-label">
+          <input type="radio" name="biergarten_status" value="geschlossene_gesellschaft" />
+          <div class="opt-body">
+            <i class="fa-solid fa-champagne-glasses opt-icon" style="color:var(--color-event-border);"></i>
+            <div class="opt-title">Geschlossene Gesellschaft</div>
+            <div class="opt-desc">Exklusiv für eine private Feier oder geschlossene Veranstaltung reserviert.</div>
+          </div>
+        </label>
+
+        <!-- Option 5: Urlaub -->
+        <label class="status-option-label">
+          <input type="radio" name="biergarten_status" value="urlaub" />
+          <div class="opt-body">
+            <i class="fa-solid fa-umbrella-beach opt-icon" style="color:var(--color-vacation-border);"></i>
+            <div class="opt-title">Urlaub</div>
+            <div class="opt-desc">Betriebsurlaub (z. B. zwei Wochen im Sommer/Herbst).</div>
+          </div>
+        </label>
+
+      </div>
+
+      <!-- Optional Extra Reason Input -->
+      <div class="form-group" style="margin-top:1.5rem;">
+        <label class="form-label" for="status-reason-input">
+          <i class="fa-solid fa-comment-dots"></i> Zusätzlicher Hinweis / Begründung für die Gäste (optional):
+        </label>
+        <input type="text" id="status-reason-input" class="form-control" placeholder="z. B. 'Heute Live-Musik ab 16 Uhr!', 'Betriebsurlaub bis einschließlich 15. September', etc." />
+      </div>
+
+      <!-- Live Preview of the Status Box -->
+      <div style="margin: 1.5rem 0;">
+        <div style="font-size:0.85rem; font-weight:700; color:var(--slate-600); margin-bottom:0.5rem;">
+          <i class="fa-solid fa-eye"></i> Vorschau der Anzeige auf der Website:
+        </div>
+        <div id="admin-status-preview"></div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end;">
+        <button id="save-status-btn" class="btn btn-accent btn-lg">
+          <i class="fa-solid fa-floppy-disk"></i> Biergarten-Status speichern
+        </button>
+      </div>
+
+    </div>
+
+    <!-- CARD 2: Announcement Top Banner -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h2 class="admin-card-title">
+          <i class="fa-solid fa-bullhorn" style="color:var(--amber-600);"></i>
+          Ankündigungsbanner (Obere Hinweisleiste)
+        </h2>
+      </div>
+      <div style="display:grid; grid-template-columns: auto 1fr 160px; gap:1rem; align-items:center;">
+        <label style="display:flex; align-items:center; gap:0.5rem; font-weight:600; cursor:pointer;">
+          <input type="checkbox" id="announcement-active" style="width:18px; height:18px;" />
+          Banner aktiv
+        </label>
+        <input type="text" id="announcement-text" class="form-control" placeholder="Text für die Ankündigung (z. B. Saisonstart, Vatertags-Frühschoppen)..." />
+        <input type="text" id="announcement-badge" class="form-control" placeholder="Badge (z. B. Aktuell)" />
+      </div>
+      <div style="display:flex; justify-content:flex-end; margin-top:1rem;">
+        <button id="save-announcement-btn" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-check"></i> Ankündigung speichern
+        </button>
+      </div>
+    </div>
+
+    <!-- CARD: Steinbackofen & Pizza-Tage Steuerung -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <div>
+          <h2 class="admin-card-title">
+            <i class="fa-solid fa-pizza-slice" style="color:var(--amber-600);"></i>
+            Steinbackofen & Pizza-Tage Steuerung
+          </h2>
+          <p style="font-size:0.85rem; color:var(--slate-500); margin:0;">
+            Da der Steinbackofen nur an bestimmten Tagen angeheizt wird, können Sie die Pizza-Gerichte und den Website-Hinweis hier mit einem Klick steuern.
+          </p>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <span style="font-weight:bold; font-size:0.95rem; color:var(--slate-700);">Ofen heute an:</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="admin-pizza-oven-toggle" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div style="background:var(--slate-50); border:1px solid var(--slate-200); border-radius:var(--radius-md); padding:1.25rem; margin-bottom:1.5rem;">
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem;">
+          <span id="admin-pizza-status-badge" class="cat-badge" style="font-size:0.9rem; padding:0.35rem 0.75rem; background:var(--slate-400); color:#fff;">Ofen aus</span>
+          <span id="admin-pizza-status-summary" style="font-size:0.92rem; color:var(--slate-600);">Pizza-Gerichte sind auf der Website ausgeblendet.</span>
+        </div>
+
+        <label style="display:flex; align-items:center; gap:0.5rem; font-weight:600; cursor:pointer; font-size:0.9rem; color:var(--slate-800); margin-bottom:1rem;">
+          <input type="checkbox" id="sync-pizza-dishes-checkbox" checked style="width:18px; height:18px;" />
+          Beim Umschalten auch alle Pizza-Gerichte in der Speisekarte automatisch aktivieren / deaktivieren
+        </label>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label" for="pizza-notice-active-input">
+              <i class="fa-solid fa-fire"></i> Hinweistext auf Website, wenn Ofen AN ist:
+            </label>
+            <input type="text" id="pizza-notice-active-input" class="form-control" placeholder="Heute ist unser Steinbackofen in Betrieb! Frische Steinofen-Pizza ab 16 Uhr." />
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label" for="pizza-notice-inactive-input">
+              <i class="fa-solid fa-power-off"></i> Hinweistext auf Website, wenn Ofen AUS ist:
+            </label>
+            <input type="text" id="pizza-notice-inactive-input" class="form-control" placeholder="Unser Steinbackofen ist heute nicht in Betrieb (Steinofen-Pizza gibt es nur an bestimmten Tagen)." />
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end;">
+        <button id="save-pizza-oven-btn" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-floppy-disk"></i> Pizza-Einstellungen speichern
+        </button>
+      </div>
+    </div>
+
+    <!-- CARD: Gegrillte Makrelen & Fisch-Tage Steuerung -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <div>
+          <h2 class="admin-card-title">
+            <i class="fa-solid fa-fish" style="color:var(--primary-700);"></i>
+            Gegrillte Makrelen & Fisch-Tage Steuerung
+          </h2>
+          <p style="font-size:0.85rem; color:var(--slate-500); margin:0;">
+            An bestimmten Aktionstagen im August werden frisch gegrillte Makrelen (11,- €) vom Holzkohlegrill angeboten. Steuern Sie das Angebot und die Hinweise mit einem Klick.
+          </p>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <span style="font-weight:bold; font-size:0.95rem; color:var(--slate-700);">Fischgrill heute an:</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="admin-makrelen-grill-toggle" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div style="background:var(--slate-50); border:1px solid var(--slate-200); border-radius:var(--radius-md); padding:1.25rem; margin-bottom:1.5rem;">
+        <div style="display:flex; align-items:center; gap:1.25rem; margin-bottom:1rem; flex-wrap:wrap;">
+          <img src="assets/images/makrelen_grill.jpg" alt="Gegrillte Makrelen Holzkohlegrill" style="width:90px; height:65px; object-fit:cover; border-radius:var(--radius-md); border:1px solid var(--slate-300);" />
+          <div>
+            <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.35rem;">
+              <span id="admin-makrelen-status-badge" class="cat-badge" style="font-size:0.9rem; padding:0.35rem 0.75rem; background:var(--slate-400); color:#fff;">Grill aus</span>
+              <span id="admin-makrelen-status-summary" style="font-size:0.92rem; color:var(--slate-600);">Makrelen sind auf der Speisekarte ausgeblendet.</span>
+            </div>
+            <small style="color:var(--slate-500);">Preis: 11,00 € • Holzkohlegrill</small>
+          </div>
+        </div>
+
+        <label style="display:flex; align-items:center; gap:0.5rem; font-weight:600; cursor:pointer; font-size:0.9rem; color:var(--slate-800); margin-bottom:1rem;">
+          <input type="checkbox" id="sync-makrelen-dish-checkbox" checked style="width:18px; height:18px;" />
+          Beim Umschalten auch „Gegrillte Makrele“ (11,- €) in der Speisekarte automatisch aktivieren / deaktivieren
+        </label>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label" for="makrelen-notice-active-input">
+              <i class="fa-solid fa-fish"></i> Hinweistext auf Website, wenn Fischgrill AN ist:
+            </label>
+            <input type="text" id="makrelen-notice-active-input" class="form-control" placeholder="🐟 Heute frische Makrelen vom Holzkohlegrill (11,- €) – solange der Vorrat reicht!" />
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label" for="makrelen-notice-inactive-input">
+              <i class="fa-solid fa-power-off"></i> Hinweistext auf Website, wenn Fischgrill AUS ist:
+            </label>
+            <input type="text" id="makrelen-notice-inactive-input" class="form-control" placeholder="Gegrillte Makrelen gibt es an ausgewählten Aktionstagen im August." />
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end;">
+        <button id="save-makrelen-grill-btn" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-floppy-disk"></i> Fisch-Einstellungen speichern
+        </button>
+      </div>
+    </div>
+
+    <!-- CARD 3: Speisekarten-Verwaltung (Deactivate dishes, Add/Edit) -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <div>
+          <h2 class="admin-card-title">
+            <i class="fa-solid fa-utensils" style="color:var(--primary-700);"></i>
+            Speisekarte verwalten & Speisen deaktivieren
+          </h2>
+          <p style="font-size:0.85rem; color:var(--slate-500); margin:0;">
+            Deaktivierte Speisen werden sofort von der öffentlichen Speisekarte ausgeblendet.
+          </p>
+        </div>
+        <button id="add-dish-btn" class="btn btn-primary">
+          <i class="fa-solid fa-plus"></i> Neues Gericht hinzufügen
+        </button>
+      </div>
+
+      <!-- Stats Bar -->
+      <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1.5rem;" id="admin-menu-stats">
+        <!-- populated by js -->
+      </div>
+
+      <!-- Search and Filter Bar -->
+      <div style="display:grid; grid-template-columns: 240px 1fr; gap:1rem; margin-bottom:1.25rem;">
+        <select id="admin-cat-filter" class="form-control">
+          <!-- Populated by JS -->
+        </select>
+        <input type="text" id="admin-menu-search" class="form-control" placeholder="Speisen nach Name oder Zutat durchsuchen..." />
+      </div>
+
+      <!-- List of Dishes -->
+      <div id="admin-menu-list">
+        <!-- Populated by admin.js -->
+      </div>
+    </div>
+
+    <!-- CARD: Fotogalerie verwalten -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <div>
+          <h2 class="admin-card-title">
+            <i class="fa-solid fa-camera-retro" style="color:var(--primary-700);"></i>
+            Fotogalerie verwalten
+          </h2>
+          <p style="font-size:0.85rem; color:var(--slate-500); margin:0;">
+            Originalfotos pflegen, neue Bilder hochladen, Kategorien zuweisen oder Fotos löschen.
+          </p>
+        </div>
+        <button id="add-photo-btn" class="btn btn-primary">
+          <i class="fa-solid fa-plus"></i> Neues Foto hinzufügen
+        </button>
+      </div>
+
+      <!-- Gallery Stats Bar -->
+      <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-bottom:1.5rem;" id="admin-gallery-stats">
+        <!-- populated by admin.js -->
+      </div>
+
+      <!-- Filter and Search Bar -->
+      <div style="display:grid; grid-template-columns: 240px 1fr; gap:1rem; margin-bottom:1.25rem;">
+        <select id="admin-gallery-cat-filter" class="form-control">
+          <!-- Populated by JS -->
+        </select>
+        <input type="text" id="admin-gallery-search" class="form-control" placeholder="Fotos nach Titel durchsuchen..." />
+      </div>
+
+      <!-- List / Grid of Photos in Admin -->
+      <div id="admin-gallery-list" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:1.25rem;">
+        <!-- Populated by admin.js -->
+      </div>
+    </div>
+
+    <!-- CARD: Live-Events & Termine verwalten -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <div>
+          <h2 class="admin-card-title">
+            <i class="fa-solid fa-guitar" style="color:var(--amber-600);"></i>
+            Live-Events & Termine verwalten
+          </h2>
+          <p style="font-size:0.85rem; color:var(--slate-500); margin:0;">
+            Erstellen und verwalten Sie Termine für Live-Musik, Blasmusik und Veranstaltungen für die Startseite.
+          </p>
+        </div>
+        <button id="add-event-btn" class="btn btn-primary">
+          <i class="fa-solid fa-plus"></i> Neues Event anlegen
+        </button>
+      </div>
+
+      <div id="admin-events-list">
+        <!-- Populated by admin.js -->
+      </div>
+    </div>
+
+    <!-- CARD 4: Data Backup (JSON Export / Import & Reset) -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h2 class="admin-card-title">
+          <i class="fa-solid fa-database" style="color:var(--slate-700);"></i>
+          Datensicherung & Export
+        </h2>
+      </div>
+      <p style="font-size:0.92rem; color:var(--slate-600); margin-bottom:1.5rem;">
+        Alle Ihre Änderungen (deaktivierte Speisen, neue Fotos, Events, geänderte Kategorien, Öffnungsstatus) werden sicher im Browser gespeichert. Sie können Speisekarte, Galerie und Events jederzeit als JSON-Datei exportieren oder auf den Werkszustand zurücksetzen:
+      </p>
+
+      <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center;">
+        <button id="export-menu-json-btn" class="btn btn-outline">
+          <i class="fa-solid fa-file-export"></i> Speisekarte als JSON
+        </button>
+        <button id="export-gallery-json-btn" class="btn btn-outline">
+          <i class="fa-solid fa-images"></i> Fotogalerie als JSON
+        </button>
+        <button id="export-events-json-btn" class="btn btn-outline">
+          <i class="fa-solid fa-calendar-days"></i> Events als JSON
+        </button>
+        
+        <label class="btn btn-outline" style="cursor:pointer; margin:0;">
+          <i class="fa-solid fa-file-import"></i> JSON-Datei importieren
+          <input type="file" id="import-menu-json-input" accept=".json" style="display:none;" />
+        </label>
+
+        <button id="reset-menu-btn" class="btn btn-danger-outline btn-sm" style="margin-left:auto;">
+          <i class="fa-solid fa-rotate-left"></i> Speisekarte Werkszustand
+        </button>
+        <button id="reset-gallery-btn" class="btn btn-danger-outline btn-sm">
+          <i class="fa-solid fa-rotate-left"></i> Galerie Werkszustand
+        </button>
+        <button id="reset-events-btn" class="btn btn-danger-outline btn-sm">
+          <i class="fa-solid fa-rotate-left"></i> Events Werkszustand
+        </button>
+        <button id="reset-settings-btn" class="btn btn-danger-outline btn-sm">
+          <i class="fa-solid fa-arrows-rotate"></i> Einstellungen Werkszustand
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Add/Edit Dish Modal -->
+  <div id="dish-modal" class="admin-modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="dish-modal-title" style="font-size:1.35rem; margin:0;">Gericht bearbeiten</h3>
+        <button id="close-dish-modal" class="modal-close">&times;</button>
+      </div>
+
+      <form id="dish-modal-form">
+        <input type="hidden" id="modal-dish-id" />
+
+        <div class="form-group">
+          <label class="form-label" for="modal-dish-name">Name des Gerichts *</label>
+          <input type="text" id="modal-dish-name" class="form-control" required placeholder="z. B. Hausgemachter Obatzter" />
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label class="form-label" for="modal-dish-category">Kategorie *</label>
+            <select id="modal-dish-category" class="form-control" required></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="modal-dish-price">Preis (€) *</label>
+            <input type="number" id="modal-dish-price" class="form-control" step="0.10" min="0" required placeholder="8.50" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modal-dish-desc">Beschreibung / Zutaten</label>
+          <textarea id="modal-dish-desc" class="form-control" rows="3" placeholder="Zutaten, Beilagen, Portionsgröße..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modal-dish-tags">Schlagwörter / Tags (Kommagetrennt)</label>
+          <input type="text" id="modal-dish-tags" class="form-control" placeholder="vegetarisch, hausgemacht, regional, steinofen" />
+          <small style="color:var(--slate-500);">Erlaubte Badges: vegetarisch, vegan, scharf, steinofen, hausgemacht, regional</small>
+        </div>
+
+        <div class="form-group" style="margin-top:1rem;">
+          <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; font-weight:600;">
+            <input type="checkbox" id="modal-dish-active" style="width:18px; height:18px;" checked />
+            Gericht ist aktuell verfügbar (auf Speisekarte anzeigen)
+          </label>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="cancel-dish-modal" class="btn btn-outline">Abbrechen</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Speichern</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add/Edit Photo Modal -->
+  <div id="photo-modal" class="admin-modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="photo-modal-title" style="font-size:1.35rem; margin:0;">Foto hinzufügen</h3>
+        <button id="close-photo-modal" class="modal-close">&times;</button>
+      </div>
+
+      <form id="photo-modal-form">
+        <input type="hidden" id="modal-photo-id" />
+
+        <div class="form-group">
+          <label class="form-label" for="modal-photo-title">Titel / Bildunterschrift *</label>
+          <input type="text" id="modal-photo-title" class="form-control" required placeholder="z. B. Neuer Biergarten-Bereich" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modal-photo-category">Kategorie *</label>
+          <select id="modal-photo-category" class="form-control" required></select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Bildquelle auswählen:</label>
+          <div style="border: 2px dashed var(--slate-300); border-radius:var(--radius-md); padding:1rem; text-align:center; background:var(--slate-50); margin-bottom:0.75rem;">
+            <i class="fa-solid fa-cloud-arrow-up fa-2x" style="color:var(--primary-700); margin-bottom:0.5rem;"></i>
+            <div><strong>Bilddatei vom Computer auswählen:</strong></div>
+            <input type="file" id="modal-photo-file" accept="image/*" class="form-control" style="margin-top:0.5rem;" />
+            <small style="color:var(--slate-500); display:block; margin-top:0.25rem;">Unterstützt JPG, PNG, WebP (wird direkt im Browser gespeichert)</small>
+          </div>
+          
+          <div style="text-align:center; font-size:0.85rem; color:var(--slate-400); margin:0.5rem 0;">- ODER -</div>
+          
+          <label class="form-label" for="modal-photo-src">Bildpfad oder Bild-URL:</label>
+          <input type="text" id="modal-photo-src" class="form-control" placeholder="assets/images/... oder https://..." />
+        </div>
+
+        <!-- Image Preview Box -->
+        <div class="form-group">
+          <label class="form-label">Bildvorschau:</label>
+          <div id="modal-photo-preview" style="width:100%; height:180px; border-radius:var(--radius-md); background:var(--slate-200); display:flex; align-items:center; justify-content:center; overflow:hidden; border:1px solid var(--slate-300);">
+            <span style="color:var(--slate-500); font-size:0.9rem;">Kein Bild ausgewählt</span>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="cancel-photo-modal" class="btn btn-outline">Abbrechen</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Foto speichern</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add/Edit Event Modal -->
+  <div id="event-modal" class="admin-modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog" style="max-width:580px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="event-modal-heading"><i class="fa-solid fa-guitar" style="color:var(--amber-500);"></i> Event anlegen / bearbeiten</h3>
+        <button class="modal-close" id="close-event-modal" aria-label="Schließen">&times;</button>
+      </div>
+
+      <form id="event-modal-form">
+        <input type="hidden" id="modal-event-id" />
+
+        <div class="form-group">
+          <label class="form-label" for="modal-event-title">Titel / Band-Name *</label>
+          <input type="text" id="modal-event-title" class="form-control" required placeholder="z. B. Ebensfelder Maascheißer oder Live-Musik mit Sino Dee" />
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label class="form-label" for="modal-event-date">Datum *</label>
+            <input type="date" id="modal-event-date" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="modal-event-time">Uhrzeit *</label>
+            <input type="text" id="modal-event-time" class="form-control" required placeholder="z. B. ab 15:00 Uhr" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modal-event-badge">Kategorie / Genre-Badge</label>
+          <input type="text" id="modal-event-badge" class="form-control" placeholder="z. B. Live-Blasmusik, Live-Akustik & Pop, Keller-Party" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modal-event-desc">Beschreibung *</label>
+          <textarea id="modal-event-desc" class="form-control" rows="3" required placeholder="Kurze Beschreibung des Events, Musikrichtung, Kellerstimmung..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Event-Bild auswählen:</label>
+          <div style="border: 2px dashed var(--slate-300); border-radius:var(--radius-md); padding:1rem; text-align:center; background:var(--slate-50); margin-bottom:0.75rem;">
+            <i class="fa-solid fa-cloud-arrow-up fa-2x" style="color:var(--primary-700); margin-bottom:0.5rem;"></i>
+            <div><strong>Bilddatei vom Computer hochladen:</strong></div>
+            <input type="file" id="modal-event-file" accept="image/*" class="form-control" style="margin-top:0.5rem;" />
+            <small style="color:var(--slate-500); display:block; margin-top:0.25rem;">JPG, PNG, WebP</small>
+          </div>
+          
+          <div style="text-align:center; font-size:0.85rem; color:var(--slate-400); margin:0.5rem 0;">- ODER -</div>
+          
+          <label class="form-label" for="modal-event-src">Bildpfad oder Bild-URL:</label>
+          <input type="text" id="modal-event-src" class="form-control" placeholder="assets/images/events/... oder https://..." />
+        </div>
+
+        <!-- Image Preview Box -->
+        <div class="form-group">
+          <label class="form-label">Bildvorschau:</label>
+          <div id="modal-event-preview" style="width:100%; height:180px; border-radius:var(--radius-md); background:var(--slate-200); display:flex; align-items:center; justify-content:center; overflow:hidden; border:1px solid var(--slate-300);">
+            <span style="color:var(--slate-500); font-size:0.9rem;">Kein Bild ausgewählt</span>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="cancel-event-modal" class="btn btn-outline">Abbrechen</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Event speichern</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/store.js"></script>
+  <script src="js/weather.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

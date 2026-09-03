@@ -1,0 +1,41 @@
+{
+  "settings": {
+    "biergarten_status": "vom_wetter_abhaengig",
+    "status_override_reason": "",
+    "announcement": {
+      "active": true,
+      "text": "Saisonstart am Engelhardt's Keller: Wenn die Sonne lacht, wird der Keller aufgemacht! Live-Musik & fränkische Gemütlichkeit unter den Linden.",
+      "badge": "Aktuelles"
+    },
+    "pizza_oven": {
+      "active": false,
+      "notice_active": "Heute ist unser Steinbackofen in Betrieb! Frische Steinofen-Pizza ab 16 Uhr.",
+      "notice_inactive": "Unser Steinbackofen ist heute nicht in Betrieb (Steinofen-Pizza gibt es nur an bestimmten Tagen)."
+    },
+    "makrelen_grill": {
+      "active": false,
+      "notice_active": "🐟 Heute frische Makrelen vom Holzkohlegrill (11,- €) – solange der Vorrat reicht!",
+      "notice_inactive": "Gegrillte Makrelen gibt es an ausgewählten Aktionstagen im August."
+    },
+    "coordinates": {
+      "lat": 50.0673,
+      "lon": 10.9628,
+      "city": "Ebensfeld",
+      "region": "Gottesgarten am Obermain"
+    },
+    "opening_hours": {
+      "tuesday_to_saturday": {
+        "open": 16,
+        "close": 22,
+        "kitchen_close": 20
+      },
+      "sunday_and_holidays": {
+        "open": 11,
+        "close": 22,
+        "kitchen_close": 20
+      },
+      "monday": "ruhetag"
+    },
+    "admin_pin": "keller1867"
+  }
+}

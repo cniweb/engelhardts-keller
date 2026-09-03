@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speisekarte | Engelhardt's Keller Ebensfeld</title>
+  <meta name="description" content="Speisekarte von Engelhardt's Keller in Ebensfeld: Fränkische Brotzeiten, knusprige Steinofen-Pizza, warme Schmankerl, Steckerlfisch & exklusives Kellerliebe Bier.">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <aside id="site-announcement-banner" class="site-announcement-banner hidden"></aside>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo-link" aria-label="Startseite Engelhardt's Keller">
+        <div class="logo-emblem">
+          <i class="fa-solid fa-beer-mug-empty"></i>
+        </div>
+        <div class="logo-text-wrap">
+          <span class="brand-title">Engelhardt's Keller</span>
+          <span class="brand-subtitle">Tradition seit 1867 • Ebensfeld</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="desktop-nav" aria-label="Hauptnavigation">
+        <a href="index.html" class="nav-link">Willkommen</a>
+        <a href="speisekarte.html" class="nav-link active">Speisekarte</a>
+        <a href="oeffnungszeiten.html" class="nav-link">Öffnungszeiten & Wetter</a>
+        <a href="zimmer.html" class="nav-link">Gästezimmer</a>
+        <a href="chronik.html" class="nav-link">Chronik</a>
+        <a href="fotos.html" class="nav-link">Galerie</a>
+        <a href="anfahrt.html" class="nav-link">Anfahrt & Kontakt</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="oeffnungszeiten.html" id="navbar-status-pill" class="navbar-status-pill pill-open">
+          <span class="pill-dot"></span> <span>Status lädt...</span>
+        </a>
+        <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Menü öffnen">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-nav-drawer">
+    <div class="drawer-header">
+      <span class="brand-title">Engelhardt's Keller</span>
+      <button id="close-mobile-nav" class="drawer-close" aria-label="Schließen">&times;</button>
+    </div>
+    <div class="drawer-links">
+      <a href="index.html" class="drawer-link"><i class="fa-solid fa-house"></i> Willkommen</a>
+      <a href="speisekarte.html" class="drawer-link active"><i class="fa-solid fa-utensils"></i> Speisekarte</a>
+      <a href="oeffnungszeiten.html" class="drawer-link"><i class="fa-solid fa-cloud-sun"></i> Öffnungszeiten & Wetter</a>
+      <a href="zimmer.html" class="drawer-link"><i class="fa-solid fa-bed"></i> Gästezimmer</a>
+      <a href="chronik.html" class="drawer-link"><i class="fa-solid fa-book-bookmark"></i> Chronik seit 1867</a>
+      <a href="fotos.html" class="drawer-link"><i class="fa-solid fa-image"></i> Galerie</a>
+      <a href="umgebung.html" class="drawer-link"><i class="fa-solid fa-mountain-sun"></i> Umgebung</a>
+      <a href="anfahrt.html" class="drawer-link"><i class="fa-solid fa-location-dot"></i> Anfahrt & Kontakt</a>
+      <a href="admin.html" class="drawer-link"><i class="fa-solid fa-gear"></i> Admin-Bereich</a>
+    </div>
+    <div class="drawer-footer">
+      <p style="font-size:0.85rem; color:var(--slate-600); margin-bottom:0.5rem;">
+        <i class="fa-solid fa-phone"></i> <strong>09573 / 1543</strong>
+      </p>
+      <p style="font-size:0.8rem; color:var(--slate-500); margin:0;">
+        Kellerstraße 50, 96250 Ebensfeld
+      </p>
+      <div style="display:flex; gap:0.6rem; margin-top:0.85rem;">
+        <a href="http://www.facebook.com/EngelhardtsKeller" target="_blank" rel="noopener noreferrer" class="social-link social-facebook" style="background:var(--slate-200); color:var(--slate-800); width:36px; height:36px; font-size:1rem;" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/engelhardts_keller/" target="_blank" rel="noopener noreferrer" class="social-link social-instagram" style="background:var(--slate-200); color:var(--slate-800); width:36px; height:36px; font-size:1rem;" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+  <div id="nav-backdrop" class="nav-backdrop"></div>
+
+  <!-- Page Header -->
+  <section class="hero-section" style="padding: 3rem 0 2.5rem;">
+    <img src="assets/images/biergarten_sommer.jpg" alt="Speisen und Getränke am Engelhardt's Keller" class="hero-bg-img" />
+    <div class="hero-overlay"></div>
+    <div class="container" style="position:relative; z-index:10; text-align:center; max-width:800px;">
+      <span class="hero-eyebrow"><i class="fa-solid fa-utensils"></i> Frisch & Regional</span>
+      <h1 class="hero-title" style="font-size:2.8rem; margin-bottom:0.75rem;">Unsere Speisekarte</h1>
+      <p class="hero-lead" style="font-size:1.1rem; margin-bottom:0;">
+        Traditionelle fränkische Brotzeiten, knusprige Holzofen- & Steinofen-Pizzen, herzhafte Pfannengerichte und unsere eigens für den Keller eingebraute „Kellerliebe“.
+      </p>
+    </div>
+  </section>
+
+  <!-- Notice & Kitchen Times -->
+  <div class="container" style="margin-top: 2rem;">
+    <div style="background:var(--amber-50); border:1px solid var(--amber-300); border-radius:var(--radius-md); padding:1rem 1.5rem; display:flex; align-items:flex-start; gap:1rem; flex-wrap:wrap;">
+      <i class="fa-solid fa-clock-rotate-left fa-2x" style="color:var(--amber-600); margin-top:0.25rem;"></i>
+      <div style="flex:1;">
+        <strong style="color:var(--amber-900); font-family:var(--font-heading); font-size:1.05rem;">Wichtiger Hinweis zu den Küchenzeiten:</strong>
+        <p style="margin:0 0 0.5rem 0; font-size:0.92rem; color:var(--slate-700);">
+          Warme Speisen werden an allen regulären Öffnungstagen bis <strong>spätestens 20:00 Uhr</strong> angeboten. An Sonn- und Feiertagen bei schönem Wetter: <strong>Gegrillte Makrelen</strong> frisch vom Holzkohlegrill!
+        </p>
+        <!-- Dynamic Pizza Oven Status Banner -->
+        <div id="pizza-oven-notice-box"></div>
+        <!-- Dynamic Makrelen Grill Status Banner -->
+        <div id="makrelen-grill-notice-box"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu Content -->
+  <main class="section" style="padding-top: 1.5rem;">
+    <div class="container">
+      
+      <!-- QR Table Welcome Badge (Table QR code friendly) -->
+      <div style="text-align:center; margin-bottom: 1.25rem;">
+        <div class="qr-table-badge">
+          <i class="fa-solid fa-qrcode"></i>
+          <span>Digitale Speisekarte am Biertisch • Selbstbedienung an der Theke</span>
+        </div>
+      </div>
+
+      <!-- Sticky Filter Bar -->
+      <div class="menu-filter-bar">
+        <div class="menu-search-wrap">
+          <i class="fa-solid fa-magnifying-glass menu-search-icon"></i>
+          <input type="text" id="menu-search" class="menu-search-input" placeholder="Gericht oder Zutat suchen (z. B. Schnitzel, Pizza, Kellerliebe)..." autocomplete="off" />
+          <button type="button" id="menu-search-clear" class="menu-search-clear hidden" aria-label="Suche leeren" title="Suche leeren">&times;</button>
+        </div>
+        <div class="cat-tabs-row" id="menu-category-tabs">
+          <!-- Populated by menu.js -->
+        </div>
+      </div>
+
+      <!-- Menu Items Grid (Grouped by Categories) -->
+      <div id="menu-items-grid">
+        <div style="text-align:center; padding:3rem;">
+          <i class="fa-solid fa-spinner fa-spin fa-2x" style="color:var(--primary-700);"></i>
+          <p style="margin-top:1rem; color:var(--slate-600);">Speisekarte wird geladen...</p>
+        </div>
+      </div>
+
+      <!-- Allergen Notice -->
+      <div style="margin-top:3rem; padding:1.5rem; background:var(--slate-100); border-radius:var(--radius-md); border:1px solid var(--slate-200); font-size:0.85rem; color:var(--slate-600);">
+        <h4 style="font-size:0.95rem; margin-bottom:0.4rem; color:var(--slate-800);"><i class="fa-solid fa-circle-info"></i> Allergene & Zusatzstoffe</h4>
+        <p style="margin:0;">
+          Über Zutaten in unseren Speisen, die Allergien oder Unverträglichkeiten auslösen können, informiert Sie unser Servicepersonal gerne mündlich vor Ort. Eine detaillierte schriftliche Allergenliste liegt an unserer Kellertheke für Sie bereit. Alle Preise in Euro inkl. der gesetzlichen Mehrwertsteuer.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Engelhardt's Keller</h3>
+          <p style="margin-bottom:1rem;">Traditionelle Gastwirtschaft & Bierkeller im oberfränkischen Ebensfeld. Seit 1867 im Familienbesitz.</p>
+          <div style="font-size:0.85rem; color:var(--slate-400);">
+            <i class="fa-solid fa-location-dot" style="color:var(--amber-400); margin-right:0.4rem;"></i> Kellerstraße 50, 96250 Ebensfeld
+          </div>
+          <div class="footer-social-links">
+            <a href="http://www.facebook.com/EngelhardtsKeller" target="_blank" rel="noopener noreferrer" class="social-link social-facebook" aria-label="Engelhardt's Keller auf Facebook" title="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/engelhardts_keller/" target="_blank" rel="noopener noreferrer" class="social-link social-instagram" aria-label="Engelhardt's Keller auf Instagram" title="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Willkommen</a></li>
+            <li><a href="speisekarte.html">Speisekarte</a></li>
+            <li><a href="oeffnungszeiten.html">Öffnungszeiten & Wetter</a></li>
+            <li><a href="zimmer.html">Gästezimmer</a></li>
+            <li><a href="chronik.html">Chronik</a></li>
+            <li><a href="fotos.html">Bildergalerie</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Öffnungszeiten</h4>
+          <ul class="footer-links" style="font-size:0.88rem;">
+            <li><strong>Di – Sa:</strong> ab 16:00 Uhr</li>
+            <li><strong>So & Feiertage:</strong> ab 11:00 Uhr</li>
+            <li><strong>Montag:</strong> Ruhetag</li>
+            <li style="margin-top:0.4rem; color:var(--amber-300);"><i class="fa-solid fa-sun"></i> Nur bei schönem Wetter</li>
+            <li>Küche jeweils bis 20:00 Uhr</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Kontakt & Service</h4>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <div>
+              <div>Telefon:</div>
+              <strong><a href="tel:095731543" style="color:var(--white);">09573 / 1543</a></strong>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <div>
+              <div>E-Mail:</div>
+              <a href="mailto:engelhardt-ebensfeld@t-online.de" style="color:var(--white);">engelhardt-ebensfeld@t-online.de</a>
+            </div>
+          </div>
+          <div class="footer-contact-item" style="margin-top:0.75rem;">
+            <i class="fa-brands fa-facebook" style="color:#1877f2;"></i>
+            <div>
+              <a href="http://www.facebook.com/EngelhardtsKeller" target="_blank" rel="noopener noreferrer" style="color:var(--slate-300);">Facebook</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-brands fa-instagram" style="color:#e1306c;"></i>
+            <div>
+              <a href="https://www.instagram.com/engelhardts_keller/" target="_blank" rel="noopener noreferrer" style="color:var(--slate-300);">Instagram</a>
+            </div>
+          </div>
+          <div style="margin-top:1.2rem;">
+            <a href="admin.html" class="btn btn-sm btn-outline" style="background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.2); color:var(--slate-300);">
+              <i class="fa-solid fa-lock"></i> Admin-Login
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; <span id="current-year">2026</span> Gastwirtschaft zum Engelhardt's Keller • Familie Engelhardt</div>
+        <div>
+          <a href="impressum.html" style="color:var(--slate-400); margin-right:1.2rem;">Impressum & Datenschutz</a>
+          <a href="anfahrt.html" style="color:var(--slate-400);">Anfahrt</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button -->
+  <button id="back-to-top-btn" class="back-to-top-btn" aria-label="Nach oben scrollen" title="Nach oben">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="js/store.js"></script>
+  <script src="js/weather.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
