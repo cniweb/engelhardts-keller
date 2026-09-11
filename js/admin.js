@@ -102,6 +102,9 @@ class KellerAdminDashboard {
       this.renderEventsItems();
       this.setupEventModal();
     }
+    if (document.getElementById('social-share-modal')) {
+      this.setupSocialShareModal();
+    }
     if (document.getElementById('export-menu-json-btn')) {
       this.setupJsonExportImport();
     }
@@ -274,6 +277,15 @@ class KellerAdminDashboard {
         this.showToast(`Pizza-Ofen Status gespeichert (${isOvenActive ? 'AN' : 'AUS'})!`, 'success');
       });
     }
+
+    const sharePizzaFb = document.querySelector('.share-action-fb-btn[data-action="pizza"]');
+    const sharePizzaIg = document.querySelector('.share-action-ig-btn[data-action="pizza"]');
+    if (sharePizzaFb) {
+      sharePizzaFb.onclick = () => this.shareAction('pizza', 'facebook');
+    }
+    if (sharePizzaIg) {
+      sharePizzaIg.onclick = () => this.shareAction('pizza', 'instagram');
+    }
   }
 
   // --- 2c. Gegrillte Makrelen Steuerung ---
@@ -341,6 +353,15 @@ class KellerAdminDashboard {
 
         this.showToast(`Makrelengrill-Status gespeichert (${isGrillActive ? 'AN' : 'AUS'})!`, 'success');
       });
+    }
+
+    const shareMakrelenFb = document.querySelector('.share-action-fb-btn[data-action="makrelen"]');
+    const shareMakrelenIg = document.querySelector('.share-action-ig-btn[data-action="makrelen"]');
+    if (shareMakrelenFb) {
+      shareMakrelenFb.onclick = () => this.shareAction('makrelen', 'facebook');
+    }
+    if (shareMakrelenIg) {
+      shareMakrelenIg.onclick = () => this.shareAction('makrelen', 'instagram');
     }
   }
 
@@ -910,6 +931,14 @@ class KellerAdminDashboard {
             <p style="margin:0; font-size:0.88rem; color:var(--slate-600); line-height:1.45;">${this.escape(event.description)}</p>
           </div>
           <div class="admin-event-actions">
+            <div style="display:flex; align-items:center; gap:0.35rem; margin-right:0.35rem;">
+              <button type="button" class="btn btn-sm btn-social-facebook share-event-fb-btn" data-id="${event.id}" title="Event auf Facebook teilen">
+                <i class="fa-brands fa-facebook-f"></i>
+              </button>
+              <button type="button" class="btn btn-sm btn-social-instagram share-event-ig-btn" data-id="${event.id}" title="Event auf Instagram teilen">
+                <i class="fa-brands fa-instagram"></i>
+              </button>
+            </div>
             <label class="toggle-switch" title="${isActive ? 'Event aktiv (auf Startseite sichtbar)' : 'Event ausgeblendet'}">
               <input type="checkbox" class="toggle-event-active" data-id="${event.id}" ${isActive ? 'checked' : ''} />
               <span class="toggle-slider"></span>
@@ -924,6 +953,21 @@ class KellerAdminDashboard {
         </div>
       `;
     }).join('');
+
+    // Wire Social Share listeners
+    listContainer.querySelectorAll('.share-event-fb-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = e.currentTarget.getAttribute('data-id');
+        this.shareEvent(id, 'facebook');
+      });
+    });
+
+    listContainer.querySelectorAll('.share-event-ig-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = e.currentTarget.getAttribute('data-id');
+        this.shareEvent(id, 'instagram');
+      });
+    });
 
     // Wire toggle listeners
     listContainer.querySelectorAll('.toggle-event-active').forEach(checkbox => {
@@ -1238,6 +1282,303 @@ class KellerAdminDashboard {
     setTimeout(() => {
       toast.classList.remove('show');
     }, 3200);
+  }
+
+  // --- 5. Social Media Sharing (Facebook & Instagram) ---
+  shareAction(actionType, platform) {
+    let data;
+    if (actionType === 'pizza') {
+      const activeInput = document.getElementById('pizza-notice-active-input');
+      const notice = activeInput && activeInput.value.trim() 
+        ? activeInput.value.trim() 
+        : 'Heute ist unser Steinbackofen in Betrieb! Frische Steinofen-Pizza ab 16 Uhr.';
+      data = {
+        platform: platform,
+        actionType: 'pizza',
+        title: 'Steinbackofen-Aktion am Keller',
+        badge: 'Steinofen-Pizza',
+        notice: notice,
+        description: notice,
+        meta: 'Steinbackofen • Engelhardt\'s Keller Ebensfeld',
+        image: 'assets/images/pizza_prospekt.jpg'
+      };
+    } else if (actionType === 'makrelen') {
+      const activeInput = document.getElementById('makrelen-notice-active-input');
+      const notice = activeInput && activeInput.value.trim() 
+        ? activeInput.value.trim() 
+        : '🐟 Heute frische Makrelen vom Holzkohlegrill (11,- €) – solange der Vorrat reicht!';
+      data = {
+        platform: platform,
+        actionType: 'makrelen',
+        title: 'Gegrillte Makrelen (11,- €)',
+        badge: 'Steckerlfisch',
+        notice: notice,
+        description: notice,
+        meta: 'Holzkohlegrill • 11,00 € • Ebensfeld',
+        image: 'assets/images/makrelen_grill.jpg'
+      };
+    }
+    if (data) {
+      this.openSocialShareModal(data);
+    }
+  }
+
+  shareEvent(id, platform) {
+    const events = window.kellerStore.getEvents() || [];
+    const event = events.find(e => e.id === id);
+    if (!event) return;
+
+    const formattedDate = event.date_formatted || this.formatDateGerman(event.date);
+    const data = {
+      platform: platform,
+      isEvent: true,
+      title: event.title,
+      badge: event.badge || 'Live-Event',
+      date: formattedDate,
+      time: event.time || '',
+      description: event.description || '',
+      meta: `${formattedDate}${event.time ? ' ab ' + event.time + ' Uhr' : ''} • Ebensfeld`,
+      image: event.image || 'assets/images/events/event_maascheisser.jpg'
+    };
+    this.openSocialShareModal(data);
+  }
+
+  generateSocialText(platform, data) {
+    if (!data) return '';
+
+    if (platform === 'facebook') {
+      if (data.isEvent) {
+        return `🎸 ${data.title} am Engelhardt's Keller! 🍺🎶\n\n` +
+               `📅 Datum: ${data.date}${data.time ? ' (ab ' + data.time + ' Uhr)' : ''}\n` +
+               `📍 Ort: Engelhardt's Keller, Kellerstraße 50, 96250 Ebensfeld\n\n` +
+               `${data.description}\n\n` +
+               `Für fränkische Kellerbrotzeiten, warme Schmankerl und unsere eigens eingebraute Kellerliebe ist bestens gesorgt. Eintritt frei!\n\n` +
+               `Wir freuen uns auf euren Besuch unter den schattigen Linden!\n` +
+               `🌐 Alle Infos: https://www.engelhardts-keller.de/`;
+      } else if (data.actionType === 'pizza') {
+        return `🍕 Steinbackofen-Aktion am Engelhardt's Keller in Ebensfeld! 🍺\n\n` +
+               `${data.notice}\n\n` +
+               `Kommt vorbei und genießt die knusprige Steinofen-Pizza frisch aus unserem gemauerten Holzofen unter alten Linden – dazu ein kühles, süffiges Kellerliebe Bier!\n\n` +
+               `📍 Engelhardt's Keller, Kellerstraße 50, 96250 Ebensfeld\n` +
+               `🌐 https://www.engelhardts-keller.de/\n` +
+               `📞 09573 / 1543`;
+      } else if (data.actionType === 'makrelen') {
+        return `🐟 Steckerlfisch-Tag am Engelhardt's Keller in Ebensfeld! 🍺\n\n` +
+               `${data.notice}\n\n` +
+               `Frisch gegrillte Makrelen vom Holzkohlegrill nach traditioneller Würzrezeptur – außen kross, innen wunderbar saftig! Dazu frisches Holzofenbrot und ein Seidla Kellerliebe Bier.\n\n` +
+               `📍 Engelhardt's Keller, Kellerstraße 50, 96250 Ebensfeld\n` +
+               `🌐 https://www.engelhardts-keller.de/\n` +
+               `📞 09573 / 1543`;
+      }
+    } else {
+      // Instagram
+      if (data.isEvent) {
+        return `🎸 LIVE-EVENT AM ENGELHARDT'S KELLER! 🍺✨\n\n` +
+               `${data.title}\n` +
+               `📅 Wann: ${data.date}${data.time ? ' ab ' + data.time + ' Uhr' : ''}\n` +
+               `🎟️ ${data.badge} • Eintritt frei!\n\n` +
+               `${data.description}\n\n` +
+               `Kommt vorbei, genießt die Live-Stimmung unter unseren 25 Linden mit kühler Kellerliebe und fränkischen Brotzeiten!\n\n` +
+               `📍 Kellerstraße 50, 96250 Ebensfeld\n` +
+               `🌐 Link zur Website in Bio (@engelhardts_keller)\n\n` +
+               `#engelhardtskeller #ebensfeld #livemusik #kellermusik #bierkeller #biergarten #kellerliebe #oberfranken #franken #blasmusik #gottesgartenamobermain #fränkischekeller #ausflugsziel`;
+      } else if (data.actionType === 'pizza') {
+        return `🍕 STEINBACKOFEN-AKTION AM ENGELHARDT'S KELLER! 🍺✨\n\n` +
+               `${data.notice}\n\n` +
+               `Heute backen wir wieder knusprige Steinofen-Pizza in unserem gemauerten Kellerofen! Heiß, frisch und lecker – perfekt zu einer kühlen Kellerliebe unter den Linden.\n\n` +
+               `📍 Kellerstraße 50, 96250 Ebensfeld\n` +
+               `🌐 Link in Bio (@engelhardts_keller)\n\n` +
+               `#engelhardtskeller #ebensfeld #steinofenpizza #pizzaofen #bierkeller #biergarten #kellerliebe #oberfranken #franken #fränkischegemütlichkeit #gottesgartenamobermain #sommerfranken`;
+      } else if (data.actionType === 'makrelen') {
+        return `🐟 GEGRILLTE MAKRELEN VOM HOLZKOHLEGRILL! 🍺✨\n\n` +
+               `${data.notice}\n\n` +
+               `Traditioneller Steckerlfisch am Engelhardt's Keller in Ebensfeld! Frisch über echter Holzkohle gegrillt, saftig und würzig. Dazu Holzofenbrot und ein Seidla Kellerliebe.\n\n` +
+               `Solange der Vorrat reicht – wir freuen uns auf euch!\n\n` +
+               `📍 Kellerstraße 50, 96250 Ebensfeld\n` +
+               `🌐 Link in Bio (@engelhardts_keller)\n\n` +
+               `#engelhardtskeller #ebensfeld #steckerlfisch #makrele #holzkohlegrill #bierkeller #biergarten #kellerliebe #oberfranken #franken #fischamkeller #brotzeit #gottesgartenamobermain`;
+      }
+    }
+    return data.description || data.title || '';
+  }
+
+  openSocialShareModal(data) {
+    const modal = document.getElementById('social-share-modal');
+    if (!modal) return;
+
+    this.currentSocialData = data;
+    const platform = data.platform || 'facebook';
+
+    const previewImg = document.getElementById('social-preview-img');
+    const previewHeading = document.getElementById('social-preview-heading');
+    const previewBadge = document.getElementById('social-preview-badge');
+    const previewMeta = document.getElementById('social-preview-meta');
+    const previewShortDesc = document.getElementById('social-preview-shortdesc');
+
+    if (previewImg) previewImg.src = this.resolveAssetPath(data.image);
+    if (previewHeading) previewHeading.textContent = data.title;
+    if (previewBadge) previewBadge.textContent = data.badge || 'Aktion';
+    if (previewMeta) previewMeta.textContent = data.meta || 'Engelhardt\'s Keller Ebensfeld';
+    if (previewShortDesc) previewShortDesc.textContent = data.description || '';
+
+    this.switchSocialPlatform(platform);
+    modal.classList.remove('hidden');
+
+    // Automatically copy description & text to clipboard right away
+    const postText = this.generateSocialText(platform, data);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(postText).then(() => {
+        const platformName = platform === 'facebook' ? 'Facebook' : 'Instagram';
+        this.showToast(`Text für ${platformName} in Zwischenablage kopiert! Bild steht bereit.`, 'success');
+      }).catch(() => {});
+    }
+  }
+
+  switchSocialPlatform(platform) {
+    this.currentPlatform = platform;
+    const tabFb = document.getElementById('tab-social-fb');
+    const tabIg = document.getElementById('tab-social-ig');
+    const postTextarea = document.getElementById('social-post-text');
+    const openBtn = document.getElementById('open-platform-btn');
+    const charCount = document.getElementById('social-char-count');
+
+    if (platform === 'facebook') {
+      if (tabFb) {
+        tabFb.style.opacity = '1';
+        tabFb.style.fontWeight = '700';
+      }
+      if (tabIg) {
+        tabIg.style.opacity = '0.55';
+        tabIg.style.fontWeight = '400';
+      }
+      if (openBtn) {
+        openBtn.className = 'btn btn-social-facebook';
+        openBtn.href = 'http://www.facebook.com/EngelhardtsKeller';
+        openBtn.innerHTML = '<i class="fa-brands fa-facebook-f"></i> Auf Facebook öffnen';
+      }
+    } else {
+      if (tabIg) {
+        tabIg.style.opacity = '1';
+        tabIg.style.fontWeight = '700';
+      }
+      if (tabFb) {
+        tabFb.style.opacity = '0.55';
+        tabFb.style.fontWeight = '400';
+      }
+      if (openBtn) {
+        openBtn.className = 'btn btn-social-instagram';
+        openBtn.href = 'https://www.instagram.com/engelhardts_keller/';
+        openBtn.innerHTML = '<i class="fa-brands fa-instagram"></i> Auf Instagram öffnen';
+      }
+    }
+
+    if (this.currentSocialData && postTextarea) {
+      const text = this.generateSocialText(platform, this.currentSocialData);
+      postTextarea.value = text;
+      if (charCount) {
+        charCount.textContent = `${text.length} Zeichen`;
+      }
+    }
+  }
+
+  setupSocialShareModal() {
+    const modal = document.getElementById('social-share-modal');
+    if (!modal) return;
+
+    const closeBtn = document.getElementById('close-social-modal');
+    const backdrop = modal.querySelector('.modal-backdrop');
+    const tabFb = document.getElementById('tab-social-fb');
+    const tabIg = document.getElementById('tab-social-ig');
+    const copyBtn = document.getElementById('copy-social-text-btn');
+    const downloadBtn = document.getElementById('download-social-img-btn');
+    const nativeBtn = document.getElementById('native-share-btn');
+    const postTextarea = document.getElementById('social-post-text');
+    const charCount = document.getElementById('social-char-count');
+
+    const closeModal = () => {
+      modal.classList.add('hidden');
+    };
+
+    if (closeBtn) closeBtn.onclick = closeModal;
+    if (backdrop) backdrop.onclick = closeModal;
+
+    if (tabFb) {
+      tabFb.onclick = () => this.switchSocialPlatform('facebook');
+    }
+    if (tabIg) {
+      tabIg.onclick = () => this.switchSocialPlatform('instagram');
+    }
+
+    if (postTextarea && charCount) {
+      postTextarea.oninput = () => {
+        charCount.textContent = `${postTextarea.value.length} Zeichen`;
+      };
+    }
+
+    if (copyBtn) {
+      copyBtn.onclick = () => {
+        const text = postTextarea ? postTextarea.value : '';
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(() => {
+            this.showToast('Beitragstext in die Zwischenablage kopiert!', 'success');
+          });
+        }
+      };
+    }
+
+    if (downloadBtn) {
+      downloadBtn.onclick = () => {
+        if (this.currentSocialData?.image) {
+          const url = this.resolveAssetPath(this.currentSocialData.image);
+          const safeName = (this.currentSocialData.title || 'engelhardts-keller')
+            .toLowerCase()
+            .replace(/[^a-z0-9]/g, '-')
+            .replace(/-+/g, '-')
+            .replace(/^-|-$/g, '');
+          const filename = `${safeName || 'social-beitrag'}.jpg`;
+
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          this.showToast('Bild wird heruntergeladen...', 'info');
+        }
+      };
+    }
+
+    if (nativeBtn && navigator.share) {
+      nativeBtn.style.display = 'flex';
+      nativeBtn.onclick = async () => {
+        const text = postTextarea ? postTextarea.value : '';
+        const title = this.currentSocialData?.title || 'Engelhardt\'s Keller';
+        const imgUrl = this.resolveAssetPath(this.currentSocialData?.image);
+
+        try {
+          if (imgUrl && !imgUrl.startsWith('data:') && window.fetch) {
+            const res = await fetch(imgUrl);
+            const blob = await res.blob();
+            const file = new File([blob], 'engelhardts-keller.jpg', { type: blob.type || 'image/jpeg' });
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+              await navigator.share({
+                title: title,
+                text: text,
+                files: [file]
+              });
+              return;
+            }
+          }
+          await navigator.share({
+            title: title,
+            text: text,
+            url: 'https://www.engelhardts-keller.de/'
+          });
+        } catch (err) {
+          console.log('Share canceled or not completed', err);
+        }
+      };
+    }
   }
 
   escape(str) {

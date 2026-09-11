@@ -88,6 +88,15 @@ Besonderer Wert wurde auf folgende Anforderungen gelegt:
 - **Generative Engine Optimization (GEO & AEO)**: `llms.txt` und `llms-full.txt` als Standard für KI-Suchmaschinen (ChatGPT Search, Perplexity, Gemini, Claude) sowie semantisches FAQ-Akkordeon auf `oeffnungszeiten.html`.
 - **Admin-Schutz**: Vollständiger Ausschluss der internen Verwaltungsseiten aus Indexierung und Sitemaps (`noindex, nofollow`, `robots.txt`).
 
+### 9. 1-Klick Social-Media-Sharing (Facebook & Instagram)
+- **Aktionen (`admin/aktionen.html`)**: Bei Steinbackofen- und Makrelen-Aktionen stehen direkte Facebook- und Instagram-Icons zur Verfügung. Bild und Beschreibung werden automatisch übernommen.
+- **Events (`admin/events.html`)**: Bei jedem Live-Event kann mit einem Klick ein fertiger Beitrag für Facebook oder Instagram geteilt werden.
+- **Funktionen**:
+  - Automatisches Kopieren des optimierten Beitragstextes (inkl. Datum, Uhrzeit, Emojis, Standort und Hashtags) in die Zwischenablage.
+  - Bild-Download für schnellen Upload in Facebook oder Instagram.
+  - Direkte Verknüpfung zu den Profilen (`EngelhardtsKeller` auf Facebook, `@engelhardts_keller` auf Instagram).
+  - Unterstützung der Web Share API für direktes Teilen auf Smartphones und Tablets (Übergabe von Bilddatei und Text).
+
 ---
 
 ## 💻 Technologie-Stack

@@ -147,7 +147,16 @@
         </div>
       </div>
 
-      <div style="display:flex; justify-content:flex-end;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;">
+        <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+          <span style="font-size:0.85rem; font-weight:600; color:var(--slate-600);"><i class="fa-solid fa-share-nodes"></i> Auf Social Media teilen:</span>
+          <button type="button" class="btn btn-sm btn-social-facebook share-action-fb-btn" data-action="pizza" title="Steinofen-Aktion auf Facebook teilen">
+            <i class="fa-brands fa-facebook-f"></i> Facebook
+          </button>
+          <button type="button" class="btn btn-sm btn-social-instagram share-action-ig-btn" data-action="pizza" title="Steinofen-Aktion auf Instagram teilen">
+            <i class="fa-brands fa-instagram"></i> Instagram
+          </button>
+        </div>
         <button id="save-pizza-oven-btn" class="btn btn-primary btn-sm">
           <i class="fa-solid fa-floppy-disk"></i> Pizza-Einstellungen speichern
         </button>
@@ -208,7 +217,16 @@
         </div>
       </div>
 
-      <div style="display:flex; justify-content:flex-end;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;">
+        <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+          <span style="font-size:0.85rem; font-weight:600; color:var(--slate-600);"><i class="fa-solid fa-share-nodes"></i> Auf Social Media teilen:</span>
+          <button type="button" class="btn btn-sm btn-social-facebook share-action-fb-btn" data-action="makrelen" title="Makrelen-Aktion auf Facebook teilen">
+            <i class="fa-brands fa-facebook-f"></i> Facebook
+          </button>
+          <button type="button" class="btn btn-sm btn-social-instagram share-action-ig-btn" data-action="makrelen" title="Makrelen-Aktion auf Instagram teilen">
+            <i class="fa-brands fa-instagram"></i> Instagram
+          </button>
+        </div>
         <button id="save-makrelen-grill-btn" class="btn btn-primary btn-sm">
           <i class="fa-solid fa-floppy-disk"></i> Fisch-Einstellungen speichern
         </button>
@@ -216,6 +234,86 @@
     </div>
 
   </main>
+
+  <!-- Social Share Modal (Facebook & Instagram) -->
+  <div id="social-share-modal" class="admin-modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog" style="max-width:620px;">
+      <div class="modal-header" style="border-bottom:1px solid var(--slate-200);">
+        <h3 class="modal-title" id="social-modal-title">
+          <i class="fa-solid fa-share-nodes" style="color:var(--primary-700);"></i> Auf Social Media teilen
+        </h3>
+        <button class="modal-close" id="close-social-modal" aria-label="Schließen">&times;</button>
+      </div>
+
+      <div style="padding:1.5rem;">
+        <!-- Platform Switcher Tabs -->
+        <div style="display:flex; gap:0.5rem; margin-bottom:1.25rem; border-bottom:1px solid var(--slate-200); padding-bottom:0.75rem;">
+          <button type="button" id="tab-social-fb" class="btn btn-sm btn-social-facebook" style="flex:1; justify-content:center;">
+            <i class="fa-brands fa-facebook-f"></i> Facebook
+          </button>
+          <button type="button" id="tab-social-ig" class="btn btn-sm btn-social-instagram" style="flex:1; justify-content:center; opacity:0.65;">
+            <i class="fa-brands fa-instagram"></i> Instagram
+          </button>
+        </div>
+
+        <!-- Media Preview Card -->
+        <div style="background:var(--slate-50); border:1px solid var(--slate-200); border-radius:var(--radius-lg); padding:1rem; margin-bottom:1.25rem;">
+          <div style="display:flex; gap:1rem; align-items:flex-start;">
+            <div style="width:110px; height:110px; border-radius:var(--radius-md); overflow:hidden; flex-shrink:0; border:1px solid var(--slate-300); background:var(--slate-200);">
+              <img id="social-preview-img" src="" alt="Vorschau" style="width:100%; height:100%; object-fit:cover;" />
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div id="social-preview-badge" class="cat-badge" style="display:inline-block; margin-bottom:0.35rem; font-size:0.75rem;">Aktion</div>
+              <h4 id="social-preview-heading" style="margin:0 0 0.35rem 0; font-size:1.05rem; color:var(--slate-900);">Titel</h4>
+              <div id="social-preview-meta" style="font-size:0.82rem; color:var(--slate-500); margin-bottom:0.35rem;">
+                <!-- Datum / Ort -->
+              </div>
+              <p id="social-preview-shortdesc" style="font-size:0.85rem; color:var(--slate-600); margin:0; line-height:1.4; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Generated Post Textarea -->
+        <div class="form-group" style="margin-bottom:1rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
+            <label class="form-label" for="social-post-text" style="margin:0; font-weight:700;">
+              <i class="fa-solid fa-file-lines"></i> Fertiger Beitragstext (mit Bildbeschreibung &amp; Hashtags):
+            </label>
+            <span id="social-char-count" style="font-size:0.78rem; color:var(--slate-500);"></span>
+          </div>
+          <textarea id="social-post-text" class="form-control" rows="6" style="font-size:0.9rem; line-height:1.5; font-family:inherit;"></textarea>
+        </div>
+
+        <!-- Action Buttons -->
+        <div style="display:flex; flex-direction:column; gap:0.6rem;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem;">
+            <button type="button" id="copy-social-text-btn" class="btn btn-primary" style="justify-content:center;">
+              <i class="fa-solid fa-copy"></i> Text kopieren
+            </button>
+            <button type="button" id="download-social-img-btn" class="btn btn-outline" style="justify-content:center;">
+              <i class="fa-solid fa-download"></i> Bild herunterladen
+            </button>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr; gap:0.6rem;">
+            <a id="open-platform-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-social-facebook" style="justify-content:center; text-align:center;">
+              <i class="fa-brands fa-facebook-f"></i> Auf Facebook öffnen
+            </a>
+          </div>
+
+          <!-- Web Share API Button (shown if supported) -->
+          <button type="button" id="native-share-btn" class="btn btn-accent" style="justify-content:center; display:none;">
+            <i class="fa-solid fa-mobile-screen"></i> Direkt über Smartphone / App teilen
+          </button>
+        </div>
+
+        <div style="margin-top:1rem; padding:0.75rem; background:var(--primary-50); border:1px solid var(--primary-100); border-radius:var(--radius-md); font-size:0.8rem; color:var(--primary-800); line-height:1.4;">
+          <i class="fa-solid fa-circle-info"></i> <strong>Hinweis:</strong> Der fertige Text wurde für Sie vorbereitet und liegt bereits in der Zwischenablage. Laden Sie das Bild bei Bedarf herunter und posten Sie es direkt auf Ihrer Facebook- oder Instagram-Seite.
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="../js/store.js"></script>

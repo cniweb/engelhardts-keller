@@ -217,6 +217,35 @@ p:last-child {
   background: var(--color-closed-bg);
 }
 
+.btn-social-facebook {
+  background: #1877f2;
+  color: #ffffff !important;
+  border: 1px solid #1877f2;
+  box-shadow: 0 2px 6px rgba(24, 119, 242, 0.25);
+}
+
+.btn-social-facebook:hover {
+  background: #166fe5;
+  border-color: #166fe5;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(24, 119, 242, 0.35);
+}
+
+.btn-social-instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #ffffff !important;
+  border: 1px solid transparent;
+  box-shadow: 0 2px 6px rgba(220, 39, 67, 0.25);
+}
+
+.btn-social-instagram:hover {
+  filter: brightness(1.1);
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(220, 39, 67, 0.35);
+}
+
 /* --- Header & Navigation --- */
 .site-header {
   position: sticky;

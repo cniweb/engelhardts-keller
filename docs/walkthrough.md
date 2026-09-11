@@ -203,12 +203,38 @@ Die gesamte Webpräsenz wurde professionell für klassische Suchmaschinen (Googl
 
 ---
 
+### 11. 1-Klick Social-Media-Sharing (Facebook & Instagram)
+
+Für eine schnelle Social-Media-Pflege durch die Familie Engelhardt wurde auf den Administrationsseiten für Aktionen (`admin/aktionen.html`) und Events (`admin/events.html`) ein direktes Sharing-System integriert:
+
+- **Aktionen (`admin/aktionen.html`)**:
+  - Jeweilige Facebook- und Instagram-Buttons direkt bei den Steuerungskarten für *Steinbackofen & Pizza-Tage* sowie *Gegrillte Makrelen*.
+- **Live-Events (`admin/events.html`)**:
+  - Jedes Event verfügt in der Aktionsleiste über direkte Facebook- und Instagram-Icons.
+- **Automatische Bild- und Textübernahme**:
+  - Das Originalbild (z. B. `assets/images/pizza_prospekt.jpg`, `makrelen_grill.jpg` oder das jeweilige Event-Foto) wird direkt als Vorschau geladen und steht per Download-Button für den Upload bereit.
+  - Der optimierte Beitragstext wird sofort generiert:
+    - **Facebook**: Mit Emojis, Termindetails, Standort (*Kellerstraße 50, 96250 Ebensfeld*), Web-Link und Einladung.
+    - **Instagram**: Mit ansprechender Formatierung, Standort und allen relevanten Hashtags (`#engelhardtskeller #ebensfeld #bierkeller #kellerliebe #oberfranken #franken #ausflugsziel` etc.).
+  - **Automatisches Kopieren**: Beim Klick auf das jeweilige Icon wird der vollständige Text sofort in die Zwischenablage kopiert und eine Bestätigung (*Toast*) angezeigt.
+  - **Direktsprung**: Schaltflächen zum direkten Öffnen der Facebook-Seite (`EngelhardtsKeller`) und des Instagram-Profils (`@engelhardts_keller`).
+  - **Mobile Web Share API**: Auf Smartphones/Tablets kann über den Button *„Direkt über Smartphone teilen“* das Bild und der Text nativ an die Facebook- oder Instagram-App übergeben werden.
+
+---
+
 ## 🧪 Verifikation & Testergebnisse
 
 - **Lokaler Server**: Gestartet auf `http://localhost:8080/`.
 - **Automatisierte Link- und Assetprüfung (`scratch/validate_site.py`)**:
   - Alle 16 HTML-Dateien im Root und in `admin/` liefern `HTTP 200 OK`.
-  - 90 lokale Assets und 302 interne Links fehlerfrei und ohne 404-Fehler aufgelöst.
+  - 92 lokale Assets und 302 interne Links fehlerfrei und ohne 404-Fehler aufgelöst.
+- **Automatisierte Social-Media-Sharing-Tests (`scratch/test_social_sharing.py`)**:
+  - Headless Chrome Test erfolgreich bestanden:
+    - Steinbackofen Facebook-Share öffnet Modal mit Text & Bild.
+    - Tab-Wechsel zu Instagram generiert Hashtags und Instagram-Link.
+    - Makrelen Instagram-Share übernimmt Bild und Text.
+    - Events Facebook- und Instagram-Share übernehmen Event-Titel, Datum, Uhrzeit, Beschreibung und Bild.
+    - „Text kopieren“ löst Toast-Bestätigung aus.
 - **Automatisierte SEO- & GEO-Prüfung (`scratch/validate_seo.py`)**:
   - Alle 9 HTML-Seiten besitzen syntaktisch valides Schema.org JSON-LD (16 Entitäten).
   - `sitemap.xml` enthält 9 valide URLs ohne Admin-Pfade.
