@@ -1,0 +1,54 @@
+# ==============================================================================
+# Engelhardt's Keller Ebensfeld - robots.txt
+# Offizielle Konfiguration für Suchmaschinen und KI-Agenten (SEO & GEO)
+# ==============================================================================
+
+# Reguläre Web-Crawler (Googlebot, Bingbot, etc.)
+User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+Allow: /data/
+Disallow: /admin/
+Disallow: /admin.html
+Disallow: /scratch/
+
+# KI- und Generative Search Crawler (ChatGPT, Perplexity, Claude, Gemini etc.)
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+Disallow: /admin.html
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin/
+Disallow: /admin.html
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+Disallow: /admin.html
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+Disallow: /admin.html
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /admin.html
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /admin.html
+
+User-agent: cohere-ai
+Allow: /
+Disallow: /admin/
+Disallow: /admin.html
+
+# Sitemap
+Sitemap: https://www.engelhardts-keller.de/sitemap.xml

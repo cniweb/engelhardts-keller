@@ -169,16 +169,53 @@ Kommende Veranstaltungen und Live-Musik-Termine werden auf der Startseite (`inde
 
 ---
 
+### 10. Ganzheitliche SEO- & GEO-Optimierung (Suchmaschinen & KI)
+
+Die gesamte Webpräsenz wurde professionell für klassische Suchmaschinen (Google, Bing) sowie moderne KI-Such- und Antwortsysteme (ChatGPT Search, Perplexity, Google Gemini / AI Overviews, Claude) optimiert:
+
+1. **Suchmaschinenoptimierung (SEO)**:
+   - **Metadaten & Canonical**: Jede der 9 öffentlichen Seiten besitzt maßgeschneiderte, klickstarke `<title>`-Tags, präzise `<meta name="description">`-Angaben, `<link rel="canonical">` sowie Robots-Direktiven (`index, follow, max-image-preview:large`).
+   - **Open Graph & Twitter Cards**: Vollständige Social-Sharing-Cards mit originalen Bildreferenzen (`assets/images/biergarten.jpg`, `hero.jpg`, `zimmer_prospekt.jpg`, etc.) für optimale Darstellung auf Facebook, WhatsApp und Twitter/X.
+   - **Sitemap & Robots**:
+     - `sitemap.xml`: Enthält alle 9 öffentlichen HTML-Seiten mit Prioritäten und Änderungsfrequenzen.
+     - `robots.txt`: Gibt alle Seiten frei für Webcrawler und KI-Bots (`GPTBot`, `PerplexityBot`, `ClaudeBot`, `Google-Extended`), schützt jedoch das administrative Verzeichnis (`Disallow: /admin/` und `Disallow: /admin.html`) und verweist auf die XML-Sitemap.
+
+2. **Strukturierte Daten (Schema.org / JSON-LD)**:
+   - `index.html`: `Restaurant`, `BarOrPub` & `LocalBusiness` Schema verknüpft mit Adresse (*Kellerstraße 50, 96250 Ebensfeld*), Geokoordinaten (*50.0673, 10.9628*), Öffnungszeiten, Küche (*Fränkisch*), Menü-Link, Ausstattung und `WebSite`.
+   - `speisekarte.html`: `Menu` Schema mit strukturierten Sektionen (*Brotzeiten*, *Warme Schmankerl*, *Steinofen-Pizza*, *Steckerlfisch*, *Kellerliebe Bier*) + `BreadcrumbList`.
+   - `oeffnungszeiten.html`: `OpeningHoursSpecification` + `FAQPage` Schema + `BreadcrumbList`.
+   - `zimmer.html`: `LodgingBusiness` & `BedAndBreakfast` Schema mit Zimmerkategorien (*Einzelzimmer ab 35€*, *Doppelzimmer ab 60€*, *Ferienwohnung ab 70€*), Ausstattungen (WLAN, TV, Bad, Bahnhofstransfer) + `BreadcrumbList`.
+   - `chronik.html`: `AboutPage` & `HistoricalPlace` Schema (*Gründung 1867*) + `BreadcrumbList`.
+   - `fotos.html`: `ImageGallery` Schema + `BreadcrumbList`.
+   - `umgebung.html`: `TouristDestination` Schema für den Gottesgarten am Obermain + `BreadcrumbList`.
+   - `anfahrt.html`: `ContactPage` & `LocalBusiness` Schema + `BreadcrumbList`.
+   - `impressum.html`: `BreadcrumbList` Schema.
+
+3. **Generative Engine Optimization (GEO & AEO für KI-Systeme)**:
+   - **`llms.txt`**: Standardisiertes, maschinenlesbares Markdown-Dokument mit kompakten Fakten, Öffnungslogik/Wetterabhängigkeit, Spezialitäten und Kontaktinformationen für LLMs.
+   - **`llms-full.txt`**: Umfassende Wissensbasis mit allen Gerichten, Preisen, detaillierten Fakten, Anfahrtswegen und Direktzitaten für Perplexity, ChatGPT und RAG-Pipelines.
+   - **Semantische FAQ-Sektion (Answer Engine Optimization)**:
+     - Auf `oeffnungszeiten.html` wurde ein interaktives HTML5-Akkordeon (`<details>` / `<summary>`) integriert, das die 7 wichtigsten Besucherfragen (Wetterampel/Regen, Reservierungen, Hunde, vegetarische Speisen, Steinofen-Pizza/Makrelen, Barzahlung, Parkplätze & Bahnhofsshuttle) beantwortet.
+     - Diese Fragen werden 1:1 durch das `FAQPage` JSON-LD Schema gespiegelt, wodurch Google Featured Snippets und KI-Antworten direkt bedient werden.
+
+4. **Ausschluss der Verwaltung**:
+   - Die Admin-Unterseiten (`admin/*` und `admin.html`) sind vollständig von der Indexierung ausgeschlossen (`noindex, nofollow`, Ausschluss in `robots.txt` und `sitemap.xml`).
+
+---
+
 ## 🧪 Verifikation & Testergebnisse
 
 - **Lokaler Server**: Gestartet auf `http://localhost:8080/`.
 - **Automatisierte Link- und Assetprüfung (`scratch/validate_site.py`)**:
   - Alle 16 HTML-Dateien im Root und in `admin/` liefern `HTTP 200 OK`.
-  - 91 lokale Assets (Bilder, Stylesheets, Skripte) und 302 interne Links fehlerfrei und ohne 404-Fehler aufgelöst.
-- **Automatisierte Playwright Headless Chrome Testsuite (`scratch/test_admin_flow.py`)**:
-  - 10 von 10 Tests erfolgreich bestanden (PIN-Schutz, falsche PIN abgewiesen, Login freigeschaltet, Session-Persistenz über alle 6 Seiten, Datenanzeige, Redirect von `admin.html` und Abmeldung).
+  - 90 lokale Assets und 302 interne Links fehlerfrei und ohne 404-Fehler aufgelöst.
+- **Automatisierte SEO- & GEO-Prüfung (`scratch/validate_seo.py`)**:
+  - Alle 9 HTML-Seiten besitzen syntaktisch valides Schema.org JSON-LD (16 Entitäten).
+  - `sitemap.xml` enthält 9 valide URLs ohne Admin-Pfade.
+  - `robots.txt` schützt `/admin/` und verweist auf die Sitemap.
+  - `llms.txt` und `llms-full.txt` sind vorhanden und vollständig validiert.
+- **Automatisierte Playwright Testsuite (`scratch/test_admin_flow.py`)**:
+  - 10 von 10 Tests erfolgreich bestanden.
 - **Wetter-Schnittstelle**:
   - Ebensfeld-Koordinaten erfolgreich getestet; liefert stündliche Vorhersagewerte, WMO-Codes und Niederschlagswahrscheinlichkeiten.
-- **Mobile Responsiveness**:
-  - Geprüft für gängige Smartphone-Auflösungen (360px bis 430px iPhone/Android) und Desktop. Sticky Filterleiste, Touch-Navigation und Lesbarkeit im Freien validiert.
 

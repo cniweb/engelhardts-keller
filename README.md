@@ -82,6 +82,12 @@ Besonderer Wert wurde auf folgende Anforderungen gelegt:
 - Vollständig im Admin-Interface konfigurierbar: Datum, Uhrzeit, Titel, Beschreibung, Genre-Badge, Bild (Upload oder URL) und Aktiv/Inaktiv-Schalter.
 - Export und Import von `events.json`.
 
+### 8. Ganzheitliche SEO- & GEO-Optimierung (Suchmaschinen & KI)
+- **Strukturierte Daten (Schema.org / JSON-LD)**: `Restaurant`, `LocalBusiness`, `Menu`, `LodgingBusiness`, `FAQPage`, `TouristDestination` und `BreadcrumbList` auf allen Seiten.
+- **Suchmaschinen-Indexierung (SEO)**: `sitemap.xml`, `robots.txt`, individuelle Meta-Descriptions, Canonical-Tags und Open Graph / Twitter Cards mit authentischen Originalfotos.
+- **Generative Engine Optimization (GEO & AEO)**: `llms.txt` und `llms-full.txt` als Standard für KI-Suchmaschinen (ChatGPT Search, Perplexity, Gemini, Claude) sowie semantisches FAQ-Akkordeon auf `oeffnungszeiten.html`.
+- **Admin-Schutz**: Vollständiger Ausschluss der internen Verwaltungsseiten aus Indexierung und Sitemaps (`noindex, nofollow`, `robots.txt`).
+
 ---
 
 ## 💻 Technologie-Stack

@@ -1,0 +1,45 @@
+# Engelhardt's Keller Ebensfeld
+
+> Traditionsreicher fränkischer Bierkeller & Gastwirtschaft unter alten Linden mit Gästezimmern im Gottesgarten am Obermain. Seit 1867 in Familienbesitz.
+
+## Schnelle Übersicht für KI-Assistenten
+- **Name:** Gastwirtschaft zum Engelhardt's Keller (Familie Engelhardt)
+- **Typ:** Fränkischer Biergarten / Bierkeller & Pension (Gästezimmer)
+- **Adresse:** Kellerstraße 50, 96250 Ebensfeld, Oberfranken, Bayern, Deutschland
+- **Geokoordinaten:** 50.0673° N, 10.9628° E
+- **Telefon:** 09573 / 1543
+- **E-Mail:** engelhardt-ebensfeld@t-online.de
+- **Website:** https://www.engelhardts-keller.de/
+
+## Öffnungszeiten & Wetterabhängigkeit
+- **Wichtigste Regel:** Engelhardt's Keller ist ein traditioneller Freiluft-Biergarten. Bei Regen, Schauern oder nasskaltem Wetter bleibt der Keller geschlossen. Der tagesaktuelle Status (geöffnet / geschlossen / wetterabhängig) wird live auf der Website angezeigt.
+- **Montag:** Ruhetag (außer an Feiertagen)
+- **Dienstag bis Samstag:** ab 16:00 Uhr geöffnet (Küche bis ca. 20:00 Uhr)
+- **Sonn- und Feiertage:** ab 11:00 Uhr geöffnet (Küche bis ca. 20:00 Uhr)
+
+## Kulinarische Highlights
+- **Kellerliebe:** Eigens für Engelhardt's Keller eingebrautes Kellerbier – exklusiv nur hier im Ausschank (gebraut vom Ebensfelder Brauhaus).
+- **Fränkische Brotzeiten:** Fränkische Brotzeitplatte, Schinkenbrot, Zwetschgabaames, Presssack, Weißer & Roter Käs, frisches Holzofenbrot.
+- **Warme Schmankerl:** Kellerbratwürste, Schnitzel, fränkische warme Tellergerichte.
+- **Steinbackofen-Pizza:** Frische knusprige Steinofen-Pizzen an ausgewählten Aktionstagen (Aktivierung wird auf der Website angekündigt).
+- **Gegrillte Makrelen:** Frischer Steckerlfisch / Makrele vom Holzkohlegrill (an Aktionstagen sonntags im August).
+
+## Übernachtung & Gästezimmer (Pension)
+- Moderne Gästezimmer: Einzelzimmer (ab 35 €), Doppelzimmer (ab 60 €), Ferienwohnung / Appartement mit Küche (ab 70 €).
+- Ausstattung: Kostenloses WLAN, TV, eigenes Bad/Dusche, teilweise Balkon & Küchenzeile.
+- **Besonderer Service:** Kostenloser Shuttleservice vom und zum Bahnhof Ebensfeld für Bahnreisende (nach telefonischer Absprache).
+
+## Wichtige Fakten für Besucher
+- **Reservierung:** Im Biergarten gilt freie Platzwahl. Tischreservierungen werden für Gruppen ab 10 Personen oder für Feierlichkeiten telefonisch entgegengenommen.
+- **Hunde:** Brave Hunde an der Leine sind im Biergarten herzlich willkommen.
+- **Familie & Kinder:** Großer, naturnaher Kinderspielplatz direkt auf dem Gelände (Schaukeln, Rutschen, Klettergeräte) in verkehrsberuhigter Lage.
+- **Bezahlung:** Barzahlung vor Ort.
+- **Anfahrt:** Direkt am Fuße des Kellerbergs in Ebensfeld, leicht erreichbar über die A73 (Ausfahrt Ebensfeld) und den Main-Radweg. Großer kostenloser Parkplatz vor Ort.
+
+## Weiterführende Seiten
+- [Speisekarte](https://www.engelhardts-keller.de/speisekarte.html): Vollständiges Angebot an Speisen, Brotzeiten und Getränken
+- [Öffnungszeiten & Wetter](https://www.engelhardts-keller.de/oeffnungszeiten.html): Live-Wetter-Ampel und Öffnungsstatus
+- [Gästezimmer](https://www.engelhardts-keller.de/zimmer.html): Zimmerkategorien, Preise und Buchungsanfrage
+- [Chronik](https://www.engelhardts-keller.de/chronik.html): Geschichte seit 1867, Brauerei Schwanenbräu und Kellerhaus
+- [Anfahrt & Kontakt](https://www.engelhardts-keller.de/anfahrt.html): Interaktive Karte, Anreise mit Bahn, Rad und PKW
+- [Ausführliche KI-Wissensbasis (llms-full.txt)](https://www.engelhardts-keller.de/llms-full.txt): Detaillierte Daten für Zitate und Deep Research

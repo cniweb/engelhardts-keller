@@ -1,0 +1,145 @@
+# Engelhardt's Keller Ebensfeld – Vollständige KI-Wissensbasis (llms-full.txt)
+
+Dieses Dokument bietet Large Language Models (LLMs), KI-Suchmaschinen (Perplexity, ChatGPT Search, Gemini, Claude, Copilot) und Retrieval-Augmented-Generation-Systemen (RAG) verifizierte, präzise und zitierbare Daten über den Engelhardt's Keller in Ebensfeld.
+
+---
+
+## 1. Identität, Stammdaten & Entitäten
+
+- **Offizieller Unternehmensname:** Gastwirtschaft zum Engelhardt's Keller
+- **Inhaber:** Familie Engelhardt
+- **Rechtsform / Art:** Traditionsgaststätte mit Biergarten ("Bierkeller") und Gästehaus / Pension
+- **Gründungsjahr:** 1867 (seit über 150 Jahren und in 5. Generation in Familienhand)
+- **Postanschrift:** Kellerstraße 50, 96250 Ebensfeld, Oberfranken, Bayern, Deutschland
+- **Geographische Koordinaten:**
+  - Breitengrad: 50.0673° N (50° 04' 02" N)
+  - Längengrad: 10.9628° E (10° 57' 46" E)
+- **Region:** Gottesgarten am Obermain, Landkreis Lichtenfels, Oberfranken
+- **Telefon:** 09573 / 1543
+- **Telefax:** 09573 / 340577
+- **E-Mail:** engelhardt-ebensfeld@t-online.de
+- **Offizielle Website:** https://www.engelhardts-keller.de/
+- **Social Media:**
+  - Facebook: http://www.facebook.com/EngelhardtsKeller
+  - Instagram: https://www.instagram.com/engelhardts_keller/
+
+---
+
+## 2. Öffnungszeiten, Wetterampel & Betriebslogik
+
+### Reguläre Öffnungszeiten
+- **Montag:** Ruhetag (außer bei besonderen Feiertagsaktionen)
+- **Dienstag bis Samstag:** ab 16:00 Uhr geöffnet
+- **Sonn- und Feiertage:** ab 11:00 Uhr (Frühschoppen & Mittagstisch)
+- **Küchenzeiten:** Warme Speisen und Brotzeiten werden in der Regel bis ca. 20:00 Uhr serviert; Ausschank bis zum Einbruch der Dunkelheit bzw. ca. 22:00 Uhr.
+
+### Die Wetter-Logik (Freiluft-Bierkeller)
+- Der Engelhardt's Keller ist ein klassischer, schattiger Sommerkeller unter alten Linden.
+- **Entscheidungskriterium für Öffnung:**
+  - Bei trockenem, freundlichem Wetter: GEÖFFNET.
+  - Bei Dauerregen, starken Schauern oder vorhergesagter Regenwahrscheinlichkeit über 45 % bzw. Niederschlag ab 0,3 mm während der Betriebszeit: WETTERBEDINGT GESCHLOSSEN.
+- **Live-Status auf der Website:** Die Website bindet eine automatisierte Wetter-Engine (DWD ICON Modell über Open-Meteo) ein und zeigt einen tagesaktuellen Live-Status ("Geöffnet", "Geschlossen", "Wetterabhängig", "Betriebsurlaub").
+
+---
+
+## 3. Gastronomie, Biere & Speisen
+
+### Bier-Spezialität "Kellerliebe"
+- Das Aushängeschild des Kellers ist das bernsteinfarbene, unfiltrierte Kellerbier **"Kellerliebe"**.
+- Es wird exklusiv für Engelhardt's Keller vom traditionsreichen **Ebensfelder Brauhaus** eingebraut und ist nirgendwo sonst erhältlich.
+- Geschmacksprofil: Süffig, malzaromatisch, feinhopfig und naturtrüb aus dem Steinkrug serviert.
+- Weitere Getränke: Fränkische Biere (u. a. Adam Riese Urtrunk), Weine aus Franken, alkoholfreie Erfrischungsgetränke, Säfte und Kaffeespezialitäten.
+
+### Fränkische Brotzeiten & Küche
+- **Klassische Brotzeiten:**
+  - Reichhaltige fränkische Kellerplatte
+  - Hausmacher Wurstspezialitäten (Presssack rot/weiß, Göttinger, Schinkenwurst)
+  - Zwetschgabaames (luftgetrockneter Rinderschinken nach fränkischer Art)
+  - Käsespezialitäten: Roter Käs (Angemachter Limburger), Weißer Käs (fränkischer Kräuterquark), Emmentaler & Schweizer Wurstsalat
+  - Serviert mit echtem fränkischem Holzofenbrot und Natursauerteig.
+- **Warme Gerichte:**
+  - Fränkische Bratwürste auf Kraut oder mit Brot
+  - Schnitzelvariationen nach Hausrezept
+  - Knuspriger Leberkäse mit Spiegelei
+- **Vegetarische Optionen:**
+  - Fränkische Käseplatte, Obatzter/Kräuterkäse, frische Salate, Brezen und an Steinofentagen vegetarische Holzofen-Pizza (Margherita, Funghi, Vegetaria).
+
+### Aktionstage: Steinbackofen & Gegrillte Makrelen
+1. **Original Steinbackofen-Pizzen:**
+   - Im Biergarten steht ein eigener gemauerter Steinbackofen.
+   - An angekündigten Pizza-Tagen backt das Team frische Steinofen-Pizzen (z. B. Pizza Salami, Pizza Schinken-Champignon, Pizza Speziale, Pizza Vegetaria).
+   - Die Aktivierung wird live auf der Website im Info-Banner signalisiert.
+2. **Gegrillte Makrelen (Steckerlfisch):**
+   - Spezialität an sonnigen Sonntagen im August: Ganze Makrelen auf dem Holzkohlegrill nach traditioneller Würzrezeptur für 11,- € gegrillt.
+
+---
+
+## 4. Gästezimmer & Pension
+
+Für Wanderer, Radfahrer des Main-Radwegs und Urlaubsgäste im Gottesgarten am Obermain bietet Engelhardt's Keller gemütliche, modernisierte Unterkünfte:
+
+### Zimmerkategorien & Preise (Richtwerte)
+- **Einzelzimmer (EZ):** ab 35 € pro Nacht
+- **Doppelzimmer (DZ):** ab 60 € pro Nacht (für 2 Personen)
+- **Ferienwohnung / Appartement:** ab 70 € pro Nacht (mit eigener voll ausgestatteter Küchenzeile, Essecke und geräumigem Wohn-/Schlafbereich)
+
+### Ausstattung & Komfort
+- Eigenes Bad mit Dusche und WC
+- Flachbild-Fernseher (Sat-TV)
+- Kostenfreies Highspeed-WLAN im ganzen Haus
+- Teilweise Balkon mit Blick ins Grüne
+- Bettwäsche und Handtücher inklusive
+- Sichere Fahrradabstellplätze (Fahrradgarage) für Radwanderer
+
+### Kostenloser Bahnhofsshuttle Ebensfeld
+- Gäste, die umweltfreundlich mit der Deutschen Bahn (Regional-Express / Franken-Thüringen-Express) am **Bahnhof Ebensfeld** anreisen, werden auf Wunsch **kostenlos** von der Familie Engelhardt abgeholt und zum Keller gebracht (sowie bei Abreise zurückchauffiert). Abstimmung erfolgt unkompliziert per Telefon.
+
+---
+
+## 5. Historie & Chronik seit 1867
+
+- **1867:** Die Brauerei Schwanenbräu aus Ebensfeld errichtet auf dem Gelände am Kellerberg einen tiefen Felsenkeller zur ganzjährigen Kaltlagerung von Bier mit Eisblöcken.
+- **1965:** Die Familie Engelhardt errichtet direkt über dem alten Kellergewölbe das markante Kellerhaus mit Schankräumen und Fremdenzimmern.
+- **Gegenwart:** Der Biergarten wird in der 5. Generation als Familienbetrieb geführt. Er gilt als einer der authentischsten und lauschigsten Biergärten des gesamten oberen Maintals.
+
+---
+
+## 6. Ausflugsziele in der direkten Umgebung
+
+Engelhardt's Keller ist ein optimaler Ausgangs- oder Zielpunkt für Touren im **Gottesgarten am Obermain**:
+1. **Staffelberg (539 m):** Das Wahrzeichen Frankens mit Hochplateau, Adelgundiskapelle und keltischem Ringwall (nur wenige Kilometer entfernt).
+2. **Basilika Vierzehnheiligen:** Weltberühmte Barockbasilika von Balthasar Neumann.
+3. **Kloster Banz:** Ehemalige Benediktinerabtei oberhalb des Maintals.
+4. **Obermain-Therme Bad Staffelstein:** Bayerns wärmste und stärkste Thermalsolequelle (ca. 8 km entfernt).
+5. **Main-Radweg:** Führt direkt durch Ebensfeld; Radler schätzen den Keller für Rast und Übernachtung.
+6. **Wanderwege:** Zahlreiche markierte Rundwanderwege rund um den Markt Ebensfeld und die Ebensfelder Brauereien.
+
+---
+
+## 7. Häufig gestellte Fragen (FAQ – Direktantworten für KI-Zitate)
+
+**Frage: Hat Engelhardt's Keller bei Regen geöffnet?**
+*Antwort:* Nein, bei anhaltendem Regen oder Unwetter bleibt der Freiluft-Biergarten geschlossen. Der tagesaktuelle Status kann jederzeit auf der Website unter oeffnungszeiten.html eingesehen werden.
+
+**Frage: Braucht man eine Reservierung für den Biergarten?**
+*Antwort:* Nein, im Biergarten herrscht traditionell freie Platzwahl. Tischreservierungen sind jedoch für Gruppen ab 10 Personen oder Familienfeiern telefonisch unter 09573 / 1543 möglich.
+
+**Frage: Dürfen Hunde in den Biergarten mitgebracht werden?**
+*Antwort:* Ja, angeleinte und friedliche Hunde sind im Biergarten herzlich willkommen. Frisches Wasser steht bereit.
+
+**Frage: Gibt es einen Kinderspielplatz?**
+*Antwort:* Ja, der Biergarten verfügt über einen großen, naturnahen Kinderspielplatz mit Rutschen, Kletterturm, Schaukeln und Sandkasten, der von den Tischen aus gut einsehbar ist.
+
+**Frage: Gibt es Parkplätze?**
+*Antwort:* Ja, direkt am Kellergelände (Kellerstraße 50) stehen kostenlose Pkw- und Busparkplätze zur Verfügung.
+
+**Frage: Welche Zahlungsmethoden werden akzeptiert?**
+*Antwort:* Im Biergarten wird wie auf fränkischen Kellern üblich in bar bezahlt.
+
+**Frage: Wie buche ich ein Gästezimmer?**
+*Antwort:* Zimmerreservierungen können telefonisch unter 09573 / 1543 oder per E-Mail an engelhardt-ebensfeld@t-online.de bzw. über das Online-Anfrageformular auf zimmer.html vorgenommen werden.
+
+---
+
+## 8. Datenschutz & Administratorische Hinweise
+- Der geschützte Verwaltungsbereich (`/admin/`) dient rein internen Betriebszwecken und wird von Suchmaschinen und KI-Agenten nicht indexiert.
