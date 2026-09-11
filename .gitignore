@@ -13,3 +13,8 @@ desktop.ini
 *.tmp
 *.log
 scratch/*.png
+
+# Security & Credentials
+.htpasswd
+admin/.htpasswd
+
