@@ -9,6 +9,7 @@ desktop.ini
 *.swp
 *.swo
 
-# Temporary Files
+# Temporary Files & Test Screenshots
 *.tmp
 *.log
+scratch/*.png

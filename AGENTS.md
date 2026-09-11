@@ -13,9 +13,10 @@ Dieses Dokument enthält verbindliche Arbeitsanweisungen, Architekturregeln und 
    - Keine Node.js-, Vite- oder Webpack-Buildschritte einführen.
    - Reines **HTML5, Vanilla CSS3 und Vanilla JavaScript**.
    - Kein TailwindCSS oder Bootstrap ohne ausdrücklichen Wunsch des Nutzers.
-3. **Admin-PIN & Datenschutz**:
+3. **Admin-PIN, .htaccess & Datenschutz**:
    - Die Standard-PIN für das Admin-Interface lautet `keller1867`.
-   - In der Benutzeroberfläche von `admin.html` darf **kein Hinweis auf die PIN** im Klartext angezeigt werden.
+   - Der Admin-Bereich liegt im separaten Ordner `admin/` und ist für Webserver über `admin/.htaccess` (Apache Basic Auth) geschützt. Als Fallback schützt die JavaScript-PIN-Sperre.
+   - In den Benutzeroberflächen von `admin/*.html` darf **kein Hinweis auf die PIN** im Klartext angezeigt werden.
    - Keine Tracking-Cookies, Werbedienste oder Drittanbieter-Tracker einbinden.
 
 ---
@@ -38,11 +39,11 @@ Das Projekt verwendet ein modulares, zustandsbasiertes Pub/Sub-Muster im Browser
          ┌───────────────────┼───────────────────┬───────────────────┐
          ▼                   ▼                   ▼                   ▼
    js/weather.js        js/menu.js          js/gallery.js       js/admin.js
- (Wetter-Engine)     (Speisekarte)         (Fotogalerie)       (Dashboard)
+ (Wetter-Engine)     (Speisekarte)         (Fotogalerie)     (Admin-Module)
          │                   │                   │                   │
          ▼                   ▼                   ▼                   ▼
-   index.html &      speisekarte.html        fotos.html          admin.html
- oeffnungszeiten &
+   index.html &      speisekarte.html        fotos.html         admin/*.html
+ oeffnungszeiten &                                            (6 Einzelseiten)
    Live-Events
 ```
 

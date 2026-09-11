@@ -65,18 +65,46 @@ class KellerAdminDashboard {
     }
   }
 
+  resolveAssetPath(src) {
+    if (!src) return '';
+    if (src.startsWith('data:') || src.startsWith('http://') || src.startsWith('https://') || src.startsWith('../') || src.startsWith('/')) {
+      return src;
+    }
+    const isSubdir = window.location.pathname.includes('/admin/') || 
+                     window.location.pathname.endsWith('/admin') || 
+                     window.location.pathname.includes('\\admin\\') ||
+                     window.location.pathname.endsWith('\\admin');
+    return isSubdir ? '../' + src : src;
+  }
+
   renderDashboard() {
-    this.renderStatusControls();
-    this.renderAnnouncementControls();
-    this.renderPizzaOvenControls();
-    this.renderMakrelenGrillControls();
-    this.renderMenuItems();
-    this.renderGalleryItems();
-    this.renderEventsItems();
-    this.setupModals();
-    this.setupPhotoModal();
-    this.setupEventModal();
-    this.setupJsonExportImport();
+    if (document.getElementById('save-status-btn') || document.querySelector('input[name="biergarten_status"]')) {
+      this.renderStatusControls();
+    }
+    if (document.getElementById('save-announcement-btn')) {
+      this.renderAnnouncementControls();
+    }
+    if (document.getElementById('admin-pizza-oven-toggle')) {
+      this.renderPizzaOvenControls();
+    }
+    if (document.getElementById('admin-makrelen-grill-toggle')) {
+      this.renderMakrelenGrillControls();
+    }
+    if (document.getElementById('admin-menu-list')) {
+      this.renderMenuItems();
+      this.setupModals();
+    }
+    if (document.getElementById('admin-gallery-list')) {
+      this.renderGalleryItems();
+      this.setupPhotoModal();
+    }
+    if (document.getElementById('admin-events-list')) {
+      this.renderEventsItems();
+      this.setupEventModal();
+    }
+    if (document.getElementById('export-menu-json-btn')) {
+      this.setupJsonExportImport();
+    }
   }
 
   // --- 1. Status Management (5 Options) ---
@@ -638,7 +666,7 @@ class KellerAdminDashboard {
       return `
         <div class="admin-photo-card" style="background:var(--white); border:1px solid var(--slate-200); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm); display:flex; flex-direction:column;">
           <div style="position:relative; width:100%; height:180px; background:var(--slate-100); overflow:hidden;">
-            <img src="${this.escape(item.src)}" alt="${this.escape(item.title)}" style="width:100%; height:100%; object-fit:cover;" loading="lazy" />
+            <img src="${this.escape(this.resolveAssetPath(item.src))}" alt="${this.escape(item.title)}" style="width:100%; height:100%; object-fit:cover;" loading="lazy" />
             <span style="position:absolute; top:8px; left:8px; background:rgba(0,0,0,0.65); color:#fff; font-size:0.75rem; padding:0.2rem 0.6rem; border-radius:var(--radius-full); backdrop-filter:blur(4px);">
               ${this.escape(catName)}
             </span>
@@ -846,7 +874,7 @@ class KellerAdminDashboard {
     }
 
     if (previewBox) {
-      previewBox.innerHTML = `<img src="${this.escape(item.src)}" style="width:100%; height:100%; object-fit:cover;" />`;
+      previewBox.innerHTML = `<img src="${this.escape(this.resolveAssetPath(item.src))}" style="width:100%; height:100%; object-fit:cover;" />`;
     }
 
     if (titleEl) titleEl.textContent = 'Foto bearbeiten';
@@ -871,7 +899,7 @@ class KellerAdminDashboard {
 
       return `
         <div class="admin-event-card ${isActive ? '' : 'inactive'}" data-id="${event.id}">
-          <img src="${event.image || 'assets/images/events/event_maascheisser.jpg'}" alt="${this.escape(event.title)}" class="admin-event-thumb" />
+          <img src="${this.resolveAssetPath(event.image || 'assets/images/events/event_maascheisser.jpg')}" alt="${this.escape(event.title)}" class="admin-event-thumb" />
           <div class="admin-event-info">
             <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.35rem; flex-wrap:wrap;">
               <span class="event-date-pill" style="font-size:0.78rem; padding:0.2rem 0.55rem;"><i class="fa-solid fa-calendar-day"></i> ${this.escape(formattedDate)}</span>
@@ -1041,7 +1069,7 @@ class KellerAdminDashboard {
     document.getElementById('modal-event-src').value = item.image || '';
 
     if (previewBox && item.image) {
-      previewBox.innerHTML = `<img src="${this.escape(item.image)}" style="width:100%; height:100%; object-fit:cover;" />`;
+      previewBox.innerHTML = `<img src="${this.escape(this.resolveAssetPath(item.image))}" style="width:100%; height:100%; object-fit:cover;" />`;
     }
 
     document.getElementById('event-modal-heading').innerHTML = '<i class="fa-solid fa-guitar" style="color:var(--amber-500);"></i> Event bearbeiten';

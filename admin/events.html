@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live-Events &amp; Termine | Engelhardt's Keller Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="background-color: #f1f5f9;">
+
+  <!-- PIN Authentication Overlay (JavaScript Fallback-Schutz) -->
+  <div id="admin-auth-overlay" class="auth-overlay">
+    <div class="auth-box">
+      <div class="auth-icon">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+      <h2 style="font-size:1.6rem; margin-bottom:0.5rem; color:var(--primary-900);">Keller-Verwaltung</h2>
+      <p style="font-size:0.9rem; color:var(--slate-600); margin-bottom:1.5rem;">
+        Bitte geben Sie die PIN ein, um das Admin-Interface zu öffnen.
+      </p>
+
+      <form id="admin-auth-form">
+        <div class="form-group">
+          <input type="password" id="admin-pin-input" class="form-control" placeholder="PIN eingeben" style="text-align:center; font-size:1.25rem; letter-spacing:0.15em;" required autofocus />
+          <div id="admin-pin-error" class="auth-error hidden">Falsche PIN. Bitte erneut versuchen.</div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Anmelden
+        </button>
+        <div style="margin-top:1.25rem;">
+          <a href="../index.html" style="font-size:0.85rem; color:var(--slate-500);">&larr; Zurück zur Website</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Header Strip -->
+  <header class="admin-header-strip">
+    <div class="container admin-header-inner">
+      <div>
+        <span class="admin-badge-tag"><i class="fa-solid fa-shield-halved"></i> Admin-Bereich</span>
+        <h1 style="font-size:1.85rem; color:var(--white); margin:0.2rem 0;">Engelhardt's Keller Verwaltung</h1>
+        <p style="color:var(--slate-300); font-size:0.92rem; margin:0;">
+          Erstellen und verwalten Sie Termine für Live-Musik, Blasmusik und Veranstaltungen
+        </p>
+      </div>
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <a href="../index.html" class="btn btn-sm btn-outline" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.3); color:var(--white);" target="_blank">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Zur Website
+        </a>
+        <button id="admin-logout-btn" class="btn btn-sm btn-danger-outline" style="background:rgba(239,68,68,0.15); border-color:#ef4444; color:#fca5a5;">
+          <i class="fa-solid fa-power-off"></i> Abmelden
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Admin Sub-Navigation Bar -->
+  <nav class="admin-nav-bar" aria-label="Admin Navigation">
+    <div class="container admin-nav-inner">
+      <ul class="admin-nav-list">
+        <li>
+          <a href="index.html" class="admin-nav-item">
+            <i class="fa-solid fa-toggle-on"></i> Status &amp; Öffnung
+          </a>
+        </li>
+        <li>
+          <a href="aktionen.html" class="admin-nav-item">
+            <i class="fa-solid fa-pizza-slice"></i> Aktionen &amp; Spezialitäten
+          </a>
+        </li>
+        <li>
+          <a href="speisekarte.html" class="admin-nav-item">
+            <i class="fa-solid fa-utensils"></i> Speisekarte
+          </a>
+        </li>
+        <li>
+          <a href="galerie.html" class="admin-nav-item">
+            <i class="fa-solid fa-camera-retro"></i> Fotogalerie
+          </a>
+        </li>
+        <li>
+          <a href="events.html" class="admin-nav-item active">
+            <i class="fa-solid fa-guitar"></i> Live-Events
+          </a>
+        </li>
+        <li>
+          <a href="sicherung.html" class="admin-nav-item">
+            <i class="fa-solid fa-database"></i> Datensicherung
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Admin Dashboard Body -->
+  <main class="admin-container">
+
+    <!-- CARD: Live-Events & Termine verwalten -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <div>
+          <h2 class="admin-card-title">
+            <i class="fa-solid fa-guitar" style="color:var(--amber-600);"></i>
+            Live-Events &amp; Termine verwalten
+          </h2>
+          <p style="font-size:0.85rem; color:var(--slate-500); margin:0;">
+            Erstellen und verwalten Sie Termine für Live-Musik, Blasmusik und Veranstaltungen für die Startseite.
+          </p>
+        </div>
+        <button id="add-event-btn" class="btn btn-primary">
+          <i class="fa-solid fa-plus"></i> Neues Event anlegen
+        </button>
+      </div>
+
+      <div id="admin-events-list">
+        <!-- Populated by admin.js -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Add/Edit Event Modal -->
+  <div id="event-modal" class="admin-modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog" style="max-width:580px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="event-modal-heading"><i class="fa-solid fa-guitar" style="color:var(--amber-500);"></i> Event anlegen / bearbeiten</h3>
+        <button class="modal-close" id="close-event-modal" aria-label="Schließen">&times;</button>
+      </div>
+
+      <form id="event-modal-form">
+        <input type="hidden" id="modal-event-id" />
+
+        <div class="form-group">
+          <label class="form-label" for="modal-event-title">Titel / Band-Name *</label>
+          <input type="text" id="modal-event-title" class="form-control" required placeholder="z. B. Ebensfelder Maascheißer oder Live-Musik mit Sino Dee" />
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label class="form-label" for="modal-event-date">Datum *</label>
+            <input type="date" id="modal-event-date" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="modal-event-time">Uhrzeit *</label>
+            <input type="text" id="modal-event-time" class="form-control" required placeholder="z. B. ab 15:00 Uhr" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modal-event-badge">Kategorie / Genre-Badge</label>
+          <input type="text" id="modal-event-badge" class="form-control" placeholder="z. B. Live-Blasmusik, Live-Akustik & Pop, Keller-Party" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modal-event-desc">Beschreibung *</label>
+          <textarea id="modal-event-desc" class="form-control" rows="3" required placeholder="Kurze Beschreibung des Events, Musikrichtung, Kellerstimmung..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Event-Bild auswählen:</label>
+          <div style="border: 2px dashed var(--slate-300); border-radius:var(--radius-md); padding:1rem; text-align:center; background:var(--slate-50); margin-bottom:0.75rem;">
+            <i class="fa-solid fa-cloud-arrow-up fa-2x" style="color:var(--primary-700); margin-bottom:0.5rem;"></i>
+            <div><strong>Bilddatei vom Computer hochladen:</strong></div>
+            <input type="file" id="modal-event-file" accept="image/*" class="form-control" style="margin-top:0.5rem;" />
+            <small style="color:var(--slate-500); display:block; margin-top:0.25rem;">JPG, PNG, WebP</small>
+          </div>
+          
+          <div style="text-align:center; font-size:0.85rem; color:var(--slate-400); margin:0.5rem 0;">- ODER -</div>
+          
+          <label class="form-label" for="modal-event-src">Bildpfad oder Bild-URL:</label>
+          <input type="text" id="modal-event-src" class="form-control" placeholder="assets/images/events/... oder https://..." />
+        </div>
+
+        <!-- Image Preview Box -->
+        <div class="form-group">
+          <label class="form-label">Bildvorschau:</label>
+          <div id="modal-event-preview" style="width:100%; height:180px; border-radius:var(--radius-md); background:var(--slate-200); display:flex; align-items:center; justify-content:center; overflow:hidden; border:1px solid var(--slate-300);">
+            <span style="color:var(--slate-500); font-size:0.9rem;">Kein Bild ausgewählt</span>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="cancel-event-modal" class="btn btn-outline">Abbrechen</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Event speichern</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/store.js"></script>
+  <script src="../js/weather.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

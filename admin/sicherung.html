@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datensicherung &amp; System | Engelhardt's Keller Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="background-color: #f1f5f9;">
+
+  <!-- PIN Authentication Overlay (JavaScript Fallback-Schutz) -->
+  <div id="admin-auth-overlay" class="auth-overlay">
+    <div class="auth-box">
+      <div class="auth-icon">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+      <h2 style="font-size:1.6rem; margin-bottom:0.5rem; color:var(--primary-900);">Keller-Verwaltung</h2>
+      <p style="font-size:0.9rem; color:var(--slate-600); margin-bottom:1.5rem;">
+        Bitte geben Sie die PIN ein, um das Admin-Interface zu öffnen.
+      </p>
+
+      <form id="admin-auth-form">
+        <div class="form-group">
+          <input type="password" id="admin-pin-input" class="form-control" placeholder="PIN eingeben" style="text-align:center; font-size:1.25rem; letter-spacing:0.15em;" required autofocus />
+          <div id="admin-pin-error" class="auth-error hidden">Falsche PIN. Bitte erneut versuchen.</div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Anmelden
+        </button>
+        <div style="margin-top:1.25rem;">
+          <a href="../index.html" style="font-size:0.85rem; color:var(--slate-500);">&larr; Zurück zur Website</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Header Strip -->
+  <header class="admin-header-strip">
+    <div class="container admin-header-inner">
+      <div>
+        <span class="admin-badge-tag"><i class="fa-solid fa-shield-halved"></i> Admin-Bereich</span>
+        <h1 style="font-size:1.85rem; color:var(--white); margin:0.2rem 0;">Engelhardt's Keller Verwaltung</h1>
+        <p style="color:var(--slate-300); font-size:0.92rem; margin:0;">
+          Datensicherung, JSON-Export &amp; Import, Werkszustand und Webserver-Sicherheit
+        </p>
+      </div>
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <a href="../index.html" class="btn btn-sm btn-outline" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.3); color:var(--white);" target="_blank">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Zur Website
+        </a>
+        <button id="admin-logout-btn" class="btn btn-sm btn-danger-outline" style="background:rgba(239,68,68,0.15); border-color:#ef4444; color:#fca5a5;">
+          <i class="fa-solid fa-power-off"></i> Abmelden
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Admin Sub-Navigation Bar -->
+  <nav class="admin-nav-bar" aria-label="Admin Navigation">
+    <div class="container admin-nav-inner">
+      <ul class="admin-nav-list">
+        <li>
+          <a href="index.html" class="admin-nav-item">
+            <i class="fa-solid fa-toggle-on"></i> Status &amp; Öffnung
+          </a>
+        </li>
+        <li>
+          <a href="aktionen.html" class="admin-nav-item">
+            <i class="fa-solid fa-pizza-slice"></i> Aktionen &amp; Spezialitäten
+          </a>
+        </li>
+        <li>
+          <a href="speisekarte.html" class="admin-nav-item">
+            <i class="fa-solid fa-utensils"></i> Speisekarte
+          </a>
+        </li>
+        <li>
+          <a href="galerie.html" class="admin-nav-item">
+            <i class="fa-solid fa-camera-retro"></i> Fotogalerie
+          </a>
+        </li>
+        <li>
+          <a href="events.html" class="admin-nav-item">
+            <i class="fa-solid fa-guitar"></i> Live-Events
+          </a>
+        </li>
+        <li>
+          <a href="sicherung.html" class="admin-nav-item active">
+            <i class="fa-solid fa-database"></i> Datensicherung
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Admin Dashboard Body -->
+  <main class="admin-container">
+
+    <!-- CARD: Data Backup (JSON Export / Import & Reset) -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h2 class="admin-card-title">
+          <i class="fa-solid fa-database" style="color:var(--slate-700);"></i>
+          Datensicherung &amp; Export / Import
+        </h2>
+      </div>
+      <p style="font-size:0.92rem; color:var(--slate-600); margin-bottom:1.5rem;">
+        Alle Ihre Änderungen (deaktivierte Speisen, neue Fotos, Events, geänderte Kategorien, Öffnungsstatus) werden sicher im Browser gespeichert. Sie können Speisekarte, Galerie und Events jederzeit als JSON-Datei sichern oder wiederherstellen:
+      </p>
+
+      <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center; margin-bottom:2rem;">
+        <button id="export-menu-json-btn" class="btn btn-outline">
+          <i class="fa-solid fa-file-export"></i> Speisekarte als JSON
+        </button>
+        <button id="export-gallery-json-btn" class="btn btn-outline">
+          <i class="fa-solid fa-images"></i> Fotogalerie als JSON
+        </button>
+        <button id="export-events-json-btn" class="btn btn-outline">
+          <i class="fa-solid fa-calendar-days"></i> Events als JSON
+        </button>
+        
+        <label class="btn btn-outline" style="cursor:pointer; margin:0;">
+          <i class="fa-solid fa-file-import"></i> JSON-Datei importieren
+          <input type="file" id="import-menu-json-input" accept=".json" style="display:none;" />
+        </label>
+      </div>
+
+      <div style="border-top:1px solid var(--slate-200); padding-top:1.5rem;">
+        <h3 style="font-size:1.1rem; color:var(--slate-800); margin-bottom:0.75rem;">
+          <i class="fa-solid fa-rotate-left" style="color:#ef4444;"></i> Werkszustand wiederherstellen
+        </h3>
+        <p style="font-size:0.85rem; color:var(--slate-500); margin-bottom:1rem;">
+          Setzt die Daten im Browser auf die ursprünglichen Standarddateien aus dem Repository zurück.
+        </p>
+
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          <button id="reset-menu-btn" class="btn btn-danger-outline btn-sm">
+            <i class="fa-solid fa-rotate-left"></i> Speisekarte Werkszustand
+          </button>
+          <button id="reset-gallery-btn" class="btn btn-danger-outline btn-sm">
+            <i class="fa-solid fa-rotate-left"></i> Galerie Werkszustand
+          </button>
+          <button id="reset-events-btn" class="btn btn-danger-outline btn-sm">
+            <i class="fa-solid fa-rotate-left"></i> Events Werkszustand
+          </button>
+          <button id="reset-settings-btn" class="btn btn-danger-outline btn-sm">
+            <i class="fa-solid fa-arrows-rotate"></i> Einstellungen Werkszustand
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Webserver-Sicherheit & .htaccess Information -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h2 class="admin-card-title">
+          <i class="fa-solid fa-shield-halved" style="color:var(--primary-700);"></i>
+          Server-Sicherheit &amp; .htaccess Passwortschutz
+        </h2>
+        <span class="cat-badge" style="background:var(--primary-100); color:var(--primary-800); font-size:0.8rem;">
+          <i class="fa-solid fa-lock"></i> 2-Stufen-Sicherheitskonzept
+        </span>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+        <div style="background:var(--slate-50); border:1px solid var(--slate-200); border-radius:var(--radius-lg); padding:1.25rem;">
+          <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.75rem;">
+            <div style="width:32px; height:32px; border-radius:50%; background:var(--primary-100); color:var(--primary-800); display:flex; align-items:center; justify-content:center; font-weight:bold;">1</div>
+            <strong style="font-size:1rem; color:var(--primary-900);">Webserver-Ebene (.htaccess)</strong>
+          </div>
+          <p style="font-size:0.88rem; color:var(--slate-600); line-height:1.5; margin-bottom:0.75rem;">
+            Im Ordner <code>admin/</code> liegt die Datei <code>.htaccess</code>. Wenn Sie Ihre Website auf einem Apache-Webserver betreiben, können Sie den serverseitigen HTTP Basic Auth Passwortschutz aktivieren, indem Sie den Pfad zu Ihrer <code>.htpasswd</code> eintragen.
+          </p>
+          <p style="font-size:0.82rem; color:var(--slate-500); margin:0;">
+            <i class="fa-solid fa-circle-info"></i> Eine Musterdatei <code>.htpasswd.example</code> mit Hinweisen zur Passworterstellung ist ebenfalls im Ordner <code>admin/</code> hinterlegt.
+          </p>
+        </div>
+
+        <div style="background:var(--slate-50); border:1px solid var(--slate-200); border-radius:var(--radius-lg); padding:1.25rem;">
+          <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.75rem;">
+            <div style="width:32px; height:32px; border-radius:50%; background:var(--amber-100); color:var(--amber-800); display:flex; align-items:center; justify-content:center; font-weight:bold;">2</div>
+            <strong style="font-size:1rem; color:var(--slate-900);">Client-Ebene (JavaScript-Fallback)</strong>
+          </div>
+          <p style="font-size:0.88rem; color:var(--slate-600); line-height:1.5; margin-bottom:0.75rem;">
+            Sollte der Server noch nicht für <code>.htaccess</code> konfiguriert sein (z. B. auf lokalen Testumgebungen oder Windows-Webservern), schützt die integrierte JavaScript-PIN-Sperre als zuverlässiger Fallback.
+          </p>
+          <p style="font-size:0.82rem; color:var(--slate-500); margin:0;">
+            <i class="fa-solid fa-check-circle" style="color:var(--color-open-border);"></i> Die Anmeldung bleibt für Ihre Browser-Sitzung über alle 6 Seiten hinweg aktiv, bis Sie auf „Abmelden“ klicken.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="../js/store.js"></script>
+  <script src="../js/weather.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

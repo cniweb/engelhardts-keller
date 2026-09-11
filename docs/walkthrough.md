@@ -80,37 +80,28 @@ Da der Steinbackofen nur an bestimmten Tagen angeheizt wird, ist das gesamte Piz
 
 ---
 
-### 5. Interaktives Admin-Interface (`admin.html`)
-Über das browserbasierte Admin-Panel (abgesichert per PIN, Standard: `keller1867`) können alle Aspekte gepflegt werden:
-- **5 Optionen für den Biergarten-Status**:
-  1. `Vom Wetter abhängig`: Vollautomatische Live-Berechnung anhand des Ebensfeld-Wetters.
-  2. `Geöffnet`: Manuell geöffnet erzwingen (z. B. sonniger Feiertag).
-  3. `Geschlossen`: Manuell geschlossen erzwingen (z. B. Ruhetag, Unwetterwarnung).
-  4. `Geschlossene Gesellschaft`: Exklusive private Feier / geschlossene Veranstaltung.
-  5. `Urlaub`: Betriebsurlaub.
-- **Freitextfeld für individuelle Begründung**: z. B. *"Heute Live-Musik ab 16 Uhr!"* oder *"Betriebsurlaub bis 15. September"*.
-- **Live-Vorschau**: Zeigt sofort an, wie das Status-Widget auf der Startseite aussehen wird.
-- **Steinbackofen & Pizza-Tage Steuerung**:
-  - Ein-/Ausschalten des Steinbackofens und automatisches Aktivieren/Deaktivieren aller Pizza-Gerichte.
-- **Gegrillte Makrelen & Fisch-Tage Steuerung (August-Aktion)**:
-  - Ein-/Ausschalten des Holzkohlegrills für Aktionstage im August.
-  - Automatisches Ein-/Ausblenden der Speise *„Gegrillte Makrele“ (11,- €)* auf der Speisekarte.
-  - Live-Hinweisbanner mit authentischer Aufnahme (`assets/images/makrelen_grill.jpg`) auf Speisekarte und Startseite.
-- **Speisekarten-Pflege**:
-  - Schneller Ein-/Aus-Schalter (Aktiv / Deaktiviert) für jedes Gericht.
-  - Deaktivierte Speisen verschwinden **sofort** von der öffentlichen Speisekarte (`speisekarte.html`).
-  - Neue Gerichte anlegen (Titel, Kategorie, Preis, Beschreibung, Badges).
-  - Gerichte bearbeiten und löschen.
-- **Fotogalerie-Pflege**:
-  - Übersicht aller 26 Originalfotos mit Vorschau und Schnellbearbeitung.
-  - Bild-Upload per Datei-Auswahl (JPG, PNG, WebP) oder Eingabe einer Bild-URL/Pfad.
-  - Schnelle Zuweisung zu Kategorien (*Biergarten, Spielplatz, Gästezimmer, Speisen, Winter*).
-  - Löschen von Fotos aus der Galerie.
-- **Export & Import (JSON)**:
-  - Speisekarte als `menu.json` herunterladen.
-  - Fotogalerie als `gallery.json` herunterladen.
-  - JSON-Dateien importieren.
-  - Werkszustand für Speisekarte, Galerie und Einstellungen wiederherstellen.
+### 5. Modulares Admin-Interface (`admin/`) & 2-Stufen-Passwortschutz
+
+Die Keller-Verwaltung wurde von einer monolithischen Einzelseite in eine modulare Multi-Page-Architektur im separaten Ordner `admin/` überführt und mit einem 2-Stufen-Sicherheitskonzept ausgestattet:
+
+1. **Stufe 1 (Webserver-Ebene): `.htaccess` Basic Authentication**
+   - Vorkonfiguriert in `admin/.htaccess` mit Mustervorlage `admin/.htpasswd.example`.
+   - Schützt den gesamten Ordner `admin/` serverseitig vor unautorisiertem Zugriff (inkl. Schutz vor Auslesen von Konfigurationsdateien).
+2. **Stufe 2 (Client-Ebene): JavaScript-PIN-Sperre (Fallback)**
+   - Unverändert zuverlässiger Schutz über die Standard-PIN `keller1867`.
+   - Die Session bleibt über `sessionStorage` beim Wechseln zwischen allen 6 Einzelseiten im selben Tab aktiv (kein wiederholtes Eintippen der PIN bei jedem Menüwechsel).
+   - In der Benutzeroberfläche wird gemäß Vorgabe kein Hinweis auf die PIN im Klartext angezeigt.
+3. **Nahtlose Navigation & 6 dedizierte Einzelseiten**:
+   - Einheitliche, am Design-System ausgerichtete Admin-Navigationsleiste (`.admin-nav-bar`) mit Icons und aktiver Hervorhebung.
+   - **`admin/index.html` (Status & Öffnung)**: 5 Optionen (Wetter-Automatik, Geöffnet, Geschlossen, Geschlossene Gesellschaft, Urlaub), Freitext-Begründung, Live-Vorschau, Ankündigungs-Top-Banner.
+   - **`admin/aktionen.html` (Aktionen & Spezialitäten)**: Steinbackofen & Pizza-Tage Steuerung sowie Gegrillte Makrelen vom Holzkohlegrill.
+   - **`admin/speisekarte.html` (Speisekarte)**: Schneller Aktiv/Deaktiviert-Schalter für jedes Gericht, Kategorie-Filter, Suche, Gerichte anlegen/bearbeiten/löschen (Modal).
+   - **`admin/galerie.html` (Fotogalerie)**: Fotokarten, Bild-Upload (Datei / Base64 / URL), Kategorie-Zuweisung, Bearbeiten & Löschen.
+   - **`admin/events.html` (Live-Events)**: Musiktermine, Blasmusik, Veranstaltungen anlegen/bearbeiten/deaktivieren (Modal).
+   - **`admin/sicherung.html` (Datensicherung)**: JSON-Export & Import, Werkszustand-Reset aller 4 Datenbereiche, Dokumentation zur Server-Sicherheit.
+4. **Abwärtskompatibilität**:
+   - Die bisherige Root-Datei `admin.html` leitet automatisch per Meta-Refresh und JavaScript auf `admin/index.html` weiter.
+   - Alle Website-Links (Offcanvas-Menü, Footer) verweisen direkt auf `admin/index.html`.
 
 ---
 
@@ -127,7 +118,7 @@ Da der Steinbackofen nur an bestimmten Tagen angeheizt wird, ist das gesamte Piz
 | **Anfahrt & Lage** | [anfahrt.html](../anfahrt.html) | Anfahrtsbeschreibungen (A73, Bahn, Main-Radweg) + interaktive OpenStreetMap |
 | **Umgebung** | [umgebung.html](../umgebung.html) | Ausflugsziele: Ebensfeld, Staffelberg, Vierzehnheiligen, Obermain-Therme |
 | **Impressum** | [impressum.html](../impressum.html) | Vollständige rechtliche Angaben nach TMG und DSGVO |
-| **Admin-Interface** | [admin.html](../admin.html) | Verwaltung von Status, Banner, Speisen und Fotogalerie |
+| **Admin-Bereich** | [admin/index.html](../admin/index.html) | Modulare Verwaltung: Status, Aktionen, Speisekarte, Fotogalerie, Events & Datensicherung |
 
 ---
 
@@ -181,9 +172,11 @@ Kommende Veranstaltungen und Live-Musik-Termine werden auf der Startseite (`inde
 ## 🧪 Verifikation & Testergebnisse
 
 - **Lokaler Server**: Gestartet auf `http://localhost:8080/`.
-- **Automatisierte Link- und Assetprüfung**:
-  - Alle 10 HTML-Dateien liefern `HTTP 200 OK`.
-  - 100% aller referenzierten Bilder, Stylesheets und Skripte sind lokal vorhanden und fehlerfrei aufgelöst.
+- **Automatisierte Link- und Assetprüfung (`scratch/validate_site.py`)**:
+  - Alle 16 HTML-Dateien im Root und in `admin/` liefern `HTTP 200 OK`.
+  - 91 lokale Assets (Bilder, Stylesheets, Skripte) und 302 interne Links fehlerfrei und ohne 404-Fehler aufgelöst.
+- **Automatisierte Playwright Headless Chrome Testsuite (`scratch/test_admin_flow.py`)**:
+  - 10 von 10 Tests erfolgreich bestanden (PIN-Schutz, falsche PIN abgewiesen, Login freigeschaltet, Session-Persistenz über alle 6 Seiten, Datenanzeige, Redirect von `admin.html` und Abmeldung).
 - **Wetter-Schnittstelle**:
   - Ebensfeld-Koordinaten erfolgreich getestet; liefert stündliche Vorhersagewerte, WMO-Codes und Niederschlagswahrscheinlichkeiten.
 - **Mobile Responsiveness**:

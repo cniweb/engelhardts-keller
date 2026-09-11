@@ -1,0 +1,33 @@
+# ==============================================================================
+# Engelhardt's Keller Ebensfeld - Admin-Bereich Schutz (.htaccess)
+# ==============================================================================
+# Dieser Ordner enthält administrative Werkzeuge zur Pflege von Status, Speisekarte,
+# Galerie und Events.
+#
+# SERVER-PASSWORTSCHUTZ (Apache HTTP Basic Authentication):
+# Um den serverseitigen Passwortschutz auf Ihrem Webspace zu aktivieren,
+# entfernen Sie die '#' vor den folgenden 4 Zeilen und passen Sie den
+# absoluten Pfad zur Datei .htpasswd an (z. B. bei Strato, Ionos, All-Inkl, Plesk):
+#
+# AuthType Basic
+# AuthName "Engelhardts Keller Ebensfeld - Administrationsbereich"
+# AuthUserFile /absoluter/serverpfad/zu/admin/.htpasswd
+# Require valid-user
+#
+# Hinweis: Falls .htaccess auf Ihrem Server noch nicht aktiv ist, greift weiterhin
+# automatisch die integrierte clientseitige PIN-Sperre über JavaScript als Fallback!
+# ==============================================================================
+
+# Versteckte Dateien und Konfigurationsdateien (.ht*, etc.) vor direktem Webzugriff schützen
+<FilesMatch "^\.">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Standard-Startseite für das Admin-Verzeichnis definieren
+DirectoryIndex index.html

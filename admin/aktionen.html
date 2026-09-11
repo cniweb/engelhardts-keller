@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aktionen &amp; Spezialitäten | Engelhardt's Keller Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="background-color: #f1f5f9;">
+
+  <!-- PIN Authentication Overlay (JavaScript Fallback-Schutz) -->
+  <div id="admin-auth-overlay" class="auth-overlay">
+    <div class="auth-box">
+      <div class="auth-icon">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+      <h2 style="font-size:1.6rem; margin-bottom:0.5rem; color:var(--primary-900);">Keller-Verwaltung</h2>
+      <p style="font-size:0.9rem; color:var(--slate-600); margin-bottom:1.5rem;">
+        Bitte geben Sie die PIN ein, um das Admin-Interface zu öffnen.
+      </p>
+
+      <form id="admin-auth-form">
+        <div class="form-group">
+          <input type="password" id="admin-pin-input" class="form-control" placeholder="PIN eingeben" style="text-align:center; font-size:1.25rem; letter-spacing:0.15em;" required autofocus />
+          <div id="admin-pin-error" class="auth-error hidden">Falsche PIN. Bitte erneut versuchen.</div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Anmelden
+        </button>
+        <div style="margin-top:1.25rem;">
+          <a href="../index.html" style="font-size:0.85rem; color:var(--slate-500);">&larr; Zurück zur Website</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Header Strip -->
+  <header class="admin-header-strip">
+    <div class="container admin-header-inner">
+      <div>
+        <span class="admin-badge-tag"><i class="fa-solid fa-shield-halved"></i> Admin-Bereich</span>
+        <h1 style="font-size:1.85rem; color:var(--white); margin:0.2rem 0;">Engelhardt's Keller Verwaltung</h1>
+        <p style="color:var(--slate-300); font-size:0.92rem; margin:0;">
+          Steinbackofen &amp; Pizza-Tage sowie Gegrillte Makrelen vom Holzkohlegrill
+        </p>
+      </div>
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <a href="../index.html" class="btn btn-sm btn-outline" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.3); color:var(--white);" target="_blank">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Zur Website
+        </a>
+        <button id="admin-logout-btn" class="btn btn-sm btn-danger-outline" style="background:rgba(239,68,68,0.15); border-color:#ef4444; color:#fca5a5;">
+          <i class="fa-solid fa-power-off"></i> Abmelden
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Admin Sub-Navigation Bar -->
+  <nav class="admin-nav-bar" aria-label="Admin Navigation">
+    <div class="container admin-nav-inner">
+      <ul class="admin-nav-list">
+        <li>
+          <a href="index.html" class="admin-nav-item">
+            <i class="fa-solid fa-toggle-on"></i> Status &amp; Öffnung
+          </a>
+        </li>
+        <li>
+          <a href="aktionen.html" class="admin-nav-item active">
+            <i class="fa-solid fa-pizza-slice"></i> Aktionen &amp; Spezialitäten
+          </a>
+        </li>
+        <li>
+          <a href="speisekarte.html" class="admin-nav-item">
+            <i class="fa-solid fa-utensils"></i> Speisekarte
+          </a>
+        </li>
+        <li>
+          <a href="galerie.html" class="admin-nav-item">
+            <i class="fa-solid fa-camera-retro"></i> Fotogalerie
+          </a>
+        </li>
+        <li>
+          <a href="events.html" class="admin-nav-item">
+            <i class="fa-solid fa-guitar"></i> Live-Events
+          </a>
+        </li>
+        <li>
+          <a href="sicherung.html" class="admin-nav-item">
+            <i class="fa-solid fa-database"></i> Datensicherung
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Admin Dashboard Body -->
+  <main class="admin-container">
+
+    <!-- CARD: Steinbackofen & Pizza-Tage Steuerung -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <div>
+          <h2 class="admin-card-title">
+            <i class="fa-solid fa-pizza-slice" style="color:var(--amber-600);"></i>
+            Steinbackofen &amp; Pizza-Tage Steuerung
+          </h2>
+          <p style="font-size:0.85rem; color:var(--slate-500); margin:0;">
+            Da der Steinbackofen nur an bestimmten Tagen angeheizt wird, können Sie die Pizza-Gerichte und den Website-Hinweis hier mit einem Klick steuern.
+          </p>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <span style="font-weight:bold; font-size:0.95rem; color:var(--slate-700);">Ofen heute an:</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="admin-pizza-oven-toggle" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div style="background:var(--slate-50); border:1px solid var(--slate-200); border-radius:var(--radius-md); padding:1.25rem; margin-bottom:1.5rem;">
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem;">
+          <span id="admin-pizza-status-badge" class="cat-badge" style="font-size:0.9rem; padding:0.35rem 0.75rem; background:var(--slate-400); color:#fff;">Ofen aus</span>
+          <span id="admin-pizza-status-summary" style="font-size:0.92rem; color:var(--slate-600);">Pizza-Gerichte sind auf der Website ausgeblendet.</span>
+        </div>
+
+        <label style="display:flex; align-items:center; gap:0.5rem; font-weight:600; cursor:pointer; font-size:0.9rem; color:var(--slate-800); margin-bottom:1rem;">
+          <input type="checkbox" id="sync-pizza-dishes-checkbox" checked style="width:18px; height:18px;" />
+          Beim Umschalten auch alle Pizza-Gerichte in der Speisekarte automatisch aktivieren / deaktivieren
+        </label>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label" for="pizza-notice-active-input">
+              <i class="fa-solid fa-fire"></i> Hinweistext auf Website, wenn Ofen AN ist:
+            </label>
+            <input type="text" id="pizza-notice-active-input" class="form-control" placeholder="Heute ist unser Steinbackofen in Betrieb! Frische Steinofen-Pizza ab 16 Uhr." />
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label" for="pizza-notice-inactive-input">
+              <i class="fa-solid fa-power-off"></i> Hinweistext auf Website, wenn Ofen AUS ist:
+            </label>
+            <input type="text" id="pizza-notice-inactive-input" class="form-control" placeholder="Unser Steinbackofen ist heute nicht in Betrieb (Steinofen-Pizza gibt es nur an bestimmten Tagen)." />
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end;">
+        <button id="save-pizza-oven-btn" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-floppy-disk"></i> Pizza-Einstellungen speichern
+        </button>
+      </div>
+    </div>
+
+    <!-- CARD: Gegrillte Makrelen & Fisch-Tage Steuerung -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <div>
+          <h2 class="admin-card-title">
+            <i class="fa-solid fa-fish" style="color:var(--primary-700);"></i>
+            Gegrillte Makrelen &amp; Fisch-Tage Steuerung
+          </h2>
+          <p style="font-size:0.85rem; color:var(--slate-500); margin:0;">
+            An bestimmten Aktionstagen im August werden frisch gegrillte Makrelen (11,- €) vom Holzkohlegrill angeboten. Steuern Sie das Angebot und die Hinweise mit einem Klick.
+          </p>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <span style="font-weight:bold; font-size:0.95rem; color:var(--slate-700);">Fischgrill heute an:</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="admin-makrelen-grill-toggle" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div style="background:var(--slate-50); border:1px solid var(--slate-200); border-radius:var(--radius-md); padding:1.25rem; margin-bottom:1.5rem;">
+        <div style="display:flex; align-items:center; gap:1.25rem; margin-bottom:1rem; flex-wrap:wrap;">
+          <img src="../assets/images/makrelen_grill.jpg" alt="Gegrillte Makrelen Holzkohlegrill" style="width:90px; height:65px; object-fit:cover; border-radius:var(--radius-md); border:1px solid var(--slate-300);" />
+          <div>
+            <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.35rem;">
+              <span id="admin-makrelen-status-badge" class="cat-badge" style="font-size:0.9rem; padding:0.35rem 0.75rem; background:var(--slate-400); color:#fff;">Grill aus</span>
+              <span id="admin-makrelen-status-summary" style="font-size:0.92rem; color:var(--slate-600);">Makrelen sind auf der Speisekarte ausgeblendet.</span>
+            </div>
+            <small style="color:var(--slate-500);">Preis: 11,00 € • Holzkohlegrill</small>
+          </div>
+        </div>
+
+        <label style="display:flex; align-items:center; gap:0.5rem; font-weight:600; cursor:pointer; font-size:0.9rem; color:var(--slate-800); margin-bottom:1rem;">
+          <input type="checkbox" id="sync-makrelen-dish-checkbox" checked style="width:18px; height:18px;" />
+          Beim Umschalten auch „Gegrillte Makrele“ (11,- €) in der Speisekarte automatisch aktivieren / deaktivieren
+        </label>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label" for="makrelen-notice-active-input">
+              <i class="fa-solid fa-fish"></i> Hinweistext auf Website, wenn Fischgrill AN ist:
+            </label>
+            <input type="text" id="makrelen-notice-active-input" class="form-control" placeholder="🐟 Heute frische Makrelen vom Holzkohlegrill (11,- €) – solange der Vorrat reicht!" />
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label" for="makrelen-notice-inactive-input">
+              <i class="fa-solid fa-power-off"></i> Hinweistext auf Website, wenn Fischgrill AUS ist:
+            </label>
+            <input type="text" id="makrelen-notice-inactive-input" class="form-control" placeholder="Gegrillte Makrelen gibt es an ausgewählten Aktionstagen im August." />
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end;">
+        <button id="save-makrelen-grill-btn" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-floppy-disk"></i> Fisch-Einstellungen speichern
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="../js/store.js"></script>
+  <script src="../js/weather.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

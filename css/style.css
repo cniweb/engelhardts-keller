@@ -1690,9 +1690,68 @@ p:last-child {
   display: inline-block;
 }
 
+/* Admin Sub-Navigation */
+.admin-nav-bar {
+  background: var(--primary-800);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.admin-nav-inner {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.admin-nav-list {
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.5rem 0;
+  list-style: none;
+  margin: 0;
+}
+
+.admin-nav-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem 1.15rem;
+  color: var(--slate-300);
+  font-weight: 600;
+  font-size: 0.92rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: var(--transition);
+}
+
+.admin-nav-item:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: var(--white);
+}
+
+.admin-nav-item.active {
+  background: var(--amber-500);
+  color: var(--slate-950);
+  font-weight: 700;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.admin-nav-item i {
+  font-size: 1rem;
+}
+
+.admin-nav-item.active i {
+  color: var(--slate-950);
+}
+
 .admin-container {
   max-width: 1200px;
-  margin: -2rem auto 4rem;
+  margin: 2.5rem auto 4rem;
   padding: 0 1.5rem;
 }
 

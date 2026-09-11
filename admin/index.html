@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Status &amp; Öffnungszeiten | Engelhardt's Keller Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="background-color: #f1f5f9;">
+
+  <!-- PIN Authentication Overlay (JavaScript Fallback-Schutz) -->
+  <div id="admin-auth-overlay" class="auth-overlay">
+    <div class="auth-box">
+      <div class="auth-icon">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+      <h2 style="font-size:1.6rem; margin-bottom:0.5rem; color:var(--primary-900);">Keller-Verwaltung</h2>
+      <p style="font-size:0.9rem; color:var(--slate-600); margin-bottom:1.5rem;">
+        Bitte geben Sie die PIN ein, um das Admin-Interface zu öffnen.
+      </p>
+
+      <form id="admin-auth-form">
+        <div class="form-group">
+          <input type="password" id="admin-pin-input" class="form-control" placeholder="PIN eingeben" style="text-align:center; font-size:1.25rem; letter-spacing:0.15em;" required autofocus />
+          <div id="admin-pin-error" class="auth-error hidden">Falsche PIN. Bitte erneut versuchen.</div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Anmelden
+        </button>
+        <div style="margin-top:1.25rem;">
+          <a href="../index.html" style="font-size:0.85rem; color:var(--slate-500);">&larr; Zurück zur Website</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Header Strip -->
+  <header class="admin-header-strip">
+    <div class="container admin-header-inner">
+      <div>
+        <span class="admin-badge-tag"><i class="fa-solid fa-shield-halved"></i> Admin-Bereich</span>
+        <h1 style="font-size:1.85rem; color:var(--white); margin:0.2rem 0;">Engelhardt's Keller Verwaltung</h1>
+        <p style="color:var(--slate-300); font-size:0.92rem; margin:0;">
+          Status-Steuerung (5 Optionen), Wetter-Automatik &amp; Ankündigungsbanner
+        </p>
+      </div>
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <a href="../index.html" class="btn btn-sm btn-outline" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.3); color:var(--white);" target="_blank">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Zur Website
+        </a>
+        <button id="admin-logout-btn" class="btn btn-sm btn-danger-outline" style="background:rgba(239,68,68,0.15); border-color:#ef4444; color:#fca5a5;">
+          <i class="fa-solid fa-power-off"></i> Abmelden
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Admin Sub-Navigation Bar -->
+  <nav class="admin-nav-bar" aria-label="Admin Navigation">
+    <div class="container admin-nav-inner">
+      <ul class="admin-nav-list">
+        <li>
+          <a href="index.html" class="admin-nav-item active">
+            <i class="fa-solid fa-toggle-on"></i> Status &amp; Öffnung
+          </a>
+        </li>
+        <li>
+          <a href="aktionen.html" class="admin-nav-item">
+            <i class="fa-solid fa-pizza-slice"></i> Aktionen &amp; Spezialitäten
+          </a>
+        </li>
+        <li>
+          <a href="speisekarte.html" class="admin-nav-item">
+            <i class="fa-solid fa-utensils"></i> Speisekarte
+          </a>
+        </li>
+        <li>
+          <a href="galerie.html" class="admin-nav-item">
+            <i class="fa-solid fa-camera-retro"></i> Fotogalerie
+          </a>
+        </li>
+        <li>
+          <a href="events.html" class="admin-nav-item">
+            <i class="fa-solid fa-guitar"></i> Live-Events
+          </a>
+        </li>
+        <li>
+          <a href="sicherung.html" class="admin-nav-item">
+            <i class="fa-solid fa-database"></i> Datensicherung
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Admin Dashboard Body -->
+  <main class="admin-container">
+    
+    <!-- CARD 1: Biergarten Status Control (5 Options) -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h2 class="admin-card-title">
+          <i class="fa-solid fa-toggle-on" style="color:var(--primary-700);"></i>
+          Biergarten-Öffnungsstatus überschreiben
+        </h2>
+        <span style="font-size:0.82rem; color:var(--slate-500);">Live-Wirkung auf Startseite &amp; Navigationsleiste</span>
+      </div>
+
+      <p style="font-size:0.95rem; color:var(--slate-600); margin-bottom:1.5rem;">
+        Wählen Sie hier eine der <strong>5 Optionen</strong>. Im Standardmodus („Vom Wetter abhängig“) entscheidet das System automatisch anhand des Live-Wetters in Ebensfeld. Sie können den Status jederzeit manuell überstimmen:
+      </p>
+
+      <!-- 5 Radio Buttons -->
+      <div class="status-options-grid">
+        
+        <!-- Option 1: Vom Wetter abhängig -->
+        <label class="status-option-label">
+          <input type="radio" name="biergarten_status" value="vom_wetter_abhaengig" />
+          <div class="opt-body">
+            <i class="fa-solid fa-cloud-sun-rain opt-icon"></i>
+            <div class="opt-title">Vom Wetter abhängig</div>
+            <div class="opt-desc">Automatische Berechnung nach Ebensfeld-Wetter (Öffnet wenn trocken, Mo Ruhetag).</div>
+          </div>
+        </label>
+
+        <!-- Option 2: Geöffnet -->
+        <label class="status-option-label">
+          <input type="radio" name="biergarten_status" value="geoffnet" />
+          <div class="opt-body">
+            <i class="fa-solid fa-circle-check opt-icon" style="color:var(--color-open-border);"></i>
+            <div class="opt-title">Geöffnet</div>
+            <div class="opt-desc">Manuell geöffnet erzwingen (z. B. bei schönem Sonderwetter oder Feiertag).</div>
+          </div>
+        </label>
+
+        <!-- Option 3: Geschlossen -->
+        <label class="status-option-label">
+          <input type="radio" name="biergarten_status" value="geschlossen" />
+          <div class="opt-body">
+            <i class="fa-solid fa-circle-xmark opt-icon" style="color:var(--color-closed-border);"></i>
+            <div class="opt-title">Geschlossen</div>
+            <div class="opt-desc">Manuell geschlossen erzwingen (z. B. bei Unwetterwarnung oder Ruhetag).</div>
+          </div>
+        </label>
+
+        <!-- Option 4: Geschlossene Gesellschaft -->
+        <label class="status-option-label">
+          <input type="radio" name="biergarten_status" value="geschlossene_gesellschaft" />
+          <div class="opt-body">
+            <i class="fa-solid fa-champagne-glasses opt-icon" style="color:var(--color-event-border);"></i>
+            <div class="opt-title">Geschlossene Gesellschaft</div>
+            <div class="opt-desc">Exklusiv für eine private Feier oder geschlossene Veranstaltung reserviert.</div>
+          </div>
+        </label>
+
+        <!-- Option 5: Urlaub -->
+        <label class="status-option-label">
+          <input type="radio" name="biergarten_status" value="urlaub" />
+          <div class="opt-body">
+            <i class="fa-solid fa-umbrella-beach opt-icon" style="color:var(--color-vacation-border);"></i>
+            <div class="opt-title">Urlaub</div>
+            <div class="opt-desc">Betriebsurlaub (z. B. zwei Wochen im Sommer/Herbst).</div>
+          </div>
+        </label>
+
+      </div>
+
+      <!-- Optional Extra Reason Input -->
+      <div class="form-group" style="margin-top:1.5rem;">
+        <label class="form-label" for="status-reason-input">
+          <i class="fa-solid fa-comment-dots"></i> Zusätzlicher Hinweis / Begründung für die Gäste (optional):
+        </label>
+        <input type="text" id="status-reason-input" class="form-control" placeholder="z. B. 'Heute Live-Musik ab 16 Uhr!', 'Betriebsurlaub bis einschließlich 15. September', etc." />
+      </div>
+
+      <!-- Live Preview of the Status Box -->
+      <div style="margin: 1.5rem 0;">
+        <div style="font-size:0.85rem; font-weight:700; color:var(--slate-600); margin-bottom:0.5rem;">
+          <i class="fa-solid fa-eye"></i> Vorschau der Anzeige auf der Website:
+        </div>
+        <div id="admin-status-preview"></div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end;">
+        <button id="save-status-btn" class="btn btn-accent btn-lg">
+          <i class="fa-solid fa-floppy-disk"></i> Biergarten-Status speichern
+        </button>
+      </div>
+
+    </div>
+
+    <!-- CARD 2: Announcement Top Banner -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h2 class="admin-card-title">
+          <i class="fa-solid fa-bullhorn" style="color:var(--amber-600);"></i>
+          Ankündigungsbanner (Obere Hinweisleiste)
+        </h2>
+      </div>
+      <div style="display:grid; grid-template-columns: auto 1fr 160px; gap:1rem; align-items:center;">
+        <label style="display:flex; align-items:center; gap:0.5rem; font-weight:600; cursor:pointer;">
+          <input type="checkbox" id="announcement-active" style="width:18px; height:18px;" />
+          Banner aktiv
+        </label>
+        <input type="text" id="announcement-text" class="form-control" placeholder="Text für die Ankündigung (z. B. Saisonstart, Vatertags-Frühschoppen)..." />
+        <input type="text" id="announcement-badge" class="form-control" placeholder="Badge (z. B. Aktuell)" />
+      </div>
+      <div style="display:flex; justify-content:flex-end; margin-top:1rem;">
+        <button id="save-announcement-btn" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-check"></i> Ankündigung speichern
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="../js/store.js"></script>
+  <script src="../js/weather.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

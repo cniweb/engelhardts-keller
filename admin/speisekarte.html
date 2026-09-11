@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speisekarte verwalten | Engelhardt's Keller Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="background-color: #f1f5f9;">
+
+  <!-- PIN Authentication Overlay (JavaScript Fallback-Schutz) -->
+  <div id="admin-auth-overlay" class="auth-overlay">
+    <div class="auth-box">
+      <div class="auth-icon">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+      <h2 style="font-size:1.6rem; margin-bottom:0.5rem; color:var(--primary-900);">Keller-Verwaltung</h2>
+      <p style="font-size:0.9rem; color:var(--slate-600); margin-bottom:1.5rem;">
+        Bitte geben Sie die PIN ein, um das Admin-Interface zu öffnen.
+      </p>
+
+      <form id="admin-auth-form">
+        <div class="form-group">
+          <input type="password" id="admin-pin-input" class="form-control" placeholder="PIN eingeben" style="text-align:center; font-size:1.25rem; letter-spacing:0.15em;" required autofocus />
+          <div id="admin-pin-error" class="auth-error hidden">Falsche PIN. Bitte erneut versuchen.</div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Anmelden
+        </button>
+        <div style="margin-top:1.25rem;">
+          <a href="../index.html" style="font-size:0.85rem; color:var(--slate-500);">&larr; Zurück zur Website</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Header Strip -->
+  <header class="admin-header-strip">
+    <div class="container admin-header-inner">
+      <div>
+        <span class="admin-badge-tag"><i class="fa-solid fa-shield-halved"></i> Admin-Bereich</span>
+        <h1 style="font-size:1.85rem; color:var(--white); margin:0.2rem 0;">Engelhardt's Keller Verwaltung</h1>
+        <p style="color:var(--slate-300); font-size:0.92rem; margin:0;">
+          Speisen bearbeiten, neu anlegen, löschen und Verfügbarkeit per Sofort-Schalter steuern
+        </p>
+      </div>
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <a href="../index.html" class="btn btn-sm btn-outline" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.3); color:var(--white);" target="_blank">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Zur Website
+        </a>
+        <button id="admin-logout-btn" class="btn btn-sm btn-danger-outline" style="background:rgba(239,68,68,0.15); border-color:#ef4444; color:#fca5a5;">
+          <i class="fa-solid fa-power-off"></i> Abmelden
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Admin Sub-Navigation Bar -->
+  <nav class="admin-nav-bar" aria-label="Admin Navigation">
+    <div class="container admin-nav-inner">
+      <ul class="admin-nav-list">
+        <li>
+          <a href="index.html" class="admin-nav-item">
+            <i class="fa-solid fa-toggle-on"></i> Status &amp; Öffnung
+          </a>
+        </li>
+        <li>
+          <a href="aktionen.html" class="admin-nav-item">
+            <i class="fa-solid fa-pizza-slice"></i> Aktionen &amp; Spezialitäten
+          </a>
+        </li>
+        <li>
+          <a href="speisekarte.html" class="admin-nav-item active">
+            <i class="fa-solid fa-utensils"></i> Speisekarte
+          </a>
+        </li>
+        <li>
+          <a href="galerie.html" class="admin-nav-item">
+            <i class="fa-solid fa-camera-retro"></i> Fotogalerie
+          </a>
+        </li>
+        <li>
+          <a href="events.html" class="admin-nav-item">
+            <i class="fa-solid fa-guitar"></i> Live-Events
+          </a>
+        </li>
+        <li>
+          <a href="sicherung.html" class="admin-nav-item">
+            <i class="fa-solid fa-database"></i> Datensicherung
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Admin Dashboard Body -->
+  <main class="admin-container">
+
+    <!-- CARD: Speisekarten-Verwaltung (Deactivate dishes, Add/Edit) -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <div>
+          <h2 class="admin-card-title">
+            <i class="fa-solid fa-utensils" style="color:var(--primary-700);"></i>
+            Speisekarte verwalten &amp; Speisen aktivieren / deaktivieren
+          </h2>
+          <p style="font-size:0.85rem; color:var(--slate-500); margin:0;">
+            Deaktivierte Speisen (z. B. ausverkauft) werden sofort von der öffentlichen Speisekarte ausgeblendet.
+          </p>
+        </div>
+        <button id="add-dish-btn" class="btn btn-primary">
+          <i class="fa-solid fa-plus"></i> Neues Gericht hinzufügen
+        </button>
+      </div>
+
+      <!-- Stats Bar -->
+      <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1.5rem;" id="admin-menu-stats">
+        <!-- populated by js -->
+      </div>
+
+      <!-- Search and Filter Bar -->
+      <div style="display:grid; grid-template-columns: 240px 1fr; gap:1rem; margin-bottom:1.25rem;">
+        <select id="admin-cat-filter" class="form-control">
+          <!-- Populated by JS -->
+        </select>
+        <input type="text" id="admin-menu-search" class="form-control" placeholder="Speisen nach Name oder Zutat durchsuchen..." />
+      </div>
+
+      <!-- List of Dishes -->
+      <div id="admin-menu-list">
+        <!-- Populated by admin.js -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Add/Edit Dish Modal -->
+  <div id="dish-modal" class="admin-modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="dish-modal-title" style="font-size:1.35rem; margin:0;">Gericht bearbeiten</h3>
+        <button id="close-dish-modal" class="modal-close">&times;</button>
+      </div>
+
+      <form id="dish-modal-form">
+        <input type="hidden" id="modal-dish-id" />
+
+        <div class="form-group">
+          <label class="form-label" for="modal-dish-name">Name des Gerichts *</label>
+          <input type="text" id="modal-dish-name" class="form-control" required placeholder="z. B. Hausgemachter Obatzter" />
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label class="form-label" for="modal-dish-category">Kategorie *</label>
+            <select id="modal-dish-category" class="form-control" required></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="modal-dish-price">Preis (€) *</label>
+            <input type="number" id="modal-dish-price" class="form-control" step="0.10" min="0" required placeholder="8.50" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modal-dish-desc">Beschreibung / Zutaten</label>
+          <textarea id="modal-dish-desc" class="form-control" rows="3" placeholder="Zutaten, Beilagen, Portionsgröße..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modal-dish-tags">Schlagwörter / Tags (Kommagetrennt)</label>
+          <input type="text" id="modal-dish-tags" class="form-control" placeholder="vegetarisch, hausgemacht, regional, steinofen" />
+          <small style="color:var(--slate-500);">Erlaubte Badges: vegetarisch, vegan, scharf, steinofen, hausgemacht, regional</small>
+        </div>
+
+        <div class="form-group" style="margin-top:1rem;">
+          <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; font-weight:600;">
+            <input type="checkbox" id="modal-dish-active" style="width:18px; height:18px;" checked />
+            Gericht ist aktuell verfügbar (auf Speisekarte anzeigen)
+          </label>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="cancel-dish-modal" class="btn btn-outline">Abbrechen</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Speichern</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/store.js"></script>
+  <script src="../js/weather.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

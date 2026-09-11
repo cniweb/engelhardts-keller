@@ -114,42 +114,42 @@ Besonderer Wert wurde auf folgende Anforderungen gelegt:
 | `anfahrt.html` | Anfahrt & Kontakt | Wegbeschreibung (A73, Bahn, Main-Radweg), Adressdaten & OpenStreetMap-Karte |
 | `umgebung.html` | Umgebung | Ausflugsziele: Ebensfeld, Staffelberg, Vierzehnheiligen, Kloster Banz, Therme |
 | `impressum.html` | Impressum & Datenschutz | Vollständige rechtliche Angaben nach § 5 TMG und DSGVO |
-| `admin.html` | Admin-Interface | PIN-geschütztes Dashboard für Status, Pizzaofen, Speisekarte und Fotogalerie |
+| `admin/` | Modulares Admin-Interface | Separater Ordner mit 6 dedizierten Einzelseiten, Navigationsmenü, `.htaccess`-Schutz & JS-Fallback |
+| `admin.html` | Weiterleitung | Automatischer Redirect auf `admin/index.html` |
 
 ---
 
-## 🔒 Admin-Interface & Datenverwaltung
+## 🔒 Admin-Interface & Datenverwaltung (`admin/`)
 
-Das Admin-Interface ist unter `admin.html` erreichbar und per PIN geschützt:
-- **Standard-PIN**: `keller1867`
+Der Administrationsbereich liegt in einem separaten Ordner `admin/` und ist für den Betrieb auf Webservern mit doppeltem Schutz ausgestattet:
+- **Webserver-Schutz (.htaccess)**: Apache Basic Authentication (`AuthType Basic`, `Require valid-user`) vorkonfiguriert in `admin/.htaccess` mit Musterdatei `admin/.htpasswd.example`.
+- **Client-Fallback (JavaScript PIN)**: Integrierter PIN-Schutz (`keller1867`) bleibt auch ohne aktive `.htaccess` als zuverlässige Rückfallebene aktiv. Die Session bleibt über `sessionStorage` beim Wechseln zwischen den Seiten erhalten.
 
-### Enthaltene Verwaltungsfunktionen:
-1. **5-Stufen Status-Override**:
-   - `Vom Wetter abhängig` (Standard: automatische Wetterberechnung Ebensfeld)
-   - `Geöffnet` (Manuell geöffnet)
-   - `Geschlossen` (Manuell geschlossen)
-   - `Geschlossene Gesellschaft`
-   - `Urlaub` (Betriebsurlaub)
-   - Optionales Freitextfeld für individuelle Begründungen (*„Heute Live-Musik!“*, *„Urlaub bis 15.09.“*).
-2. **Ankündigungsbanner**:
+### Modulare Struktur mit 6 Einzelseiten:
+1. **Status & Öffnung** (`admin/index.html`):
+   - 5-Stufen Status-Override: `Vom Wetter abhängig`, `Geöffnet`, `Geschlossen`, `Geschlossene Gesellschaft`, `Urlaub`.
+   - Freitextfeld für individuelle Begründungen (*„Heute Live-Musik!“*, *„Urlaub bis 15.09.“*).
+   - Live-Vorschau des Startseiten-Status-Widgets.
    - Oberen Ankündigungsbalken auf der gesamten Website aktivieren, deaktivieren und betexten.
-3. **Steinbackofen & Pizza-Tage**:
-   - Hauptschalter *„Ofen heute an / aus“*.
-   - Automatische Koppelung: Aktiviert bzw. deaktiviert beim Umschalten alle 4 Pizza-Gerichte.
-   - Einstellbare Hinweistexte für aktive und inaktive Tage.
-4. **Speisekarten-Pflege**:
-   - Schalter *„Aktiv / Deaktiviert“* für jedes einzelne Gericht.
+2. **Aktionen & Spezialitäten** (`admin/aktionen.html`):
+   - **Steinbackofen & Pizza-Tage**: Schalter *„Ofen heute an / aus“*, Koppelung mit Speisekarte und konfigurierbare Hinweistexte.
+   - **Gegrillte Makrelen vom Holzkohlegrill**: Schalter *„Fischgrill an / aus“*, Koppelung mit Speisekarte und Bildankündigung.
+3. **Speisekarte verwalten** (`admin/speisekarte.html`):
+   - Sofort-Schalter *„Aktiv / Deaktiviert“* für jedes einzelne Gericht (ausverkaufte Speisen sofort ausblenden).
    - Neues Gericht anlegen (Titel, Kategorie, Preis, Beschreibung, Tags).
    - Gerichte bearbeiten und löschen.
-5. **Fotogalerie-Pflege**:
+4. **Fotogalerie verwalten** (`admin/galerie.html`):
    - Übersicht aller 26 Originalfotos mit Vorschaukarten.
    - Schnellauswahl der Kategorie je Foto.
-   - **Bild-Upload**: Lokale Bilddatei (JPG, PNG, WebP) vom Computer auswählen (wird per FileReader direkt im Browser gespeichert) oder Bildpfad/URL angeben.
+   - **Bild-Upload**: Lokale Bilddatei (JPG, PNG, WebP) vom Computer hochladen oder Bildpfad/URL angeben.
    - Fotos bearbeiten und löschen.
-6. **Datensicherung & Export**:
-   - Speisekarte als `menu.json` exportieren / importieren.
-   - Fotogalerie als `gallery.json` exportieren.
-   - Werkszustand für Speisekarte, Fotogalerie und Einstellungen wiederherstellen.
+5. **Live-Events & Termine** (`admin/events.html`):
+   - Termine für Live-Musik, Blasmusik und Veranstaltungen erstellen, bearbeiten und aktivieren/deaktivieren.
+   - Veranstaltungsdetails mit Datum, Uhrzeit, Genre-Badge und Bild-Upload.
+6. **Datensicherung & System** (`admin/sicherung.html`):
+   - Speisekarte, Fotogalerie und Events als JSON exportieren und importieren.
+   - Werkszustand für Speisekarte, Fotogalerie, Events und Einstellungen wiederherstellen.
+   - Dokumentation zum Apache `.htaccess`-Server-Passwortschutz.
 
 ---
 
@@ -157,7 +157,16 @@ Das Admin-Interface ist unter `admin.html` erreichbar und per PIN geschützt:
 
 ```
 engelhardts-keller/
-├── admin.html                 # Admin-Dashboard (PIN-geschützt)
+├── admin/                     # Modulares Admin-Interface (durch .htaccess geschützt)
+│   ├── .htaccess              # Apache Basic Auth Konfiguration
+│   ├── .htpasswd.example      # Musterdatei für Zugangsdaten
+│   ├── index.html             # Status & Öffnung + Ankündigungsbanner
+│   ├── aktionen.html          # Steinbackofen & Gegrillte Makrelen
+│   ├── speisekarte.html       # Speisekarten-Pflege & Gerichte
+│   ├── galerie.html           # Fotogalerie-Pflege
+│   ├── events.html            # Live-Events & Termine
+│   └── sicherung.html         # Datensicherung, Reset & Server-Sicherheit
+├── admin.html                 # Weiterleitung auf admin/index.html
 ├── anfahrt.html               # Anfahrt & Kontakt mit Leaflet OSM-Karte
 ├── chronik.html               # Historische Zeitleiste ab 1867
 ├── fotos.html                 # Fotogalerie mit Kategorien & Lightbox
@@ -215,7 +224,7 @@ Anschließend im Webbrowser öffnen:
 - **Website**: [http://localhost:8080/index.html](http://localhost:8080/index.html)
 - **Speisekarte**: [http://localhost:8080/speisekarte.html](http://localhost:8080/speisekarte.html)
 - **Fotogalerie**: [http://localhost:8080/fotos.html](http://localhost:8080/fotos.html)
-- **Admin-Bereich**: [http://localhost:8080/admin.html](http://localhost:8080/admin.html) (PIN: `keller1867`)
+- **Admin-Bereich**: [http://localhost:8080/admin/index.html](http://localhost:8080/admin/index.html) (PIN: `keller1867`)
 
 ---
 

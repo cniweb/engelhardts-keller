@@ -40,6 +40,14 @@ class KellerStore {
     }));
   }
 
+  getDataUrl(filename) {
+    const isSubdir = window.location.pathname.includes('/admin/') || 
+                     window.location.pathname.endsWith('/admin') || 
+                     window.location.pathname.includes('\\admin\\') ||
+                     window.location.pathname.endsWith('\\admin');
+    return (isSubdir ? '../data/' : 'data/') + filename;
+  }
+
   // --- Settings ---
   async loadSettings() {
     const saved = localStorage.getItem(STORAGE_KEYS.SETTINGS);
@@ -53,7 +61,7 @@ class KellerStore {
     }
 
     try {
-      const resp = await fetch('data/settings.json');
+      const resp = await fetch(this.getDataUrl('settings.json'));
       const data = await resp.json();
       this.settingsData = data.settings;
     } catch (e) {
@@ -138,7 +146,7 @@ class KellerStore {
     }
 
     try {
-      const resp = await fetch('data/menu.json');
+      const resp = await fetch(this.getDataUrl('menu.json'));
       const data = await resp.json();
       this.menuData = data;
     } catch (e) {
@@ -221,7 +229,7 @@ class KellerStore {
     }
 
     try {
-      const resp = await fetch('data/gallery.json');
+      const resp = await fetch(this.getDataUrl('gallery.json'));
       const data = await resp.json();
       this.galleryData = data;
     } catch (e) {
@@ -288,7 +296,7 @@ class KellerStore {
     }
 
     try {
-      const resp = await fetch('data/events.json');
+      const resp = await fetch(this.getDataUrl('events.json'));
       const data = await resp.json();
       this.eventsData = data;
     } catch (e) {
